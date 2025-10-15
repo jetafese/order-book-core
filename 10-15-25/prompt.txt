@@ -1,0 +1,13 @@
+ChatGPT 5 Pro
+
+Input 1:
+Here is a C++ file containing code and comments describing the properties of the code.
+I want you to create a corresponding PVS specification.
+Make sure to give a side-by-side correspondence between every C++ translation  unit or definition with a PVS definition.
+Write the properties as theorems to prove.
+Use the PVS subtyping predicates whenever possible.
+It is important that you define the basic C++ types properly in PVS without loss of precision.
+
+
+Input 2/3: OfferExchange.cpp/.h
+
