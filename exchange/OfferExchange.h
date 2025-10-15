@@ -195,6 +195,31 @@
 namespace stellar
 {
 
+#ifndef _UINT64_T
+#define _UINT64_T
+typedef unsigned long long uint64_t;
+#endif /* _UINT64_T */
+
+#ifndef _INT64_T
+#define _INT64_T
+typedef long long int64_t;
+#endif /* _INT64_T */
+
+// This is like `assert()` but it is _not_ sensitive to the presence of
+// NDEBUG. We don't compile with NDEBUG but "compiling out important asserts" is
+// enough of a footgun that we want to avoid even the possibility.
+// It will also print a backtrace (at least on unix platforms with libunwind).
+#define releaseAssert(e) \
+    (static_cast<bool>(e) \
+         ? void(0) \
+         : stellar::printAssertFailureAndAbort(#e, __FILE__, __LINE__))
+
+// Same as above, but throwing rather than aborting.
+#define releaseAssertOrThrow(e) \
+    (static_cast<bool>(e) \
+         ? void(0) \
+         : stellar::printAssertFailureAndThrow(#e, __FILE__, __LINE__))
+
 class AbstractLedgerTxn;
 class ConstLedgerTxnEntry;
 class LedgerTxnEntry;
@@ -207,7 +232,7 @@ enum Rounding
     ROUND_DOWN,
     ROUND_UP
 };
-z
+
 enum class RoundingType
 {
     NORMAL,

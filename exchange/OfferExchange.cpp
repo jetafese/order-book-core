@@ -1,6 +1,7 @@
 // Fork of Stellar Development Foundation and contributors: stellar-core/src/transactions/OfferExchange.cpp
 
 #include "OfferExchange.h"
+#include "uint128_t.h"
 
 struct ExchangedQuantities
 {
@@ -10,25 +11,24 @@ struct ExchangedQuantities
 
 namespace stellar {
 
-// calculates A*B/C when A*B overflows 64bits
-bool
-bigDivide(int64_t& result, int64_t A, int64_t B, int64_t C, Rounding rounding)
+void printAssertFailureAndAbort(const char* s1, const char* file, int line)
 {
-    bool res;
-    releaseAssertOrThrow((A >= 0) && (B >= 0) && (C > 0));
-    uint64_t r2;
-    res =
-        bigDivideUnsigned(r2, (uint64_t)A, (uint64_t)B, (uint64_t)C, rounding);
-    if (res)
-    {
-        res = r2 <= INT64_MAX;
-        result = r2;
-    }
-    return res;
+    std::fprintf(stderr, "%s at %s:%d\n", s1, file, line);
+    std::fflush(stderr);
+    // printCurrentBacktrace();
+    // dbgAbort();
+    std::abort();
 }
 
-bool
-bigDivideUnsigned(uint64_t& result, uint64_t A, uint64_t B, uint64_t C,
+void printAssertFailureAndThrow(const char* s1, const char* file, int line)
+{
+    std::fprintf(stderr, "%s at %s:%d\n", s1, file, line);
+    std::fflush(stderr);
+    // printCurrentBacktrace();
+    throw std::runtime_error(s1);
+}
+
+bool bigDivideUnsigned(uint64_t& result, uint64_t A, uint64_t B, uint64_t C,
                   Rounding rounding)
 {
     releaseAssertOrThrow(C > 0);
@@ -43,8 +43,23 @@ bigDivideUnsigned(uint64_t& result, uint64_t A, uint64_t B, uint64_t C,
     return (x <= UINT64_MAX);
 }
 
-int64_t
-bigDivideOrThrow(int64_t A, int64_t B, int64_t C, Rounding rounding)
+// calculates A*B/C when A*B overflows 64bits
+bool bigDivide(int64_t& result, int64_t A, int64_t B, int64_t C, Rounding rounding)
+{
+    bool res;
+    releaseAssertOrThrow((A >= 0) && (B >= 0) && (C > 0));
+    uint64_t r2;
+    res =
+        bigDivideUnsigned(r2, (uint64_t)A, (uint64_t)B, (uint64_t)C, rounding);
+    if (res)
+    {
+        res = r2 <= INT64_MAX;
+        result = r2;
+    }
+    return res;
+}
+
+int64_t bigDivideOrThrow(int64_t A, int64_t B, int64_t C, Rounding rounding)
 {
     int64_t res;
     if (!bigDivide(res, A, B, C, rounding))
@@ -54,23 +69,7 @@ bigDivideOrThrow(int64_t A, int64_t B, int64_t C, Rounding rounding)
     return res;
 }
 
-bool
-bigDivide128(int64_t& result, uint128_t const& a, int64_t B, Rounding rounding)
-{
-    releaseAssertOrThrow(B > 0);
-
-    uint64_t r2;
-    bool res = bigDivideUnsigned128(r2, a, (uint64_t)B, rounding);
-    if (res)
-    {
-        res = r2 <= INT64_MAX;
-        result = r2;
-    }
-    return res;
-}
-
-bool
-bigDivideUnsigned128(uint64_t& result, uint128_t const& a, uint64_t B,
+bool bigDivideUnsigned128(uint64_t& result, uint128_t const& a, uint64_t B,
                      Rounding rounding)
 {
     releaseAssertOrThrow(B != 0);
@@ -103,8 +102,21 @@ bigDivideUnsigned128(uint64_t& result, uint128_t const& a, uint64_t B,
     return (x <= UINT64_MAX);
 }
 
-int64_t
-bigDivideOrThrow128(uint128_t const& a, int64_t B, Rounding rounding)
+bool bigDivide128(int64_t& result, uint128_t const& a, int64_t B, Rounding rounding)
+{
+    releaseAssertOrThrow(B > 0);
+
+    uint64_t r2;
+    bool res = bigDivideUnsigned128(r2, a, (uint64_t)B, rounding);
+    if (res)
+    {
+        res = r2 <= INT64_MAX;
+        result = r2;
+    }
+    return res;
+}
+
+int64_t bigDivideOrThrow128(uint128_t const& a, int64_t B, Rounding rounding)
 {
     int64_t res;
     if (!bigDivide128(res, a, B, rounding))
@@ -114,19 +126,57 @@ bigDivideOrThrow128(uint128_t const& a, int64_t B, Rounding rounding)
     return res;
 }
 
-uint128_t
-bigMultiplyUnsigned(uint64_t a, uint64_t b)
+uint128_t bigMultiplyUnsigned(uint64_t a, uint64_t b)
 {
     uint128_t A(a);
     uint128_t B(b);
     return A * B;
 }
 
-uint128_t
-bigMultiply(int64_t a, int64_t b)
+uint128_t bigMultiply(int64_t a, int64_t b)
 {
     releaseAssertOrThrow((a >= 0) && (b >= 0));
     return bigMultiplyUnsigned((uint64_t)a, (uint64_t)b);
+}
+
+/* Excerpt from OfferExchange.cpp begins */
+
+// Check that the relative error between the price and the effective price does
+// not exceed 1%. If canFavorWheat == true then this function does an asymmetric
+// check such that error favoring the seller of wheat can be unbounded, while
+// the relative error between the price and the effective price does not exceed
+// 1% if it is favoring the seller of sheep. The functionality of canFavorWheat
+// is required for PathPayment.
+bool
+checkPriceErrorBound(Price price, int64_t wheatReceive, int64_t sheepSend,
+                     bool canFavorWheat)
+{
+    // Let K = 100 / threshold, where threshold is the maximum relative error in
+    // percent (so in this case, threshold = 1%). Then we can rearrange the
+    // formula for relative error as follows:
+    //     abs(price - effPrice) <= price / K
+    //     price.d * abs(price - effPrice) <= price.n / K
+    //     abs(price.n - price.d * effPrice) <= price.n / K
+    //     abs(price.n * effPrice.d - price.d * effPrice.n)
+    //         <= price.n * effPrice.d / K
+    //     abs(K * price.n * effPrice.d - K * price.d * effPrice.n)
+    //         <= price.n * effPrice.d
+
+    // These never overflow since price.n and price.d are int32_t
+    int64_t errN = (int64_t)100 * (int64_t)price.n;
+    int64_t errD = (int64_t)100 * (int64_t)price.d;
+
+    uint128_t lhs = bigMultiply(errN, wheatReceive);
+    uint128_t rhs = bigMultiply(errD, sheepSend);
+
+    if (canFavorWheat && rhs > lhs)
+    {
+        return true;
+    }
+
+    uint128_t absDiff = (lhs > rhs) ? (lhs - rhs) : (rhs - lhs);
+    uint128_t cap = bigMultiply(price.n, wheatReceive);
+    return (absDiff <= cap);
 }
 
 static uint128_t calculateOfferValue(int32_t priceN, int32_t priceD, int64_t maxSend, int64_t maxReceive)
@@ -460,8 +510,7 @@ static uint128_t calculateOfferValue(int32_t priceN, int32_t priceD, int64_t max
 // operation fails. If sheepSend < maxSheepSend and wheatReceive <
 // maxWheatReceive, then the operation will cross additional offers since
 // !wheatStays.
-ExchangeResultV10
-exchangeV10(Price price, int64_t maxWheatSend, int64_t maxWheatReceive,
+ExchangeResultV10 exchangeV10(Price price, int64_t maxWheatSend, int64_t maxWheatReceive,
             int64_t maxSheepSend, int64_t maxSheepReceive, RoundingType round)
 {
     // ZoneScoped;
@@ -540,8 +589,7 @@ exchangeV10(Price price, int64_t maxWheatSend, int64_t maxWheatReceive,
 // should have already been removed from the order book because no more can be
 // received. In either case, we have reached a contradiction because we would
 // not be crossing in either case. We conclude that sheepSend > 0.
-ExchangeResultV10
-exchangeV10WithoutPriceErrorThresholds(Price price, int64_t maxWheatSend,
+ExchangeResultV10 exchangeV10WithoutPriceErrorThresholds(Price price, int64_t maxWheatSend,
                                        int64_t maxWheatReceive,
                                        int64_t maxSheepSend,
                                        int64_t maxSheepReceive,
@@ -611,8 +659,7 @@ exchangeV10WithoutPriceErrorThresholds(Price price, int64_t maxWheatSend,
 }
 
 // See comment before exchangeV10.
-ExchangeResultV10
-applyPriceErrorThresholds(Price price, int64_t wheatReceive, int64_t sheepSend,
+ExchangeResultV10 applyPriceErrorThresholds(Price price, int64_t wheatReceive, int64_t sheepSend,
                           bool wheatStays, RoundingType round)
 {
     if (wheatReceive > 0 && sheepSend > 0)
