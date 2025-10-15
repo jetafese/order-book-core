@@ -1,7 +1,6 @@
 // Fork of Stellar Development Foundation and contributors: stellar-core/src/transactions/OfferExchange.cpp
 
 #include "OfferExchange.h"
-#include "uint128_t.h"
 
 struct ExchangedQuantities
 {
