@@ -1,0 +1,344 @@
+(|ExchangeV10|
+ (|floor_div_TCC1| 0
+  (|floor_div_TCC1-1| NIL 3969635521 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|floor_div| SUBTYPE "ExchangeV10.y" "nznum" (11 40 11 41))))
+ (|floor_div_TCC2| 0
+  (|floor_div_TCC2-1| NIL 3969635521 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|floor_div| SUBTYPE "number_fields./(ExchangeV10.x, ExchangeV10.y)" "int"
+    (11 36 11 41))))
+ (|ceil_div_TCC1| 0
+  (|ceil_div_TCC1-1| NIL 3969635521 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|ceil_div| SUBTYPE
+    "number_fields./(((number_fields.+)(ExchangeV10.x, ((number_fields.-)(ExchangeV10.y, 1)))), ExchangeV10.y)"
+    "int" (12 35 12 52))))
+ (|big_div_numden_TCC1| 0
+  (|big_div_numden_TCC1-1| NIL 3969635521 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|big_div_numden| SUBTYPE "ExchangeV10.d" "nznum" (28 28 28 29))))
+ (|big_div_numden_TCC2| 0
+  (|big_div_numden_TCC2-1| NIL 3969635521 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|big_div_numden| SUBTYPE
+    "number_fields./((number_fields.*(ExchangeV10.x, ExchangeV10.n)), ExchangeV10.d)"
+    "int" (28 18 28 29))))
+ (|big_div_numden_TCC3| 0
+  (|big_div_numden_TCC3-1| NIL 3969635521 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|big_div_numden| SUBTYPE "ExchangeV10.d" "nznum" (29 38 29 39))))
+ (|big_div_numden_TCC4| 0
+  (|big_div_numden_TCC4-1| NIL 3969635521 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|big_div_numden| SUBTYPE
+    "number_fields./(((number_fields.+)(number_fields.*(ExchangeV10.x, ExchangeV10.n), ((number_fields.-)(ExchangeV10.d, 1)))), ExchangeV10.d)"
+    "int" (29 18 29 39))))
+ (|calculateOfferValue_TCC1| 0
+  (|calculateOfferValue_TCC1-1| NIL 3969635521 ("" (SUBTYPE-TCC) NIL NIL) NIL
+   NIL
+   (|calculateOfferValue| SUBTYPE
+    "number_fields.*(ExchangeV10.maxSend, ExchangeV10.n)" "natp"
+    (45 42 45 53))))
+ (|calculateOfferValue_TCC2| 0
+  (|calculateOfferValue_TCC2-1| NIL 3969635521 ("" (SUBTYPE-TCC) NIL NIL) NIL
+   NIL
+   (|calculateOfferValue| SUBTYPE
+    "number_fields.*(ExchangeV10.maxReceive, ExchangeV10.d)" "natp"
+    (45 59 45 73))))
+ (|exchangeV10WithoutPriceErrorThresholds_TCC1| 0
+  (|exchangeV10WithoutPriceErrorThresholds_TCC1-1| NIL 3969635521
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE
+    "ExchangeV10.big_div(ExchangeV10.sheepValue, ExchangeV10.price`n, ExchangeV10.ROUND_DOWN)"
+    "natp" (73 12 73 52))))
+ (|exchangeV10WithoutPriceErrorThresholds_TCC2| 0
+  (|exchangeV10WithoutPriceErrorThresholds_TCC2-1| NIL 3969635521
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE
+    "ExchangeV10.big_div(ExchangeV10.sheepValue, ExchangeV10.price`n, ExchangeV10.ROUND_DOWN)"
+    "natp" (75 12 75 52))))
+ (|exchangeV10WithoutPriceErrorThresholds_TCC3| 0
+  (|exchangeV10WithoutPriceErrorThresholds_TCC3-1| NIL 3969635521
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE
+    "ExchangeV10.sheepSend_tmp" "natp" (79 29 79 42))))
+ (|exchangeV10WithoutPriceErrorThresholds_TCC4| 0
+  (|exchangeV10WithoutPriceErrorThresholds_TCC4-1| NIL 3969635521
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE
+    "ExchangeV10.big_div_numden(ExchangeV10.sheepSend_tmp, ExchangeV10.price`d, ExchangeV10.price`n, ExchangeV10.ROUND_DOWN)"
+    "natp" (79 14 79 73))))
+ (|exchangeV10WithoutPriceErrorThresholds_TCC5| 0
+  (|exchangeV10WithoutPriceErrorThresholds_TCC5-1| NIL 3969635521
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE
+    "ExchangeV10.big_div(ExchangeV10.wheatValue, ExchangeV10.price`n, ExchangeV10.ROUND_DOWN)"
+    "natp" (84 12 84 52))))
+ (|exchangeV10WithoutPriceErrorThresholds_TCC6| 0
+  (|exchangeV10WithoutPriceErrorThresholds_TCC6-1| NIL 3969635521
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE
+    "ExchangeV10.sheepSend_tmp" "natp" (88 29 88 42))))
+ (|exchangeV10WithoutPriceErrorThresholds_TCC7| 0
+  (|exchangeV10WithoutPriceErrorThresholds_TCC7-1| NIL 3969635521
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE
+    "ExchangeV10.big_div_numden(ExchangeV10.sheepSend_tmp, ExchangeV10.price`d, ExchangeV10.price`n, ExchangeV10.ROUND_UP)"
+    "natp" (88 14 88 71))))
+ (|exchangeV10WithoutPriceErrorThresholds_TCC8| 0
+  (|exchangeV10WithoutPriceErrorThresholds_TCC8-1| NIL 3969635521
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE
+    "ExchangeV10.big_div_numden(ExchangeV10.wheatReceive, ExchangeV10.price`n, ExchangeV10.price`d, ExchangeV10.ROUND_UP)"
+    "natp" (97 12 97 68))))
+ (|exchangeV10WithoutPriceErrorThresholds_TCC9| 0
+  (|exchangeV10WithoutPriceErrorThresholds_TCC9-1| NIL 3969635521
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE
+    "ExchangeV10.big_div(ExchangeV10.sheepValue, ExchangeV10.price`d, ExchangeV10.ROUND_DOWN)"
+    "natp" (99 12 99 52))))
+ (|exchangeV10WithoutPriceErrorThresholds_TCC10| 0
+  (|exchangeV10WithoutPriceErrorThresholds_TCC10-1| NIL 3969635521
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE
+    "ExchangeV10.big_div_numden(ExchangeV10.wheatReceive, ExchangeV10.price`n, ExchangeV10.price`d, ExchangeV10.ROUND_DOWN)"
+    "natp" (103 12 103 70))))
+ (|exchangeV10WithoutPriceErrorThresholds_TCC11| 0
+  (|exchangeV10WithoutPriceErrorThresholds_TCC11-1| NIL 3969635521
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE
+    "ExchangeV10.big_div(ExchangeV10.wheatValue, ExchangeV10.price`d, ExchangeV10.ROUND_DOWN)"
+    "natp" (105 12 105 52))))
+ (|applyPriceErrorThresholds_TCC1| 0
+  (|applyPriceErrorThresholds_TCC1-1| NIL 3969635521
+   ("" (EXISTENCE-TCC) NIL NIL) NIL NIL
+   (|applyPriceErrorThresholds| EXISTENCE ""
+    "[[Price, natp, natp, bool, ExchangeV10.RoundingType] -> ExchangeResultV10]"
+    (127 2 130 67))))
+ (|thresholds_normal| 0
+  (|thresholds_normal-1| NIL 3969637201
+   ("" (GRIND)
+    (("1" (POSTPONE) NIL NIL) ("2" (POSTPONE) NIL NIL) ("3" (POSTPONE) NIL NIL)
+     ("4" (POSTPONE) NIL NIL) ("5" (POSTPONE) NIL NIL)
+     ("6" (POSTPONE) NIL NIL))
+    NIL)
+   NIL SHOSTAK))
+ (|lemma_zero_equivalence_normal| 0
+  (|lemma_zero_equivalence_normal-1| NIL 3969636237
+   ("" (GRIND)
+    (("1" (POSTPONE) NIL NIL) ("2" (POSTPONE) NIL NIL) ("3" (POSTPONE) NIL NIL)
+     ("4" (POSTPONE) NIL NIL) ("5" (POSTPONE) NIL NIL) ("6" (POSTPONE) NIL NIL)
+     ("7" (POSTPONE) NIL NIL) ("8" (POSTPONE) NIL NIL) ("9" (POSTPONE) NIL NIL)
+     ("10" (POSTPONE) NIL NIL) ("11" (POSTPONE) NIL NIL)
+     ("12" (POSTPONE) NIL NIL) ("13" (POSTPONE) NIL NIL)
+     ("14" (POSTPONE) NIL NIL) ("15" (POSTPONE) NIL NIL)
+     ("16" (POSTPONE) NIL NIL) ("17" (POSTPONE) NIL NIL)
+     ("18" (POSTPONE) NIL NIL) ("19" (POSTPONE) NIL NIL)
+     ("20" (POSTPONE) NIL NIL) ("21" (POSTPONE) NIL NIL)
+     ("22" (POSTPONE) NIL NIL) ("23" (POSTPONE) NIL NIL)
+     ("24" (POSTPONE) NIL NIL) ("25" (POSTPONE) NIL NIL)
+     ("26" (POSTPONE) NIL NIL) ("27" (POSTPONE) NIL NIL)
+     ("28" (POSTPONE) NIL NIL) ("29" (POSTPONE) NIL NIL)
+     ("30" (POSTPONE) NIL NIL) ("31" (POSTPONE) NIL NIL)
+     ("32" (POSTPONE) NIL NIL) ("33" (POSTPONE) NIL NIL)
+     ("34" (POSTPONE) NIL NIL) ("35" (POSTPONE) NIL NIL)
+     ("36" (POSTPONE) NIL NIL) ("37" (POSTPONE) NIL NIL)
+     ("38" (POSTPONE) NIL NIL) ("39" (POSTPONE) NIL NIL)
+     ("40" (POSTPONE) NIL NIL) ("41" (POSTPONE) NIL NIL)
+     ("42" (POSTPONE) NIL NIL) ("43" (POSTPONE) NIL NIL)
+     ("44" (POSTPONE) NIL NIL) ("45" (POSTPONE) NIL NIL)
+     ("46" (POSTPONE) NIL NIL) ("47" (POSTPONE) NIL NIL)
+     ("48" (POSTPONE) NIL NIL) ("49" (POSTPONE) NIL NIL)
+     ("50" (POSTPONE) NIL NIL) ("51" (POSTPONE) NIL NIL)
+     ("52" (POSTPONE) NIL NIL) ("53" (POSTPONE) NIL NIL)
+     ("54" (POSTPONE) NIL NIL) ("55" (POSTPONE) NIL NIL)
+     ("56" (POSTPONE) NIL NIL) ("57" (POSTPONE) NIL NIL)
+     ("58" (POSTPONE) NIL NIL) ("59" (POSTPONE) NIL NIL)
+     ("60" (POSTPONE) NIL NIL) ("61" (POSTPONE) NIL NIL)
+     ("62" (POSTPONE) NIL NIL) ("63" (POSTPONE) NIL NIL)
+     ("64" (POSTPONE) NIL NIL) ("65" (POSTPONE) NIL NIL)
+     ("66" (POSTPONE) NIL NIL) ("67" (POSTPONE) NIL NIL)
+     ("68" (POSTPONE) NIL NIL) ("69" (POSTPONE) NIL NIL)
+     ("70" (POSTPONE) NIL NIL) ("71" (POSTPONE) NIL NIL)
+     ("72" (POSTPONE) NIL NIL) ("73" (POSTPONE) NIL NIL)
+     ("74" (POSTPONE) NIL NIL) ("75" (POSTPONE) NIL NIL)
+     ("76" (POSTPONE) NIL NIL) ("77" (POSTPONE) NIL NIL)
+     ("78" (POSTPONE) NIL NIL) ("79" (POSTPONE) NIL NIL)
+     ("80" (POSTPONE) NIL NIL) ("81" (POSTPONE) NIL NIL)
+     ("82" (POSTPONE) NIL NIL) ("83" (POSTPONE) NIL NIL)
+     ("84" (POSTPONE) NIL NIL) ("85" (POSTPONE) NIL NIL)
+     ("86" (POSTPONE) NIL NIL) ("87" (POSTPONE) NIL NIL)
+     ("88" (POSTPONE) NIL NIL) ("89" (POSTPONE) NIL NIL)
+     ("90" (POSTPONE) NIL NIL) ("91" (POSTPONE) NIL NIL)
+     ("92" (POSTPONE) NIL NIL) ("93" (POSTPONE) NIL NIL)
+     ("94" (POSTPONE) NIL NIL) ("95" (POSTPONE) NIL NIL)
+     ("96" (POSTPONE) NIL NIL) ("97" (POSTPONE) NIL NIL)
+     ("98" (POSTPONE) NIL NIL) ("99" (POSTPONE) NIL NIL)
+     ("100" (POSTPONE) NIL NIL) ("101" (POSTPONE) NIL NIL)
+     ("102" (POSTPONE) NIL NIL) ("103" (POSTPONE) NIL NIL)
+     ("104" (POSTPONE) NIL NIL) ("105" (POSTPONE) NIL NIL)
+     ("106" (POSTPONE) NIL NIL) ("107" (POSTPONE) NIL NIL)
+     ("108" (POSTPONE) NIL NIL) ("109" (POSTPONE) NIL NIL)
+     ("110" (POSTPONE) NIL NIL) ("111" (POSTPONE) NIL NIL)
+     ("112" (POSTPONE) NIL NIL) ("113" (POSTPONE) NIL NIL)
+     ("114" (POSTPONE) NIL NIL) ("115" (POSTPONE) NIL NIL)
+     ("116" (POSTPONE) NIL NIL) ("117" (POSTPONE) NIL NIL)
+     ("118" (POSTPONE) NIL NIL) ("119" (POSTPONE) NIL NIL)
+     ("120" (POSTPONE) NIL NIL) ("121" (POSTPONE) NIL NIL)
+     ("122" (POSTPONE) NIL NIL) ("123" (POSTPONE) NIL NIL)
+     ("124" (POSTPONE) NIL NIL) ("125" (POSTPONE) NIL NIL)
+     ("126" (POSTPONE) NIL NIL) ("127" (POSTPONE) NIL NIL)
+     ("128" (POSTPONE) NIL NIL) ("129" (POSTPONE) NIL NIL)
+     ("130" (POSTPONE) NIL NIL) ("131" (POSTPONE) NIL NIL)
+     ("132" (POSTPONE) NIL NIL) ("133" (POSTPONE) NIL NIL)
+     ("134" (POSTPONE) NIL NIL) ("135" (POSTPONE) NIL NIL)
+     ("136" (POSTPONE) NIL NIL) ("137" (POSTPONE) NIL NIL)
+     ("138" (POSTPONE) NIL NIL) ("139" (POSTPONE) NIL NIL)
+     ("140" (POSTPONE) NIL NIL) ("141" (POSTPONE) NIL NIL)
+     ("142" (POSTPONE) NIL NIL) ("143" (POSTPONE) NIL NIL)
+     ("144" (POSTPONE) NIL NIL) ("145" (POSTPONE) NIL NIL)
+     ("146" (POSTPONE) NIL NIL) ("147" (POSTPONE) NIL NIL)
+     ("148" (POSTPONE) NIL NIL) ("149" (POSTPONE) NIL NIL)
+     ("150" (POSTPONE) NIL NIL) ("151" (POSTPONE) NIL NIL)
+     ("152" (POSTPONE) NIL NIL) ("153" (POSTPONE) NIL NIL)
+     ("154" (POSTPONE) NIL NIL) ("155" (POSTPONE) NIL NIL)
+     ("156" (POSTPONE) NIL NIL) ("157" (POSTPONE) NIL NIL)
+     ("158" (POSTPONE) NIL NIL) ("159" (POSTPONE) NIL NIL)
+     ("160" (POSTPONE) NIL NIL) ("161" (POSTPONE) NIL NIL)
+     ("162" (POSTPONE) NIL NIL) ("163" (POSTPONE) NIL NIL)
+     ("164" (POSTPONE) NIL NIL) ("165" (POSTPONE) NIL NIL)
+     ("166" (POSTPONE) NIL NIL) ("167" (POSTPONE) NIL NIL)
+     ("168" (POSTPONE) NIL NIL) ("169" (POSTPONE) NIL NIL)
+     ("170" (POSTPONE) NIL NIL) ("171" (POSTPONE) NIL NIL)
+     ("172" (POSTPONE) NIL NIL) ("173" (POSTPONE) NIL NIL)
+     ("174" (POSTPONE) NIL NIL) ("175" (POSTPONE) NIL NIL)
+     ("176" (POSTPONE) NIL NIL) ("177" (POSTPONE) NIL NIL)
+     ("178" (POSTPONE) NIL NIL) ("179" (POSTPONE) NIL NIL)
+     ("180" (POSTPONE) NIL NIL) ("181" (POSTPONE) NIL NIL)
+     ("182" (POSTPONE) NIL NIL) ("183" (POSTPONE) NIL NIL)
+     ("184" (POSTPONE) NIL NIL) ("185" (POSTPONE) NIL NIL)
+     ("186" (POSTPONE) NIL NIL) ("187" (POSTPONE) NIL NIL)
+     ("188" (POSTPONE) NIL NIL) ("189" (POSTPONE) NIL NIL)
+     ("190" (POSTPONE) NIL NIL) ("191" (POSTPONE) NIL NIL)
+     ("192" (POSTPONE) NIL NIL) ("193" (POSTPONE) NIL NIL)
+     ("194" (POSTPONE) NIL NIL) ("195" (POSTPONE) NIL NIL)
+     ("196" (POSTPONE) NIL NIL) ("197" (POSTPONE) NIL NIL)
+     ("198" (POSTPONE) NIL NIL) ("199" (POSTPONE) NIL NIL)
+     ("200" (POSTPONE) NIL NIL) ("201" (POSTPONE) NIL NIL)
+     ("202" (POSTPONE) NIL NIL) ("203" (POSTPONE) NIL NIL)
+     ("204" (POSTPONE) NIL NIL) ("205" (POSTPONE) NIL NIL)
+     ("206" (POSTPONE) NIL NIL) ("207" (POSTPONE) NIL NIL)
+     ("208" (POSTPONE) NIL NIL) ("209" (POSTPONE) NIL NIL)
+     ("210" (POSTPONE) NIL NIL) ("211" (POSTPONE) NIL NIL)
+     ("212" (POSTPONE) NIL NIL) ("213" (POSTPONE) NIL NIL)
+     ("214" (POSTPONE) NIL NIL) ("215" (POSTPONE) NIL NIL)
+     ("216" (POSTPONE) NIL NIL) ("217" (POSTPONE) NIL NIL)
+     ("218" (POSTPONE) NIL NIL) ("219" (POSTPONE) NIL NIL)
+     ("220" (POSTPONE) NIL NIL) ("221" (POSTPONE) NIL NIL)
+     ("222" (POSTPONE) NIL NIL) ("223" (POSTPONE) NIL NIL)
+     ("224" (POSTPONE) NIL NIL) ("225" (POSTPONE) NIL NIL)
+     ("226" (POSTPONE) NIL NIL) ("227" (POSTPONE) NIL NIL)
+     ("228" (POSTPONE) NIL NIL))
+    NIL)
+   NIL SHOSTAK))
+ (|lemma_zero_equivalence_strict_receive| 0
+  (|lemma_zero_equivalence_strict_receive-1| NIL 3969636418
+   ("" (GRIND)
+    (("1" (GRIND) (("1" (POSTPONE) NIL NIL)) NIL) ("2" (POSTPONE) NIL NIL)
+     ("3" (POSTPONE) NIL NIL) ("4" (POSTPONE) NIL NIL) ("5" (POSTPONE) NIL NIL)
+     ("6" (POSTPONE) NIL NIL) ("7" (POSTPONE) NIL NIL) ("8" (POSTPONE) NIL NIL)
+     ("9" (POSTPONE) NIL NIL) ("10" (POSTPONE) NIL NIL)
+     ("11" (POSTPONE) NIL NIL) ("12" (POSTPONE) NIL NIL)
+     ("13" (POSTPONE) NIL NIL) ("14" (POSTPONE) NIL NIL)
+     ("15" (POSTPONE) NIL NIL) ("16" (POSTPONE) NIL NIL)
+     ("17" (POSTPONE) NIL NIL) ("18" (POSTPONE) NIL NIL)
+     ("19" (POSTPONE) NIL NIL) ("20" (POSTPONE) NIL NIL)
+     ("21" (POSTPONE) NIL NIL) ("22" (POSTPONE) NIL NIL)
+     ("23" (POSTPONE) NIL NIL) ("24" (POSTPONE) NIL NIL)
+     ("25" (POSTPONE) NIL NIL) ("26" (POSTPONE) NIL NIL)
+     ("27" (POSTPONE) NIL NIL) ("28" (POSTPONE) NIL NIL)
+     ("29" (POSTPONE) NIL NIL) ("30" (POSTPONE) NIL NIL)
+     ("31" (POSTPONE) NIL NIL) ("32" (POSTPONE) NIL NIL)
+     ("33" (POSTPONE) NIL NIL) ("34" (POSTPONE) NIL NIL)
+     ("35" (POSTPONE) NIL NIL) ("36" (POSTPONE) NIL NIL)
+     ("37" (POSTPONE) NIL NIL) ("38" (POSTPONE) NIL NIL)
+     ("39" (POSTPONE) NIL NIL) ("40" (POSTPONE) NIL NIL)
+     ("41" (POSTPONE) NIL NIL) ("42" (POSTPONE) NIL NIL)
+     ("43" (POSTPONE) NIL NIL) ("44" (POSTPONE) NIL NIL)
+     ("45" (POSTPONE) NIL NIL) ("46" (POSTPONE) NIL NIL)
+     ("47" (POSTPONE) NIL NIL) ("48" (POSTPONE) NIL NIL)
+     ("49" (POSTPONE) NIL NIL) ("50" (POSTPONE) NIL NIL)
+     ("51" (POSTPONE) NIL NIL) ("52" (POSTPONE) NIL NIL)
+     ("53" (POSTPONE) NIL NIL) ("54" (POSTPONE) NIL NIL)
+     ("55" (POSTPONE) NIL NIL) ("56" (POSTPONE) NIL NIL)
+     ("57" (POSTPONE) NIL NIL) ("58" (POSTPONE) NIL NIL)
+     ("59" (POSTPONE) NIL NIL) ("60" (POSTPONE) NIL NIL)
+     ("61" (POSTPONE) NIL NIL) ("62" (POSTPONE) NIL NIL)
+     ("63" (POSTPONE) NIL NIL) ("64" (POSTPONE) NIL NIL)
+     ("65" (POSTPONE) NIL NIL) ("66" (POSTPONE) NIL NIL)
+     ("67" (POSTPONE) NIL NIL) ("68" (POSTPONE) NIL NIL)
+     ("69" (POSTPONE) NIL NIL) ("70" (POSTPONE) NIL NIL)
+     ("71" (POSTPONE) NIL NIL) ("72" (POSTPONE) NIL NIL)
+     ("73" (POSTPONE) NIL NIL) ("74" (POSTPONE) NIL NIL)
+     ("75" (POSTPONE) NIL NIL) ("76" (POSTPONE) NIL NIL)
+     ("77" (POSTPONE) NIL NIL) ("78" (POSTPONE) NIL NIL)
+     ("79" (POSTPONE) NIL NIL) ("80" (POSTPONE) NIL NIL)
+     ("81" (POSTPONE) NIL NIL) ("82" (POSTPONE) NIL NIL)
+     ("83" (POSTPONE) NIL NIL) ("84" (POSTPONE) NIL NIL)
+     ("85" (POSTPONE) NIL NIL) ("86" (POSTPONE) NIL NIL)
+     ("87" (POSTPONE) NIL NIL) ("88" (POSTPONE) NIL NIL)
+     ("89" (POSTPONE) NIL NIL) ("90" (POSTPONE) NIL NIL)
+     ("91" (POSTPONE) NIL NIL) ("92" (POSTPONE) NIL NIL)
+     ("93" (POSTPONE) NIL NIL) ("94" (POSTPONE) NIL NIL)
+     ("95" (POSTPONE) NIL NIL) ("96" (POSTPONE) NIL NIL)
+     ("97" (POSTPONE) NIL NIL) ("98" (POSTPONE) NIL NIL)
+     ("99" (POSTPONE) NIL NIL) ("100" (POSTPONE) NIL NIL)
+     ("101" (POSTPONE) NIL NIL) ("102" (POSTPONE) NIL NIL)
+     ("103" (POSTPONE) NIL NIL) ("104" (POSTPONE) NIL NIL)
+     ("105" (POSTPONE) NIL NIL) ("106" (POSTPONE) NIL NIL)
+     ("107" (POSTPONE) NIL NIL) ("108" (POSTPONE) NIL NIL)
+     ("109" (POSTPONE) NIL NIL) ("110" (POSTPONE) NIL NIL)
+     ("111" (POSTPONE) NIL NIL) ("112" (POSTPONE) NIL NIL)
+     ("113" (POSTPONE) NIL NIL) ("114" (POSTPONE) NIL NIL)
+     ("115" (POSTPONE) NIL NIL) ("116" (POSTPONE) NIL NIL)
+     ("117" (POSTPONE) NIL NIL) ("118" (POSTPONE) NIL NIL)
+     ("119" (POSTPONE) NIL NIL) ("120" (POSTPONE) NIL NIL)
+     ("121" (POSTPONE) NIL NIL) ("122" (POSTPONE) NIL NIL)
+     ("123" (POSTPONE) NIL NIL) ("124" (POSTPONE) NIL NIL)
+     ("125" (POSTPONE) NIL NIL) ("126" (POSTPONE) NIL NIL)
+     ("127" (POSTPONE) NIL NIL) ("128" (POSTPONE) NIL NIL)
+     ("129" (POSTPONE) NIL NIL) ("130" (POSTPONE) NIL NIL)
+     ("131" (POSTPONE) NIL NIL) ("132" (POSTPONE) NIL NIL)
+     ("133" (POSTPONE) NIL NIL) ("134" (POSTPONE) NIL NIL)
+     ("135" (POSTPONE) NIL NIL) ("136" (POSTPONE) NIL NIL)
+     ("137" (POSTPONE) NIL NIL) ("138" (POSTPONE) NIL NIL)
+     ("139" (POSTPONE) NIL NIL) ("140" (POSTPONE) NIL NIL)
+     ("141" (POSTPONE) NIL NIL) ("142" (POSTPONE) NIL NIL)
+     ("143" (POSTPONE) NIL NIL) ("144" (POSTPONE) NIL NIL)
+     ("145" (POSTPONE) NIL NIL) ("146" (POSTPONE) NIL NIL)
+     ("147" (POSTPONE) NIL NIL) ("148" (POSTPONE) NIL NIL)
+     ("149" (POSTPONE) NIL NIL) ("150" (POSTPONE) NIL NIL)
+     ("151" (POSTPONE) NIL NIL) ("152" (POSTPONE) NIL NIL)
+     ("153" (POSTPONE) NIL NIL) ("154" (POSTPONE) NIL NIL)
+     ("155" (POSTPONE) NIL NIL) ("156" (POSTPONE) NIL NIL)
+     ("157" (POSTPONE) NIL NIL) ("158" (POSTPONE) NIL NIL)
+     ("159" (POSTPONE) NIL NIL) ("160" (POSTPONE) NIL NIL)
+     ("161" (POSTPONE) NIL NIL) ("162" (POSTPONE) NIL NIL)
+     ("163" (POSTPONE) NIL NIL) ("164" (POSTPONE) NIL NIL)
+     ("165" (POSTPONE) NIL NIL) ("166" (POSTPONE) NIL NIL)
+     ("167" (POSTPONE) NIL NIL) ("168" (POSTPONE) NIL NIL)
+     ("169" (POSTPONE) NIL NIL) ("170" (POSTPONE) NIL NIL)
+     ("171" (POSTPONE) NIL NIL) ("172" (POSTPONE) NIL NIL)
+     ("173" (POSTPONE) NIL NIL) ("174" (POSTPONE) NIL NIL)
+     ("175" (POSTPONE) NIL NIL) ("176" (POSTPONE) NIL NIL)
+     ("177" (POSTPONE) NIL NIL) ("178" (POSTPONE) NIL NIL)
+     ("179" (POSTPONE) NIL NIL) ("180" (POSTPONE) NIL NIL)
+     ("181" (POSTPONE) NIL NIL) ("182" (POSTPONE) NIL NIL)
+     ("183" (POSTPONE) NIL NIL) ("184" (POSTPONE) NIL NIL))
+    NIL)
+   NIL SHOSTAK)))
+(|ExchangeV10_1|
+ (|lemma_normal_exceed_implies_no_trade_and_smaller_removed| 0
+  (|lemma_normal_exceed_implies_no_trade_and_smaller_removed-1| NIL 3969635521
+   ("" (GRIND :THEORIES ("ExchangeV10"))
+    (("1" (GRIND) NIL NIL) ("2" (GRIND) NIL NIL) ("3" (GRIND) NIL NIL)
+     ("4" (POSTPONE) NIL NIL) ("5" (POSTPONE) NIL NIL) ("6" (POSTPONE) NIL NIL)
+     ("7" (POSTPONE) NIL NIL) ("8" (POSTPONE) NIL NIL)
+     ("9" (POSTPONE) NIL NIL))
+    NIL)
+   NIL SHOSTAK)))
+

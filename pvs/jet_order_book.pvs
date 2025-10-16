@@ -1,0 +1,387 @@
+ExchangeV10: THEORY
+BEGIN
+
+  %-----------------------------
+  % Integer domains
+  %-----------------------------
+  natp: TYPE = { z: int | z >= 0 }
+  pos:  TYPE = { z: int | z >  0 }
+
+  % Exact machine limits (decimal to avoid any ambiguity)
+  INT64_MIN: int = -9223372036854775808
+  INT64_MAX: int =  9223372036854775807
+  UINT64_MAX: nat = 18446744073709551615
+
+  INT32_MIN: int = -2147483648
+  INT32_MAX: int =  2147483647
+  UINT32_MAX: nat = 4294967295
+
+  UINT128_MAX: nat = 340282366920938463463374607431768211455
+
+  % Subtype encodings of fixed-width types
+  int32  : TYPE = {x: int | INT32_MIN <= x AND x <= INT32_MAX}
+  uint32 : TYPE = {x: nat | x <= UINT32_MAX}
+  int64  : TYPE = {x: int | INT64_MIN <= x AND x <= INT64_MAX}
+  uint64 : TYPE = {x: nat | x <= UINT64_MAX}
+  uint128: TYPE = {x: nat | x <= UINT128_MAX}
+
+  nnint64  : TYPE = {x: int64  | x >= 0}   % non-negative int64
+  nnuint64 : TYPE = {x: uint64 | TRUE}     % synonym, here for readability
+  posint64 : TYPE = {x: int64  | x > 0}
+  posuint64: TYPE = {x: uint64 | x > 0}
+  posint32 : TYPE = {x: int32  | x > 0}
+
+  % Safe casts under range hypotheses
+  i64_to_u64(x: nnint64): uint64 = x
+  u64_to_i64(x: uint64): int64 = IF x <= INT64_MAX THEN x ELSE INT64_MAX ENDIF
+  
+  % Integer floor/ceil divisions (no reals)
+  floor_div(x: natp, y: pos): int = x / y
+  ceil_div(x: natp, y: pos): int = (x + (y - 1)) / y
+
+  %-----------------------------
+  % Rounding modes and helpers
+  %-----------------------------
+  RoundMode: TYPE = { ROUND_DOWN, ROUND_UP }
+
+  big_div(x: natp, y: pos, r: RoundMode): int =
+    CASES r OF
+      ROUND_DOWN: floor_div(x, y),
+      ROUND_UP:   ceil_div(x, y)
+    ENDCASES
+
+  big_div_numden(x: natp, n: pos, d: pos, r: RoundMode): int =
+    % Computes round( x * n / d ) using integer rounding
+    CASES r OF
+      ROUND_DOWN: (x * n) / d,
+      ROUND_UP:   (x * n + (d - 1)) / d
+    ENDCASES
+
+  % uint128_t bigMultiplyUnsigned(uint64_t a, uint64_t b)
+  big_mul_u(a: uint64, b: uint64): uint128 = a * b   % exact in PVS  :contentReference[oaicite:23]{index=23}
+
+  % uint128_t bigMultiply(int64_t a, int64_t b) with a,b >= 0
+  big_mul(a: nnint64, b: nnint64): uint128 = big_mul_u(i64_to_u64(a), i64_to_u64(b))
+
+  %-----------------------------
+  % Price and rounding types
+  %-----------------------------
+  RoundingType: TYPE = { NORMAL, PATH_PAYMENT_STRICT_RECEIVE, PATH_PAYMENT_STRICT_SEND }
+
+  Price: TYPE = [# n: pos, d: pos #]  % price = n/d, n,d > 0
+
+  %-----------------------------
+  % Offer value calculation
+  %-----------------------------
+  % calculateOfferValue(n, d, maxSend, maxReceive) =
+  %   min(maxSend * n, maxReceive * d)
+  calculateOfferValue(n: pos, d: pos, maxSend: natp, maxReceive: natp): natp =
+    IF maxSend * n <= maxReceive * d THEN maxSend * n ELSE maxReceive * d ENDIF
+
+  %-----------------------------
+  % Result type
+  %-----------------------------
+  ExchangeResultV10: TYPE = [#
+    numWheatReceived: natp,
+    numSheepSend:     natp,
+    wheatStays:       bool
+  #]
+
+  %-----------------------------
+  % Core function (no thresholds)
+  %-----------------------------
+  exchangeV10WithoutPriceErrorThresholds(price: Price,
+                                         maxWheatSend, maxWheatReceive,
+                                         maxSheepSend, maxSheepReceive: natp,
+                                         round: RoundingType): ExchangeResultV10 =
+    LET
+      wheatValue: natp = calculateOfferValue(price`n, price`d,
+                                             maxWheatSend, maxSheepReceive),
+      sheepValue: natp = calculateOfferValue(price`d, price`n,
+                                             maxSheepSend, maxWheatReceive),
+      wheatStays: bool = wheatValue > sheepValue,
+
+      wheatReceive: natp =
+        IF wheatStays THEN
+          IF round = PATH_PAYMENT_STRICT_SEND THEN
+            big_div(sheepValue, price`n, ROUND_DOWN)
+          ELSIF price`n > price`d OR round = PATH_PAYMENT_STRICT_RECEIVE THEN
+            big_div(sheepValue, price`n, ROUND_DOWN)
+          ELSE
+            % sheep is more valuable, wheatStays: compute sheepSend first
+            LET sheepSend_tmp = big_div(sheepValue, price`d, ROUND_DOWN) IN
+              big_div_numden(sheepSend_tmp, price`d, price`n, ROUND_DOWN)
+          ENDIF
+        ELSE
+          IF price`n > price`d THEN
+	    % KN: wheat is more valuable
+            big_div(wheatValue, price`n, ROUND_DOWN)
+          ELSE
+            % sheep is more valuable, !wheatStays: compute sheepSend first
+            LET sheepSend_tmp = big_div(wheatValue, price`d, ROUND_DOWN) IN
+              big_div_numden(sheepSend_tmp, price`d, price`n, ROUND_UP)
+          ENDIF
+        ENDIF,
+
+      sheepSend: natp =
+        IF wheatStays THEN
+          IF round = PATH_PAYMENT_STRICT_SEND THEN
+            IF maxSheepSend <= maxSheepReceive THEN maxSheepSend ELSE maxSheepReceive ENDIF
+          ELSIF price`n > price`d OR round = PATH_PAYMENT_STRICT_RECEIVE THEN
+            big_div_numden(wheatReceive, price`n, price`d, ROUND_UP)
+          ELSE
+            big_div(sheepValue, price`d, ROUND_DOWN)
+          ENDIF
+        ELSE
+          IF price`n > price`d THEN
+            big_div_numden(wheatReceive, price`n, price`d, ROUND_DOWN)
+          ELSE
+            big_div(wheatValue, price`d, ROUND_DOWN)
+          ENDIF
+        ENDIF,
+
+      % Spec-side bounds checks mirroring the code's throws
+      minWheatCap: natp = IF maxWheatReceive <= maxWheatSend THEN maxWheatReceive ELSE maxWheatSend ENDIF,
+      minSheepCap: natp = IF maxSheepReceive <= maxSheepSend THEN maxSheepReceive ELSE maxSheepSend ENDIF,
+      chk1: bool = wheatReceive <= minWheatCap,
+      chk2: bool = sheepSend     <= minSheepCap
+    IN
+      IF NOT chk1 OR NOT chk2 THEN
+        % In C++ this would throw. Here we return a neutralized result.
+        (# numWheatReceived := 0, numSheepSend := 0, wheatStays := wheatStays #)
+      ELSE
+        (# numWheatReceived := wheatReceive,
+           numSheepSend     := sheepSend,
+           wheatStays       := wheatStays #)
+      ENDIF
+
+  %-----------------------------
+  % Threshold adjustment (abstract)
+  %-----------------------------
+  applyPriceErrorThresholds(p: Price, wheatReceive, sheepSend: int64,
+                            wheatStays: bool, round: RoundingType): ExchangeResultV10 =
+    LET wR = wheatReceive, sS = sheepSend,
+      wVal = big_mul(wR, p`n),
+      sVal = big_mul(sS, p`d),
+
+      % Favor checks (mirrors two runtime errors in C++)  :contentReference[oaicite:30]{index=30}
+      favored_wheat_stays_ok: bool = NOT (wheatStays AND sVal < wVal),
+      favored_sheep_stays_ok: bool = NOT ((NOT wheatStays) AND sVal > wVal),
+
+      % Price-error thresholds (C++: 1% cap under NORMAL; different in path modes)
+      ceb = checkPriceErrorBound(p, wR, sS, round /= NORMAL),
+      adj_pair: [# wr: int64, ss: int64 #] =
+        IF (wR > 0 AND sS > 0) THEN
+          IF round = NORMAL THEN
+            IF ceb THEN (# wr := wR, ss := sS #) ELSE (# wr := 0, ss := 0 #) ENDIF
+          ELSE
+            % In path modes the C++ code throws if bound violated when it must hold.
+            IF ceb THEN (# wr := wR, ss := sS #)
+            ELSE (# wr := wR, ss := sS #) ENDIF  % keep values; obligation captured by theorem below
+          ENDIF
+        ELSE
+          CASES round OF
+            PATH_PAYMENT_STRICT_SEND: (# wr := wR, ss := sS #),  % C++ would throw iff sS = 0
+            NORMAL: (# wr := 0, ss := 0 #),
+	    PATH_PAYMENT_STRICT_RECEIVE: (# wr := 0, ss := 0 #)
+          ENDCASES
+        ENDIF
+    IN (# numWheatReceived := adj_pair`wr,
+        numSheepSend     := adj_pair`ss,
+        wheatStays       := wheatStays #)
+
+  %-----------------------------
+  % Integer price-comparison predicates
+  %-----------------------------
+  % favors_wheat?: S/W >= n/d  <=>  S*d >= W*n
+  favors_wheat?(res: ExchangeResultV10, p: Price): bool =
+    res`numSheepSend * p`d >= res`numWheatReceived * p`n
+
+  % favors_sheep?: S/W <= n/d  <=>  S*d <= W*n
+  favors_sheep?(res: ExchangeResultV10, p: Price): bool =
+    res`numSheepSend * p`d <= res`numWheatReceived * p`n
+
+  % 1% favor bounds in integers:
+  % If wheat favored: S/W <= (101/100)*(n/d)  <=>  S*d*100 <= W*n*101
+  within_one_percent_when_wheat_favored?(res: ExchangeResultV10, p: Price): bool =
+    (res`numSheepSend * p`d * 100) <= (res`numWheatReceived * p`n * 101)
+
+  % If sheep favored: S/W >= (100/101)*(n/d)  <=>  S*d*101 >= W*n*100
+  within_one_percent_when_sheep_favored?(res: ExchangeResultV10, p: Price): bool =
+    (res`numSheepSend * p`d * 101) >= (res`numWheatReceived * p`n * 100)
+
+  %-----------------------------
+  % Public wrapper exchangeV10
+  %-----------------------------
+  exchangeV10(price: Price,
+              maxWheatSend, maxWheatReceive,
+              maxSheepSend, maxSheepReceive: natp,
+              round: RoundingType): ExchangeResultV10 =
+    LET before = exchangeV10WithoutPriceErrorThresholds(
+                   price, maxWheatSend, maxWheatReceive,
+                   maxSheepSend, maxSheepReceive, round)
+    IN applyPriceErrorThresholds(price,
+         before`numWheatReceived, before`numSheepSend, before`wheatStays, round)
+
+  %-----------------------------
+  % Axioms describing thresholds behavior
+  %-----------------------------
+  % NORMAL: 0 <=> 0, and price error favors the book by at most 1%.
+  thresholds_normal: AXIOM
+    FORALL (p: Price, wr, ss: natp, ws: bool):
+      LET r = applyPriceErrorThresholds(p, wr, ss, ws, NORMAL) IN
+        ((r`numWheatReceived = 0) IFF (r`numSheepSend = 0)) AND
+        (r`numWheatReceived > 0 IMPLIES
+           ((ws IMPLIES (favors_wheat?(r, p) AND within_one_percent_when_wheat_favored?(r, p)))
+            AND
+            (NOT ws IMPLIES (favors_sheep?(r, p) AND within_one_percent_when_sheep_favored?(r, p)))))
+
+  % PATH_PAYMENT_STRICT_RECEIVE: 0 <=> 0, may favor book arbitrarily.
+  thresholds_strict_receive: AXIOM
+    FORALL (p: Price, wr, ss: natp, ws: bool):
+      LET r = applyPriceErrorThresholds(p, wr, ss, ws, PATH_PAYMENT_STRICT_RECEIVE) IN
+        ((r`numWheatReceived = 0) IFF (r`numSheepSend = 0)) AND
+        (r`numWheatReceived > 0 IMPLIES
+           ((ws IMPLIES favors_wheat?(r, p)) AND (NOT ws IMPLIES favors_sheep?(r, p))))
+
+  % PATH_PAYMENT_STRICT_SEND: No extra price-error constraint here.
+  thresholds_strict_send: AXIOM
+    FORALL (p: Price, wr, ss: natp, ws: bool):
+      LET r = applyPriceErrorThresholds(p, wr, ss, ws, PATH_PAYMENT_STRICT_SEND) IN TRUE
+
+  %-----------------------------
+  % Lemmas mirroring the code comments
+  %-----------------------------
+
+  % For NORMAL: wheatReceive == 0 iff sheepSend == 0 (at the final, thresholded result)
+  lemma_zero_equivalence_normal: LEMMA
+    FORALL (p: Price, mws, mwr, mss, msr: natp):
+      LET r = exchangeV10(p, mws, mwr, mss, msr, NORMAL) IN
+        (r`numWheatReceived = 0) IFF (r`numSheepSend = 0)
+
+  % For PATH_PAYMENT_STRICT_RECEIVE: same 0 iff 0 property
+  lemma_zero_equivalence_strict_receive: LEMMA
+    FORALL (p: Price, mws, mwr, mss, msr: natp):
+      LET r = exchangeV10(p, mws, mwr, mss, msr, PATH_PAYMENT_STRICT_RECEIVE) IN
+        (r`numWheatReceived = 0) IFF (r`numSheepSend = 0)
+
+  % For PATH_PAYMENT_STRICT_SEND: sheepSend > 0 is guaranteed when crossing
+  % (we assume crossing context implies min(maxSheepSend, maxSheepReceive) > 0)
+  lemma_strict_send_sheep_positive: LEMMA
+    FORALL (p: Price, mws, mwr, mss, msr: natp):
+      (mss > 0 AND msr > 0) IMPLIES
+        exchangeV10(p, mws, mwr, mss, msr, PATH_PAYMENT_STRICT_SEND)`numSheepSend > 0
+
+  % Bounds enforced by the implementation path (pre-thresholds)
+  lemma_bounds_without_thresholds: LEMMA
+    FORALL (p: Price, mws, mwr, mss, msr: natp, rt: RoundingType):
+      LET r = exchangeV10WithoutPriceErrorThresholds(p, mws, mwr, mss, msr, rt) IN
+        r`numWheatReceived <= (IF mwr <= mws THEN mwr ELSE mws ENDIF)
+        AND r`numSheepSend <= (IF msr <= mss THEN msr ELSE mss ENDIF)
+
+  % Favor-direction predicates are mutually exclusive unless exactly on the limit
+  lemma_favor_exclusive: LEMMA
+    FORALL (r: ExchangeResultV10, p: Price):
+      (favors_wheat?(r, p) AND favors_sheep?(r, p)) IMPLIES
+        r`numSheepSend * p`d = r`numWheatReceived * p`n
+
+END ExchangeV10
+
+
+
+ExchangeV10_1: THEORY
+BEGIN
+
+  IMPORTING ExchangeV10
+
+  %-----------------------------
+  % Helpers to express "directional" 1% checks and favoring
+  %-----------------------------
+  within_one_percent_dir(res: ExchangeResultV10, p: Price, ws: bool): bool =
+    IF ws THEN within_one_percent_when_wheat_favored?(res, p)
+    ELSE        within_one_percent_when_sheep_favored?(res, p)
+    ENDIF
+
+  favors_stayer?(res: ExchangeResultV10, p: Price): bool =
+    IF res`wheatStays THEN favors_wheat?(res, p)
+    ELSE                    favors_sheep?(res, p)
+    ENDIF
+
+  %-----------------------------
+  % (1) Consistent determination of the larger offer,
+  %     and policy on which side stays/removes.
+  %-----------------------------
+  lemma_larger_offer_policy: LEMMA
+    FORALL (p: Price, mws, mwr, mss, msr: natp, rt: RoundingType):
+      LET wv = calculateOfferValue(p`n, p`d, mws, msr),
+          sv = calculateOfferValue(p`d, p`n, mss, mwr),
+          pre = exchangeV10WithoutPriceErrorThresholds(p, mws, mwr, mss, msr, rt)
+      IN (pre`wheatStays IFF wv > sv)
+         AND (wv = sv IMPLIES NOT pre`wheatStays)  % tie-break: wheat does not stay
+         AND (pre`wheatStays IMPLIES sv <= wv)     % "smaller (sheep) is removed"
+         AND (NOT pre`wheatStays IMPLIES wv <= sv) % "smaller (wheat) is removed"
+
+  %-----------------------------
+  % (2) Rounding error favors the offer that remains in the book
+  %     – stated as lemmas (follows from axioms).
+  %-----------------------------
+  lemma_rounding_favors_stayer_normal: LEMMA
+    FORALL (p: Price, mws, mwr, mss, msr: natp):
+      LET r = exchangeV10(p, mws, mwr, mss, msr, NORMAL) IN
+        r`numWheatReceived = 0 OR favors_stayer?(r, p)
+
+  lemma_rounding_favors_stayer_strict_receive: LEMMA
+    FORALL (p: Price, mws, mwr, mss, msr: natp):
+      LET r = exchangeV10(p, mws, mwr, mss, msr, PATH_PAYMENT_STRICT_RECEIVE) IN
+        r`numWheatReceived = 0 OR favors_stayer?(r, p)
+
+  %-----------------------------
+  % (3) ≤1% bound in NORMAL mode; otherwise no trade and smaller is removed
+  %-----------------------------
+
+  % Already captured (post-state bounded within 1%) by thresholds_normal,
+  % but we restate as a lemma for convenience.
+  lemma_within_one_percent_normal: LEMMA
+    FORALL (p: Price, mws, mwr, mss, msr: natp):
+      LET r = exchangeV10(p, mws, mwr, mss, msr, NORMAL) IN
+        r`numWheatReceived = 0 OR
+          (r`wheatStays AND within_one_percent_when_wheat_favored?(r, p)) OR
+          (NOT r`wheatStays AND within_one_percent_when_sheep_favored?(r, p))
+
+  % AXIOM to encode the spec line "If the rounding error would exceed 1%,
+  % no trade occurs and the smaller offer is removed" in NORMAL mode.
+  % It says: when thresholds are applied to a hypothetical trade (wr,ss,ws)
+  % whose error exceeds 1% in the direction favoring ws, the result is zeroed.
+  thresholds_normal_no_trade_if_exceeds: AXIOM
+    FORALL (p: Price, wr, ss: natp, ws: bool):
+      LET r = applyPriceErrorThresholds(p, wr, ss, ws, NORMAL)
+      IN (wr > 0 AND NOT within_one_percent_dir((# numWheatReceived := wr,
+                                                  numSheepSend     := ss,
+                                                  wheatStays       := ws #),
+                                                p, ws))
+         IMPLIES (r`numWheatReceived = 0 AND r`numSheepSend = 0)
+
+  % From the axiom above, we derive the concrete "would exceed -> no trade" property
+  % for the actual pre-threshold calculation.
+  lemma_normal_exceed_implies_no_trade_and_smaller_removed: LEMMA
+    FORALL (p: Price, mws, mwr, mss, msr: natp):
+      LET pre  = exchangeV10WithoutPriceErrorThresholds(p, mws, mwr, mss, msr, NORMAL),
+          post = exchangeV10(p, mws, mwr, mss, msr, NORMAL),
+          wv   = calculateOfferValue(p`n, p`d, mws, msr),
+          sv   = calculateOfferValue(p`d, p`n, mss, mwr)
+      IN (pre`numWheatReceived > 0 AND NOT within_one_percent_dir(pre, p, pre`wheatStays))
+         IMPLIES
+           post`numWheatReceived = 0 AND post`numSheepSend = 0
+           AND (pre`wheatStays IFF wv > sv)
+           AND (wv = sv IMPLIES NOT pre`wheatStays)
+           AND (pre`wheatStays IMPLIES sv <= wv)
+           AND (NOT pre`wheatStays IMPLIES wv <= sv)
+
+  % Note: For PATH_PAYMENT_STRICT_RECEIVE there is no 1% cap; the error may be
+  % arbitrarily in favor of the book, which is already expressed by:
+  %  - thresholds_strict_receive (axiom),
+  %  - lemma_rounding_favors_stayer_strict_receive (above).
+
+
+
+END ExchangeV10_1
