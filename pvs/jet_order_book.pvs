@@ -1,4 +1,4 @@
-ExchangeV10: THEORY
+JetExchangeV10: THEORY
 BEGIN
 
   %-----------------------------
@@ -156,8 +156,21 @@ BEGIN
       ENDIF
 
   %-----------------------------
-  % Threshold adjustment (abstract)
+  % Threshold adjustment
   %-----------------------------
+  checkPriceErrorBound(price: Price, wheatReceive: int64, sheepSend: int64,
+                       canFavorWheat: bool): bool =
+
+    LET errN = big_mul(100, price`n),
+    	errD = big_mul(100, price`d),
+    	lhs = big_mul(errN, wheatReceive),
+    	rhs = big_mul(errD, sheepSend),
+	cFW = canFavorWheat,
+	absDiff = IF (lhs > rhs) THEN (lhs - rhs) ELSE (rhs - lhs) ENDIF,
+    	cap = big_mul(price`n, wheatReceive)
+    IN
+	IF cFW AND rhs > lhs THEN True ELSE (absDiff <= cap) ENDIF	
+
   applyPriceErrorThresholds(p: Price, wheatReceive, sheepSend: int64,
                             wheatStays: bool, round: RoundingType): ExchangeResultV10 =
     LET wR = wheatReceive, sS = sheepSend,
@@ -285,14 +298,14 @@ BEGIN
       (favors_wheat?(r, p) AND favors_sheep?(r, p)) IMPLIES
         r`numSheepSend * p`d = r`numWheatReceived * p`n
 
-END ExchangeV10
+END JetExchangeV10
 
 
 
-ExchangeV10_1: THEORY
+JetExchangeV10_1: THEORY
 BEGIN
 
-  IMPORTING ExchangeV10
+  IMPORTING JetExchangeV10
 
   %-----------------------------
   % Helpers to express "directional" 1% checks and favoring
@@ -384,4 +397,4 @@ BEGIN
 
 
 
-END ExchangeV10_1
+END JetExchangeV10_1
