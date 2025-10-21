@@ -1,0 +1,472 @@
+% PVS Formalization of Stellar OfferExchange
+% This theory formalizes the C++ OfferExchange implementation
+% using PVS's rich subtyping capabilities
+
+OfferExchangeClaude: THEORY
+BEGIN
+
+  % ============================================================================
+  % Basic C++ Type Mappings with Subtypes
+  % ============================================================================
+  
+  % int32_t and int64_t as bounded integer types
+  int32_min: int = -2147483648
+  int32_max: int = 2147483647
+  int32_t: TYPE = {i: int | int32_min <= i AND i <= int32_max}
+  
+  int64_min: number = -9223372036854775808
+  int64_max: number = 9223372036854775807
+  int64_t: TYPE = {i: integer | int64_min <= i AND i <= int64_max}
+  
+  % uint128_t for intermediate calculations
+  uint128_max: number = 340282366920938463463374607431768211455
+  uint128_t: TYPE = {n: nat | n <= uint128_max}
+  
+  % Positive subtypes for amounts
+  positive_int64: TYPE = {i: int64_t | i > 0}
+  nonneg_int64: TYPE = {i: int64_t | i >= 0}
+  
+  % ============================================================================
+  % Enumeration Types
+  % ============================================================================
+  
+  RoundingType: TYPE = {NORMAL, PATH_PAYMENT_STRICT_SEND, PATH_PAYMENT_STRICT_RECEIVE}
+  
+  ExchangeResultType: TYPE = {NORMAL_RESULT, REDUCED_TO_ZERO, BOGUS}
+  
+  OfferFilterResult: TYPE = {eKeep, eStopBadPrice, eStopCrossSelf}
+  
+  ConvertResult: TYPE = {eOK, ePartial, eFilterStopBadPrice, 
+                         eFilterStopCrossSelf, eCrossedTooMany}
+  
+  CrossOfferResult: TYPE = {eOfferPartial, eOfferTaken, eOfferCantConvert}
+  
+  RoundDirection: TYPE = {ROUND_UP, ROUND_DOWN}
+  
+  % ============================================================================
+  % Asset Types
+  % ============================================================================
+  
+  AssetType: TYPE = {ASSET_TYPE_NATIVE, ASSET_TYPE_CREDIT_ALPHANUM4, 
+                     ASSET_TYPE_CREDIT_ALPHANUM12, ASSET_TYPE_POOL_SHARE}
+  
+  % AccountID as an abstract type
+  AccountID: TYPE+
+  
+  Asset: TYPE = [#
+    assettype: AssetType,
+    issuer: AccountID  % Only valid for non-native assets
+  #]
+  
+  % Ordering on assets for canonical representation
+  %asset_less(a1, a2: Asset): bool =
+  %  a1`assettype < a2`assettype OR 
+  %  (a1`assettype = a2`assettype AND a1`issuer < a2`issuer)
+  
+  % ============================================================================
+  % Price Type with Invariants
+  % ============================================================================
+  
+  % Price represented as fraction n/d with positive denominator
+  Price: TYPE = [#
+    n: int32_t,  % numerator
+    d: {d: int32_t | d > 0}  % denominator must be positive
+  #]
+  
+  % Valid price has both n and d positive for actual offers
+  valid_price: TYPE = {p: Price | p`n > 0}
+  
+  % ============================================================================
+  % Offer Structure
+  % ============================================================================
+  
+  OfferID: TYPE = int64_t
+  
+  Offer: TYPE = [#
+    sellerID: AccountID,
+    offerID: OfferID,
+    selling: Asset,      % wheat in comments
+    buying: Asset,       % sheep in comments
+    amount: nonneg_int64,  % amount of selling asset
+    price: valid_price   % price in terms of buying/selling
+  #]
+  
+  % ============================================================================
+  % Exchange Results
+  % ============================================================================
+  
+  ExchangeResult: TYPE = [#
+    numWheatReceived: nonneg_int64,
+    numSheepSend: nonneg_int64,
+    reduced: bool
+  #]
+  
+  exchange_result_type(er: ExchangeResult): ExchangeResultType =
+    IF er`numWheatReceived /= 0 AND er`numSheepSend /= 0 THEN
+      NORMAL_RESULT
+    ELSIF er`reduced THEN
+      REDUCED_TO_ZERO
+    ELSE
+      BOGUS
+    ENDIF
+  
+  ExchangeResultV10: TYPE = [#
+    numWheatReceived: nonneg_int64,
+    numSheepSend: nonneg_int64,
+    wheatStays: bool
+  #]
+  
+  % ============================================================================
+  % Trust Line and Balance Constraints
+  % ============================================================================
+  
+  % Maximum amount that can be sent/received based on trust lines
+  TrustLineLimit: TYPE = [#
+    maxSend: nonneg_int64,
+    maxReceive: nonneg_int64,
+    isAuthorized: bool
+  #]
+  
+  % ============================================================================
+  % Liquidity Pool Types
+  % ============================================================================
+  
+  PoolID: TYPE+  % Abstract pool identifier
+  
+  LiquidityPoolFee: TYPE = {fee: int32_t | 0 <= fee AND fee < 10000}
+  
+  LIQUIDITY_POOL_FEE_V18: LiquidityPoolFee = 30  % 0.3% = 30 basis points
+  
+  ConstantProductPool: TYPE = [#
+    assetA: Asset,
+    assetB: Asset,
+    reserveA: positive_int64,
+    reserveB: positive_int64,
+    fee: LiquidityPoolFee
+  #]
+  
+  % Pool ID computation ensures canonical asset ordering
+  get_pool_id(x, y: Asset, fee: LiquidityPoolFee): PoolID
+  
+  pool_id_axiom: AXIOM
+    FORALL (x, y: Asset, fee: LiquidityPoolFee):
+      get_pool_id(x, y, fee) = get_pool_id(y, x, fee)
+  
+  % ============================================================================
+  % Core Mathematical Functions with Overflow Protection
+  % ============================================================================
+  
+  % Big divide with rounding and overflow check
+  % Returns true if computation succeeds, false on overflow
+  big_divide(result: int64_t, a: int64_t, b: int32_t, c: int32_t, 
+             round: RoundDirection): bool =
+    LET prod: integer = a * b IN
+    IF c = 0 THEN 
+      FALSE
+    ELSIF prod > int64_max * abs(c) THEN
+      FALSE
+    ELSE
+      LET quotient = prod / c,
+          remainder = prod - quotient * c IN
+      IF round = ROUND_UP AND remainder > 0 THEN
+        result = quotient + 1
+      ELSIF round = ROUND_DOWN AND remainder < 0 THEN
+        result = quotient - 1
+      ELSE
+        result = quotient
+      ENDIF AND
+      int64_min <= result AND result <= int64_max
+    ENDIF
+  
+  % Multiply two int64_t values to get uint128_t
+  big_multiply(a, b: int64_t): uint128_t =
+    abs(a) * abs(b)
+  
+  % Calculate offer value in common units
+  calculate_offer_value(priceN, priceD: int32_t, maxSend, maxReceive: int64_t): 
+    uint128_t =
+    LET sendValue = big_multiply(maxSend, priceN),
+        receiveValue = big_multiply(maxReceive, priceD) IN
+    min(sendValue, receiveValue)
+  
+  % ============================================================================
+  % Exchange Functions V2 and V3 (Legacy Versions)
+  % ============================================================================
+  
+  exchangeV2(wheatReceived: int64_t, price: Price, maxWheatReceive: int64_t,
+             maxSheepSend: int64_t): ExchangeResult =
+    LET reduced = wheatReceived > maxWheatReceive,
+        actualWheat = min(wheatReceived, maxWheatReceive),
+        sheepNeeded = (actualWheat * price`n) / price`d,  % ROUND_DOWN
+        actualSheep = min(sheepNeeded, maxSheepSend),
+        finalReduced = reduced OR (sheepNeeded > maxSheepSend),
+        finalWheat = (actualSheep * price`d) / price`n  % Bias towards seller
+    IN
+    (# numWheatReceived := min(actualWheat, finalWheat),
+       numSheepSend := actualSheep,
+       reduced := finalReduced #)
+  
+  exchangeV3(wheatReceived: int64_t, price: Price, maxWheatReceive: int64_t,
+             maxSheepSend: int64_t): ExchangeResult =
+    LET reduced = wheatReceived > maxWheatReceive,
+        actualWheat = min(wheatReceived, maxWheatReceive),
+        % ROUND_UP for sheep calculation in V3
+        sheepNeeded = ceiling((actualWheat * price`n) / price`d),
+        actualSheep = min(sheepNeeded, maxSheepSend),
+        finalReduced = reduced OR (sheepNeeded > maxSheepSend),
+        newWheat = (actualSheep * price`d) / price`n  % ROUND_DOWN
+    IN
+    (# numWheatReceived := min(actualWheat, newWheat),
+       numSheepSend := actualSheep,
+       reduced := finalReduced #)
+  
+  % ============================================================================
+  % Price Error Bound Checking (1% threshold)
+  % ============================================================================
+  
+  ERROR_THRESHOLD_PERCENT: posreal = 1  % 1% maximum error
+  
+  check_price_error_bound(price: Price, wheatReceive, sheepSend: int64_t,
+                          canFavorWheat: bool): bool =
+    LET K = 100,  % 100 / ERROR_THRESHOLD_PERCENT
+        errN: int64_t = K * price`n,
+        errD: int64_t = K * price`d,
+        lhs: uint128_t = big_multiply(errN, wheatReceive),
+        rhs: uint128_t = big_multiply(errD, sheepSend),
+        absDiff = IF lhs > rhs THEN lhs - rhs ELSE rhs - lhs ENDIF,
+        cap: uint128_t = big_multiply(price`n, wheatReceive)
+    IN
+    IF canFavorWheat AND rhs > lhs THEN
+      TRUE
+    ELSE
+      absDiff <= cap
+    ENDIF
+  
+  % ============================================================================
+  % Exchange V10 - Main Exchange Algorithm
+  % ============================================================================
+  
+  exchangeV10_without_thresholds(price: Price, maxWheatSend: int64_t,
+                                 maxWheatReceive: int64_t, maxSheepSend: int64_t,
+                                 maxSheepReceive: int64_t, round: RoundingType): 
+    ExchangeResultV10 =
+    LET wheatValue = calculate_offer_value(price`n, price`d, 
+                                          maxWheatSend, maxSheepReceive),
+        sheepValue = calculate_offer_value(price`d, price`n, 
+                                          maxSheepSend, maxWheatReceive),
+        wheatStays = wheatValue > sheepValue
+    IN
+    IF wheatStays THEN
+      IF round = PATH_PAYMENT_STRICT_SEND THEN
+        LET wheatReceive = sheepValue / price`n,  % ROUND_DOWN
+            sheepSend = min(maxSheepSend, maxSheepReceive)
+        IN
+        (# numWheatReceived := wheatReceive,
+           numSheepSend := sheepSend,
+           wheatStays := TRUE #)
+      ELSIF price`n > price`d OR round = PATH_PAYMENT_STRICT_RECEIVE THEN
+        LET wheatReceive = sheepValue / price`n,  % ROUND_DOWN
+            sheepSend = ceiling((wheatReceive * price`n) / price`d)
+        IN
+        (# numWheatReceived := wheatReceive,
+           numSheepSend := sheepSend,
+           wheatStays := TRUE #)
+      ELSE  % Sheep is more valuable
+        LET sheepSend = sheepValue / price`d,  % ROUND_DOWN
+            wheatReceive = (sheepSend * price`d) / price`n  % ROUND_DOWN
+        IN
+        (# numWheatReceived := wheatReceive,
+           numSheepSend := sheepSend,
+           wheatStays := TRUE #)
+      ENDIF
+    ELSE  % !wheatStays
+      IF price`n > price`d THEN  % Wheat is more valuable
+        LET wheatReceive = wheatValue / price`n,  % ROUND_DOWN
+            sheepSend = (wheatReceive * price`n) / price`d  % ROUND_DOWN
+        IN
+        (# numWheatReceived := wheatReceive,
+           numSheepSend := sheepSend,
+           wheatStays := FALSE #)
+      ELSE  % Sheep is more valuable
+        LET sheepSend = wheatValue / price`d,  % ROUND_DOWN
+            wheatReceive = ceiling((sheepSend * price`d) / price`n)
+        IN
+        (# numWheatReceived := wheatReceive,
+           numSheepSend := sheepSend,
+           wheatStays := FALSE #)
+      ENDIF
+    ENDIF
+  
+  % Apply price error thresholds after exchange calculation
+  apply_price_error_thresholds(price: Price, wheatReceive, sheepSend: int64_t,
+                               wheatStays: bool, round: RoundingType): 
+    ExchangeResultV10 =
+    IF wheatReceive > 0 AND sheepSend > 0 THEN
+      IF round = NORMAL THEN
+        IF NOT check_price_error_bound(price, wheatReceive, sheepSend, FALSE) THEN
+          (# numWheatReceived := 0,
+             numSheepSend := 0,
+             wheatStays := wheatStays #)
+        ELSE
+          (# numWheatReceived := wheatReceive,
+             numSheepSend := sheepSend,
+             wheatStays := wheatStays #)
+        ENDIF
+      ELSE  % Path payment modes
+        % Path payments can favor wheat seller arbitrarily
+        IF NOT check_price_error_bound(price, wheatReceive, sheepSend, TRUE) THEN
+          % This should not happen in correct implementation
+          (# numWheatReceived := 0,
+             numSheepSend := 0,
+             wheatStays := wheatStays #)
+        ELSE
+          (# numWheatReceived := wheatReceive,
+             numSheepSend := sheepSend,
+             wheatStays := wheatStays #)
+        ENDIF
+      ENDIF
+    ELSIF round = PATH_PAYMENT_STRICT_SEND AND sheepSend = 0 THEN
+      % Invalid state for strict send
+      (# numWheatReceived := 0,
+         numSheepSend := 0,
+         wheatStays := wheatStays #)
+    ELSE
+      (# numWheatReceived := 0,
+         numSheepSend := 0,
+         wheatStays := wheatStays #)
+    ENDIF
+  
+  % Main exchange V10 function
+  exchangeV10(price: Price, maxWheatSend, maxWheatReceive: int64_t,
+              maxSheepSend, maxSheepReceive: int64_t, round: RoundingType): 
+    ExchangeResultV10 =
+    LET beforeThresholds = exchangeV10_without_thresholds(
+          price, maxWheatSend, maxWheatReceive, maxSheepSend, 
+          maxSheepReceive, round)
+    IN
+    apply_price_error_thresholds(price, beforeThresholds`numWheatReceived,
+                                 beforeThresholds`numSheepSend,
+                                 beforeThresholds`wheatStays, round)
+  
+  % ============================================================================
+  % Offer Adjustment
+  % ============================================================================
+  
+  adjust_offer(price: Price, maxWheatSend: int64_t, 
+               maxSheepReceive: int64_t): int64_t =
+    LET res = exchangeV10(price, maxWheatSend, int64_max, int64_max,
+                         maxSheepReceive, NORMAL)
+    IN res`numWheatReceived
+  
+  % ============================================================================
+  % Liquidity Pool Exchange
+  % ============================================================================
+  
+  % Constant product AMM formula: x * y = k
+  % After trade: (x + dx) * (y - dy) = k
+  
+  exchange_with_pool(reservesToPool: positive_int64, maxSendToPool: int64_t, 
+                    reservesFromPool: positive_int64, maxReceiveFromPool: int64_t,
+                    feeBps: LiquidityPoolFee, round: RoundingType): 
+    [# success: bool, toPool: nonneg_int64, fromPool: nonneg_int64 #] =
+    LET maxBps: int32_t = 10000 IN
+    IF round = PATH_PAYMENT_STRICT_SEND THEN
+      IF maxSendToPool > int64_max - reservesToPool THEN
+        (# success := FALSE, toPool := 0, fromPool := 0 #)
+      ELSE
+        LET toPool = maxSendToPool,
+            denominator = maxBps * reservesToPool + 
+                         (maxBps - feeBps) * toPool,
+            numerator = (maxBps - feeBps) * reservesFromPool * toPool,
+            fromPool = numerator / denominator  % ROUND_DOWN
+        IN
+        IF fromPool > 0 AND fromPool <= reservesFromPool THEN
+          (# success := TRUE, toPool := toPool, fromPool := fromPool #)
+        ELSE
+          (# success := FALSE, toPool := 0, fromPool := 0 #)
+        ENDIF
+      ENDIF
+    ELSIF round = PATH_PAYMENT_STRICT_RECEIVE THEN
+      IF maxReceiveFromPool >= reservesFromPool THEN
+        (# success := FALSE, toPool := 0, fromPool := 0 #)
+      ELSE
+        LET fromPool = maxReceiveFromPool,
+            numerator = maxBps * reservesToPool * fromPool,
+            denominator = (reservesFromPool - fromPool) * (maxBps - feeBps),
+            toPool = ceiling(numerator / denominator)  % ROUND_UP
+        IN
+        IF toPool >= 0 AND toPool <= int64_max - reservesToPool THEN
+          (# success := TRUE, toPool := toPool, fromPool := fromPool #)
+        ELSE
+          (# success := FALSE, toPool := 0, fromPool := 0 #)
+        ENDIF
+      ENDIF
+    ELSE  % NORMAL rounding - pools not used for normal offers
+      (# success := FALSE, toPool := 0, fromPool := 0 #)
+    ENDIF
+  
+  % ============================================================================
+  % Theorems and Properties
+  % ============================================================================
+  
+  % Exchange V10 preserves limits
+  exchange_v10_respects_limits: THEOREM
+    FORALL (price: Price, maxWheatSend, maxWheatReceive: int64_t,
+            maxSheepSend, maxSheepReceive: int64_t, round: RoundingType):
+      LET res = exchangeV10(price, maxWheatSend, maxWheatReceive,
+                           maxSheepSend, maxSheepReceive, round) IN
+      res`numWheatReceived <= min(maxWheatSend, maxWheatReceive) AND
+      res`numSheepSend <= min(maxSheepSend, maxSheepReceive)
+  
+  % Price favors the party whose offer stays
+  exchange_v10_price_fairness: THEOREM
+    FORALL (price: valid_price, maxWheatSend, maxWheatReceive: int64_t,
+            maxSheepSend, maxSheepReceive: int64_t):
+      LET res = exchangeV10(price, maxWheatSend, maxWheatReceive,
+                           maxSheepSend, maxSheepReceive, NORMAL) IN
+      res`numWheatReceived > 0 AND res`numSheepSend > 0 IMPLIES
+        (res`wheatStays IMPLIES 
+          res`numSheepSend * price`d >= res`numWheatReceived * price`n) AND
+        (NOT res`wheatStays IMPLIES 
+          res`numSheepSend * price`d <= res`numWheatReceived * price`n)
+  
+  % Adjust offer idempotence
+  adjust_offer_idempotent: THEOREM
+    FORALL (price: Price, maxWheatSend: int64_t, maxSheepReceive: int64_t):
+      LET adjusted = adjust_offer(price, maxWheatSend, maxSheepReceive) IN
+      adjust_offer(price, adjusted, maxSheepReceive) = adjusted
+  
+  % Pool exchange conserves value (constant product)
+  pool_constant_product: THEOREM
+    FORALL (reservesTo, reservesFrom: positive_int64, 
+            maxSend, maxReceive: int64_t,
+            fee: LiquidityPoolFee, round: RoundingType):
+      LET result = exchange_with_pool(reservesTo, maxSend, reservesFrom, 
+                                      maxReceive, fee, round) IN
+      result`success IMPLIES
+        LET k_before = reservesTo * reservesFrom,
+            k_after = (reservesTo + result`toPool) * 
+                     (reservesFrom - result`fromPool),
+            % Account for fees
+            effective_to = result`toPool * (10000 - fee) / 10000
+        IN
+        k_after >= k_before  % Constant product maintained or increased due to fees
+  
+  % Strict send always sends exact amount when successful
+  strict_send_exactness: THEOREM
+    FORALL (reservesTo, reservesFrom: positive_int64, 
+            maxSend: int64_t, fee: LiquidityPoolFee):
+      LET result = exchange_with_pool(reservesTo, maxSend, reservesFrom, 
+                                      int64_max, fee, PATH_PAYMENT_STRICT_SEND) IN
+      result`success IMPLIES result`toPool = maxSend
+  
+  % Strict receive always receives exact amount when successful
+  strict_receive_exactness: THEOREM
+    FORALL (reservesTo, reservesFrom: positive_int64, 
+            maxReceive: int64_t, fee: LiquidityPoolFee):
+      maxReceive < reservesFrom IMPLIES
+        LET result = exchange_with_pool(reservesTo, int64_max, reservesFrom, 
+                                        maxReceive, fee, PATH_PAYMENT_STRICT_RECEIVE) IN
+        result`success IMPLIES result`fromPool = maxReceive
+
+END OfferExchangeClaude
