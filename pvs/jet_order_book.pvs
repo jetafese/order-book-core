@@ -1,6 +1,9 @@
 JetExchangeV10: THEORY
 BEGIN
 
+  importing interval_arith@top
+  % nasalib: LIBRARY = "/Users/jetafese/Documents/code/pvs-7.1.0/nasalib/interval_arith"
+
   %-----------------------------
   % Integer domains
   %-----------------------------
@@ -13,7 +16,7 @@ BEGIN
   UINT64_MAX: nat = 18446744073709551615
 
   INT32_MIN: int = -2147483648
-  INT32_MAX: int =  2147483647
+  INT32_MAX: int =  2147483648
   UINT32_MAX: nat = 4294967295
 
   UINT128_MAX: nat = 340282366920938463463374607431768211455
@@ -31,13 +34,9 @@ BEGIN
   posuint64: TYPE = {x: uint64 | x > 0}
   posint32 : TYPE = {x: int32  | x > 0}
 
-  % Safe casts under range hypotheses
-  i64_to_u64(x: nnint64): uint64 = x
-  u64_to_i64(x: uint64): int64 = IF x <= INT64_MAX THEN x ELSE INT64_MAX ENDIF
-  
   % Integer floor/ceil divisions (no reals)
-  floor_div(x: natp, y: pos): int = x / y
-  ceil_div(x: natp, y: pos): int = (x + (y - 1)) / y
+  floor_div(x: natp, y: pos): int = ndiv(x, y)
+  ceil_div(x: natp, y: pos): int = ndiv((x + (y - 1)), y)
 
   %-----------------------------
   % Rounding modes and helpers
@@ -53,15 +52,12 @@ BEGIN
   big_div_numden(x: natp, n: pos, d: pos, r: RoundMode): int =
     % Computes round( x * n / d ) using integer rounding
     CASES r OF
-      ROUND_DOWN: (x * n) / d,
-      ROUND_UP:   (x * n + (d - 1)) / d
+      ROUND_DOWN: ndiv((x * n), d),
+      ROUND_UP:   ndiv((x * n + (d - 1)), d)
     ENDCASES
 
-  % uint128_t bigMultiplyUnsigned(uint64_t a, uint64_t b)
-  big_mul_u(a: uint64, b: uint64): uint128 = a * b   % exact in PVS  :contentReference[oaicite:23]{index=23}
-
   % uint128_t bigMultiply(int64_t a, int64_t b) with a,b >= 0
-  big_mul(a: nnint64, b: nnint64): uint128 = big_mul_u(i64_to_u64(a), i64_to_u64(b))
+  big_mul(a: nnint64, b: nnint64): uint128 = a * b
 
   %-----------------------------
   % Price and rounding types

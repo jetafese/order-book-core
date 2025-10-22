@@ -1,0 +1,278 @@
+(|OfferExchangeClaude|
+ (|int64_t_TCC1| 0
+  (|int64_t_TCC1-1| NIL 3970137917 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|int64_t| SUBTYPE "OfferExchangeClaude.int64_min" "real" (19 32 19 41))))
+ (|int64_t_TCC2| 0
+  (|int64_t_TCC2-1| NIL 3970137917 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|int64_t| SUBTYPE "OfferExchangeClaude.int64_max" "real" (19 56 19 65))))
+ (|uint128_t_TCC1| 0
+  (|uint128_t_TCC1-1| NIL 3970137917 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|uint128_t| SUBTYPE "OfferExchangeClaude.uint128_max" "real"
+    (23 35 23 46))))
+ (|big_divide_TCC1| 0
+  (|big_divide_TCC1-1| NIL 3970137917 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|big_divide| SUBTYPE "OfferExchangeClaude.int64_max" "numfield"
+    (166 17 166 26))))
+ (|big_divide_TCC2| 0
+  (|big_divide_TCC2-1| NIL 3970137917 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|big_divide| SUBTYPE
+    "number_fields.*(OfferExchangeClaude.int64_max, real_defs.abs(OfferExchangeClaude.c))"
+    "real" (166 17 166 35))))
+ (|big_divide_TCC3| 0
+  (|big_divide_TCC3-1| NIL 3970137917 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|big_divide| SUBTYPE "OfferExchangeClaude.c" "nznum" (169 28 169 29))))
+ (|big_divide_TCC4| 0
+  (|big_divide_TCC4-1| NIL 3970137917 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|big_divide| SUBTYPE "OfferExchangeClaude.int64_max" "real"
+    (178 40 178 49))))
+ (|big_multiply_TCC1| 0
+  (|big_multiply_TCC1-1| NIL 3970137917 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|big_multiply| SUBTYPE
+    "number_fields.*(real_defs.abs(OfferExchangeClaude.a), real_defs.abs(OfferExchangeClaude.b))"
+    "uint128_t" (183 4 183 19))))
+ (|calculate_offer_value_TCC1| 0
+  (|calculate_offer_value_TCC1-1| NIL 3970137917 ("" (SUBTYPE-TCC) NIL NIL) NIL
+   NIL
+   (|calculate_offer_value| SUBTYPE "OfferExchangeClaude.priceN" "int64_t"
+    (188 42 188 48))))
+ (|calculate_offer_value_TCC2| 0
+  (|calculate_offer_value_TCC2-1| NIL 3970137917 ("" (SUBTYPE-TCC) NIL NIL) NIL
+   NIL
+   (|calculate_offer_value| SUBTYPE "OfferExchangeClaude.priceD" "int64_t"
+    (189 48 189 54))))
+ (|calculate_offer_value_TCC3| 0
+  (|calculate_offer_value_TCC3-1| NIL 3970137917 ("" (SUBTYPE-TCC) NIL NIL) NIL
+   NIL
+   (|calculate_offer_value| SUBTYPE
+    "real_defs.min(OfferExchangeClaude.sendValue, OfferExchangeClaude.receiveValue)"
+    "uint128_t" (190 4 190 32))))
+ (|exchangeV2_TCC1| 0
+  (|exchangeV2_TCC1-1| NIL 3970137917 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV2| SUBTYPE "OfferExchangeClaude.price`d" "nznum"
+    (200 48 200 55))))
+ (|exchangeV2_TCC2| 0
+  (|exchangeV2_TCC2-1| NIL 3970137917 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV2| SUBTYPE "OfferExchangeClaude.price`n" "nznum"
+    (203 47 203 54))))
+ (|exchangeV2_TCC3| 0
+  (|exchangeV2_TCC3-1| NIL 3970137917 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV2| SUBTYPE "OfferExchangeClaude.actualSheep" "nonneg_int64"
+    (206 23 206 34))))
+ (|exchangeV2_TCC4| 0
+  (|exchangeV2_TCC4-1| NIL 3970137917 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV2| SUBTYPE
+    "real_defs.min(OfferExchangeClaude.actualWheat, OfferExchangeClaude.finalWheat)"
+    "nonneg_int64" (205 27 205 55))))
+ (|exchangeV3_TCC1| 0
+  (|exchangeV3_TCC1-1| NIL 3970137917 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV3| SUBTYPE "OfferExchangeClaude.price`n" "nznum"
+    (217 45 217 52))))
+ (|exchangeV3_TCC2| 0
+  (|exchangeV3_TCC2-1| NIL 3970137917 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV3| SUBTYPE "OfferExchangeClaude.actualSheep" "nonneg_int64"
+    (220 23 220 34))))
+ (|exchangeV3_TCC3| 0
+  (|exchangeV3_TCC3-1| NIL 3970137917 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV3| SUBTYPE
+    "real_defs.min(OfferExchangeClaude.actualWheat, OfferExchangeClaude.newWheat)"
+    "nonneg_int64" (219 27 219 53))))
+ (|check_price_error_bound_TCC1| 0
+  (|check_price_error_bound_TCC1-1| NIL 3970137917 ("" (SUBTYPE-TCC) NIL NIL)
+   NIL NIL
+   (|check_price_error_bound| SUBTYPE
+    "number_fields.*(OfferExchangeClaude.K, OfferExchangeClaude.price`n)"
+    "int64_t" (232 24 232 35))))
+ (|check_price_error_bound_TCC2| 0
+  (|check_price_error_bound_TCC2-1| NIL 3970137917 ("" (SUBTYPE-TCC) NIL NIL)
+   NIL NIL
+   (|check_price_error_bound| SUBTYPE
+    "number_fields.*(OfferExchangeClaude.K, OfferExchangeClaude.price`d)"
+    "int64_t" (233 24 233 35))))
+ (|check_price_error_bound_TCC3| 0
+  (|check_price_error_bound_TCC3-1| NIL 3970137917 ("" (SUBTYPE-TCC) NIL NIL)
+   NIL NIL
+   (|check_price_error_bound| SUBTYPE "OfferExchangeClaude.price`n" "int64_t"
+    (237 38 237 45))))
+ (|exchangeV10_without_thresholds_TCC1| 0
+  (|exchangeV10_without_thresholds_TCC1-1| NIL 3970137917
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10_without_thresholds| SUBTYPE "OfferExchangeClaude.price`n"
+    "nznum" (261 40 261 47))))
+ (|exchangeV10_without_thresholds_TCC2| 0
+  (|exchangeV10_without_thresholds_TCC2-1| NIL 3970137917
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10_without_thresholds| SUBTYPE "OfferExchangeClaude.sheepSend"
+    "nonneg_int64" (265 27 265 36))))
+ (|exchangeV10_without_thresholds_TCC3| 0
+  (|exchangeV10_without_thresholds_TCC3-1| NIL 3970137917
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10_without_thresholds| SUBTYPE "OfferExchangeClaude.wheatReceive"
+    "nonneg_int64" (264 31 264 43))))
+ (|exchangeV10_without_thresholds_TCC4| 0
+  (|exchangeV10_without_thresholds_TCC4-1| NIL 3970137917
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10_without_thresholds| SUBTYPE "OfferExchangeClaude.price`n"
+    "nznum" (268 40 268 47))))
+ (|exchangeV10_without_thresholds_TCC5| 0
+  (|exchangeV10_without_thresholds_TCC5-1| NIL 3970137917
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10_without_thresholds| SUBTYPE "OfferExchangeClaude.price`d"
+    "nznum" (269 59 269 66))))
+ (|exchangeV10_without_thresholds_TCC6| 0
+  (|exchangeV10_without_thresholds_TCC6-1| NIL 3970137917
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10_without_thresholds| SUBTYPE "OfferExchangeClaude.sheepSend"
+    "nonneg_int64" (272 27 272 36))))
+ (|exchangeV10_without_thresholds_TCC7| 0
+  (|exchangeV10_without_thresholds_TCC7-1| NIL 3970137917
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10_without_thresholds| SUBTYPE "OfferExchangeClaude.wheatReceive"
+    "nonneg_int64" (271 31 271 43))))
+ (|exchangeV10_without_thresholds_TCC8| 0
+  (|exchangeV10_without_thresholds_TCC8-1| NIL 3970137917
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10_without_thresholds| SUBTYPE "OfferExchangeClaude.price`d"
+    "nznum" (275 37 275 44))))
+ (|exchangeV10_without_thresholds_TCC9| 0
+  (|exchangeV10_without_thresholds_TCC9-1| NIL 3970137917
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10_without_thresholds| SUBTYPE "OfferExchangeClaude.price`n"
+    "nznum" (276 51 276 58))))
+ (|exchangeV10_without_thresholds_TCC10| 0
+  (|exchangeV10_without_thresholds_TCC10-1| NIL 3970137917
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10_without_thresholds| SUBTYPE "OfferExchangeClaude.sheepSend"
+    "nonneg_int64" (279 27 279 36))))
+ (|exchangeV10_without_thresholds_TCC11| 0
+  (|exchangeV10_without_thresholds_TCC11-1| NIL 3970137917
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10_without_thresholds| SUBTYPE "OfferExchangeClaude.wheatReceive"
+    "nonneg_int64" (278 31 278 43))))
+ (|exchangeV10_without_thresholds_TCC12| 0
+  (|exchangeV10_without_thresholds_TCC12-1| NIL 3970137917
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10_without_thresholds| SUBTYPE "OfferExchangeClaude.price`n"
+    "nznum" (284 40 284 47))))
+ (|exchangeV10_without_thresholds_TCC13| 0
+  (|exchangeV10_without_thresholds_TCC13-1| NIL 3970137917
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10_without_thresholds| SUBTYPE "OfferExchangeClaude.price`d"
+    "nznum" (285 51 285 58))))
+ (|exchangeV10_without_thresholds_TCC14| 0
+  (|exchangeV10_without_thresholds_TCC14-1| NIL 3970137917
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10_without_thresholds| SUBTYPE "OfferExchangeClaude.sheepSend"
+    "nonneg_int64" (288 27 288 36))))
+ (|exchangeV10_without_thresholds_TCC15| 0
+  (|exchangeV10_without_thresholds_TCC15-1| NIL 3970137917
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10_without_thresholds| SUBTYPE "OfferExchangeClaude.wheatReceive"
+    "nonneg_int64" (287 31 287 43))))
+ (|exchangeV10_without_thresholds_TCC16| 0
+  (|exchangeV10_without_thresholds_TCC16-1| NIL 3970137917
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10_without_thresholds| SUBTYPE "OfferExchangeClaude.price`d"
+    "nznum" (291 37 291 44))))
+ (|exchangeV10_without_thresholds_TCC17| 0
+  (|exchangeV10_without_thresholds_TCC17-1| NIL 3970137917
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10_without_thresholds| SUBTYPE "OfferExchangeClaude.price`n"
+    "nznum" (292 59 292 66))))
+ (|exchangeV10_without_thresholds_TCC18| 0
+  (|exchangeV10_without_thresholds_TCC18-1| NIL 3970137917
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10_without_thresholds| SUBTYPE "OfferExchangeClaude.sheepSend"
+    "nonneg_int64" (295 27 295 36))))
+ (|exchangeV10_without_thresholds_TCC19| 0
+  (|exchangeV10_without_thresholds_TCC19-1| NIL 3970137917
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10_without_thresholds| SUBTYPE "OfferExchangeClaude.wheatReceive"
+    "nonneg_int64" (294 31 294 43))))
+ (|apply_price_error_thresholds_TCC1| 0
+  (|apply_price_error_thresholds_TCC1-1| NIL 3970137917
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|apply_price_error_thresholds| SUBTYPE "OfferExchangeClaude.sheepSend"
+    "nonneg_int64" (312 29 312 38))))
+ (|apply_price_error_thresholds_TCC2| 0
+  (|apply_price_error_thresholds_TCC2-1| NIL 3970137917
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|apply_price_error_thresholds| SUBTYPE "OfferExchangeClaude.wheatReceive"
+    "nonneg_int64" (311 33 311 45))))
+ (|apply_price_error_thresholds_TCC3| 0
+  (|apply_price_error_thresholds_TCC3-1| NIL 3970137917
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|apply_price_error_thresholds| SUBTYPE "OfferExchangeClaude.sheepSend"
+    "nonneg_int64" (324 29 324 38))))
+ (|apply_price_error_thresholds_TCC4| 0
+  (|apply_price_error_thresholds_TCC4-1| NIL 3970137917
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|apply_price_error_thresholds| SUBTYPE "OfferExchangeClaude.wheatReceive"
+    "nonneg_int64" (323 33 323 45))))
+ (|adjust_offer_TCC1| 0
+  (|adjust_offer_TCC1-1| NIL 3970137917 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|adjust_offer| SUBTYPE "OfferExchangeClaude.int64_max" "int64_t"
+    (357 47 357 56))))
+ (|exchange_with_pool_TCC1| 0
+  (|exchange_with_pool_TCC1-1| NIL 3970137917 ("" (SUBTYPE-TCC) NIL NIL) NIL
+   NIL (|exchange_with_pool| SUBTYPE "10000" "int32_t" (372 26 372 31))))
+ (|exchange_with_pool_TCC2| 0
+  (|exchange_with_pool_TCC2-1| NIL 3970137917 ("" (SUBTYPE-TCC) NIL NIL) NIL
+   NIL
+   (|exchange_with_pool| SUBTYPE "OfferExchangeClaude.int64_max" "numfield"
+    (374 25 374 34))))
+ (|exchange_with_pool_TCC3| 0
+  (|exchange_with_pool_TCC3-1| NIL 3970137917 ("" (SUBTYPE-TCC) NIL NIL) NIL
+   NIL
+   (|exchange_with_pool| SUBTYPE
+    "(number_fields.-)(OfferExchangeClaude.int64_max, OfferExchangeClaude.reservesToPool)"
+    "real" (374 25 374 51))))
+ (|exchange_with_pool_TCC4| 0
+  (|exchange_with_pool_TCC4-1| NIL 3970137917 ("" (SUBTYPE-TCC) NIL NIL) NIL
+   NIL
+   (|exchange_with_pool| SUBTYPE "OfferExchangeClaude.denominator" "nznum"
+    (381 35 381 46))))
+ (|exchange_with_pool_TCC5| 0
+  (|exchange_with_pool_TCC5-1| NIL 3970137917 ("" (SUBTYPE-TCC) NIL NIL) NIL
+   NIL
+   (|exchange_with_pool| SUBTYPE "OfferExchangeClaude.fromPool" "nonneg_int64"
+    (384 60 384 68))))
+ (|exchange_with_pool_TCC6| 0
+  (|exchange_with_pool_TCC6-1| NIL 3970137917 ("" (SUBTYPE-TCC) NIL NIL) NIL
+   NIL
+   (|exchange_with_pool| SUBTYPE "OfferExchangeClaude.toPool" "nonneg_int64"
+    (384 40 384 46))))
+ (|exchange_with_pool_TCC7| 0
+  (|exchange_with_pool_TCC7-1| NIL 3970137917 ("" (SUBTYPE-TCC) NIL NIL) NIL
+   NIL
+   (|exchange_with_pool| SUBTYPE "OfferExchangeClaude.denominator" "nznum"
+    (396 41 396 52))))
+ (|exchange_with_pool_TCC8| 0
+  (|exchange_with_pool_TCC8-1| NIL 3970137917 ("" (SUBTYPE-TCC) NIL NIL) NIL
+   NIL
+   (|exchange_with_pool| SUBTYPE "OfferExchangeClaude.int64_max" "numfield"
+    (398 37 398 46))))
+ (|exchange_with_pool_TCC9| 0
+  (|exchange_with_pool_TCC9-1| NIL 3970137917 ("" (SUBTYPE-TCC) NIL NIL) NIL
+   NIL
+   (|exchange_with_pool| SUBTYPE
+    "(number_fields.-)(OfferExchangeClaude.int64_max, OfferExchangeClaude.reservesToPool)"
+    "real" (398 37 398 63))))
+ (|exchange_with_pool_TCC10| 0
+  (|exchange_with_pool_TCC10-1| NIL 3970137917 ("" (SUBTYPE-TCC) NIL NIL) NIL
+   NIL
+   (|exchange_with_pool| SUBTYPE "OfferExchangeClaude.fromPool" "nonneg_int64"
+    (399 60 399 68))))
+ (|exchange_with_pool_TCC11| 0
+  (|exchange_with_pool_TCC11-1| NIL 3970137917 ("" (SUBTYPE-TCC) NIL NIL) NIL
+   NIL
+   (|exchange_with_pool| SUBTYPE "OfferExchangeClaude.toPool" "nonneg_int64"
+    (399 40 399 46))))
+ (|adjust_offer_idempotent| 0
+  (|adjust_offer_idempotent-1| NIL 3970137955 ("" (POSTPONE) NIL NIL) NIL
+   SHOSTAK))
+ (|strict_send_exactness_TCC1| 0
+  (|strict_send_exactness_TCC1-1| NIL 3970137917 ("" (SUBTYPE-TCC) NIL NIL) NIL
+   NIL
+   (|strict_send_exactness| SUBTYPE "OfferExchangeClaude.int64_max" "int64_t"
+    (460 38 460 47)))))
+
