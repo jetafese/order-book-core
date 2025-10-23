@@ -35,22 +35,21 @@ BEGIN
   posint32 : TYPE = {x: int32  | x > 0}
 
   % Integer floor/ceil divisions (no reals)
-  floor_div(x: natp, y: pos): natp = ndiv(x, y)
-  ceil_div(x: natp, y: pos): natp = ndiv((x + (y - 1)), y)
+  floor_div(x: natp, y: pos): int = ndiv(x, y)
+  ceil_div(x: natp, y: pos): int = ndiv((x + (y - 1)), y)
 
   %-----------------------------
   % Rounding modes and helpers
   %-----------------------------
   RoundMode: TYPE = { ROUND_DOWN, ROUND_UP }
-  
 
-  big_div(x: natp, y: pos, r: RoundMode): natp =
+  big_div(x: natp, y: pos, r: RoundMode): int =
     CASES r OF
       ROUND_DOWN: floor_div(x, y),
       ROUND_UP:   ceil_div(x, y)
     ENDCASES
 
-  big_div_numden(x: natp, n: pos, d: pos, r: RoundMode): natp =
+  big_div_numden(x: natp, n: pos, d: pos, r: RoundMode): int =
     % Computes round( x * n / d ) using integer rounding
     CASES r OF
       ROUND_DOWN: ndiv((x * n), d),
@@ -166,9 +165,9 @@ BEGIN
 	absDiff = IF (lhs > rhs) THEN (lhs - rhs) ELSE (rhs - lhs) ENDIF,
     	cap = big_mul(price`n, wheatReceive)
     IN
-	IF cFW AND rhs > lhs THEN True ELSE (absDiff <= cap) ENDIF
+	IF cFW AND rhs > lhs THEN True ELSE (absDiff <= cap) ENDIF	
 
-  applyPriceErrorThresholds(p: Price, wheatReceive: int64, sheepSend: int64,
+  applyPriceErrorThresholds(p: Price, wheatReceive, sheepSend: int64,
                             wheatStays: bool, round: RoundingType): ExchangeResultV10 =
     LET wR = wheatReceive, sS = sheepSend,
       wVal = big_mul(wR, p`n),

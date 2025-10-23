@@ -137,4 +137,638 @@
   (|i64_to_u64_TCC1| 0
    (|i64_to_u64_TCC1-1| NIL 3969638648 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
     (|i64_to_u64| SUBTYPE "JetExchangeV10.x" "uint64")))
+  . 0))(("jet_order_book"
+  (|i64_to_u64_TCC1| 0
+   (|i64_to_u64_TCC1-1| NIL 3969638648 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|i64_to_u64| SUBTYPE "JetExchangeV10.x" "uint64")))
+  |u64_to_i64_TCC2-1| NIL 3969638648 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|u64_to_i64| SUBTYPE "JetExchangeV10.INT64_MAX" "int64"))
+ ("jet_order_book"
+  (|i64_to_u64_TCC1| 0
+   (|i64_to_u64_TCC1-1| NIL 3969638648 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|i64_to_u64| SUBTYPE "JetExchangeV10.x" "uint64")))
+  |u64_to_i64_TCC1-1| NIL 3969638648 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|u64_to_i64| SUBTYPE "JetExchangeV10.x" "int64"))
+ ("jet_order_book"
+  (|i64_to_u64_TCC1| 0
+   (|i64_to_u64_TCC1-1| NIL 3969638648 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|i64_to_u64| SUBTYPE "JetExchangeV10.x" "uint64")))
+  |i64_to_u64_TCC1-1| NIL 3969638648 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|i64_to_u64| SUBTYPE "JetExchangeV10.x" "uint64"))
+ ("jet_order_book"
+  (|i64_to_u64_TCC1| 0
+   (|i64_to_u64_TCC1-1| NIL 3969638648 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|i64_to_u64| SUBTYPE "JetExchangeV10.x" "uint64")))
+  . 0))(("jet_order_book"
+  (|i64_to_u64_TCC1| 0
+   (|i64_to_u64_TCC1-1| NIL 3969638648 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|i64_to_u64| SUBTYPE "JetExchangeV10.x" "uint64")))
+  |u64_to_i64_TCC2-1| NIL 3969638648 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|u64_to_i64| SUBTYPE "JetExchangeV10.INT64_MAX" "int64"))
+ ("jet_order_book"
+  (|i64_to_u64_TCC1| 0
+   (|i64_to_u64_TCC1-1| NIL 3969638648 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|i64_to_u64| SUBTYPE "JetExchangeV10.x" "uint64")))
+  |u64_to_i64_TCC1-1| NIL 3969638648 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|u64_to_i64| SUBTYPE "JetExchangeV10.x" "int64"))
+ ("jet_order_book"
+  (|i64_to_u64_TCC1| 0
+   (|i64_to_u64_TCC1-1| NIL 3969638648 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|i64_to_u64| SUBTYPE "JetExchangeV10.x" "uint64")))
+  |i64_to_u64_TCC1-1| NIL 3969638648 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|i64_to_u64| SUBTYPE "JetExchangeV10.x" "uint64"))
+ ("jet_order_book"
+  (|i64_to_u64_TCC1| 0
+   (|i64_to_u64_TCC1-1| NIL 3969638648 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|i64_to_u64| SUBTYPE "JetExchangeV10.x" "uint64")))
+  . 0))(("jet_order_book"
+  (|i64_to_u64_TCC1| 0
+   (|i64_to_u64_TCC1-1| NIL 3969638648 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|i64_to_u64| SUBTYPE "JetExchangeV10.x" "uint64")))
+  |u64_to_i64_TCC2-1| NIL 3969638648 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|u64_to_i64| SUBTYPE "JetExchangeV10.INT64_MAX" "int64"))
+ ("jet_order_book"
+  (|i64_to_u64_TCC1| 0
+   (|i64_to_u64_TCC1-1| NIL 3969638648 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|i64_to_u64| SUBTYPE "JetExchangeV10.x" "uint64")))
+  |u64_to_i64_TCC1-1| NIL 3969638648 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|u64_to_i64| SUBTYPE "JetExchangeV10.x" "int64"))
+ ("jet_order_book"
+  (|i64_to_u64_TCC1| 0
+   (|i64_to_u64_TCC1-1| NIL 3969638648 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|i64_to_u64| SUBTYPE "JetExchangeV10.x" "uint64")))
+  |i64_to_u64_TCC1-1| NIL 3969638648 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|i64_to_u64| SUBTYPE "JetExchangeV10.x" "uint64"))
+ ("jet_order_book"
+  (|i64_to_u64_TCC1| 0
+   (|i64_to_u64_TCC1-1| NIL 3969638648 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|i64_to_u64| SUBTYPE "JetExchangeV10.x" "uint64")))
+  . 0))(("jet_order_book"
+  (|floor_div_TCC1| 0
+   (|floor_div_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat")))
+  |thresholds_normal_TCC2-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|thresholds_normal| SUBTYPE "JetExchangeV10.ss" "int64"))
+ ("jet_order_book"
+  (|floor_div_TCC1| 0
+   (|floor_div_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat")))
+  |thresholds_normal_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|thresholds_normal| SUBTYPE "JetExchangeV10.wr" "int64"))
+ ("jet_order_book"
+  (|floor_div_TCC1| 0
+   (|floor_div_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat")))
+  |exchangeV10_TCC2-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|exchangeV10| SUBTYPE "JetExchangeV10.before`numSheepSend" "int64"))
+ ("jet_order_book"
+  (|floor_div_TCC1| 0
+   (|floor_div_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat")))
+  |exchangeV10_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|exchangeV10| SUBTYPE "JetExchangeV10.before`numWheatReceived" "int64"))
+ ("jet_order_book"
+  (|floor_div_TCC1| 0
+   (|floor_div_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat")))
+  |applyPriceErrorThresholds_TCC8-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL)
+  NIL NIL
+  (|applyPriceErrorThresholds| SUBTYPE "JetExchangeV10.adj_pair`wr" "natp"))
+ ("jet_order_book"
+  (|floor_div_TCC1| 0
+   (|floor_div_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat")))
+  |applyPriceErrorThresholds_TCC7-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL)
+  NIL NIL
+  (|applyPriceErrorThresholds| SUBTYPE "JetExchangeV10.adj_pair`ss" "natp"))
+ ("jet_order_book"
+  (|floor_div_TCC1| 0
+   (|floor_div_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat")))
+  |applyPriceErrorThresholds_TCC6-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL)
+  ((|big_mul| CONST-DECL "uint128" |JetExchangeV10| NIL)
+   (> CONST-DECL "bool" |reals| NIL) (/= CONST-DECL "boolean" |notequal| NIL)
+   (INT64_MIN CONST-DECL "int" |JetExchangeV10| NIL)
+   (INT64_MAX CONST-DECL "int" |JetExchangeV10| NIL)
+   (|int_times_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL))
+  NIL (|applyPriceErrorThresholds| SUBTYPE "0" "int64"))
+ ("jet_order_book"
+  (|floor_div_TCC1| 0
+   (|floor_div_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat")))
+  |applyPriceErrorThresholds_TCC5-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL)
+  ((|big_mul| CONST-DECL "uint128" |JetExchangeV10| NIL)
+   (> CONST-DECL "bool" |reals| NIL) (/= CONST-DECL "boolean" |notequal| NIL)
+   (INT64_MIN CONST-DECL "int" |JetExchangeV10| NIL)
+   (INT64_MAX CONST-DECL "int" |JetExchangeV10| NIL)
+   (|int_times_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL))
+  NIL (|applyPriceErrorThresholds| SUBTYPE "0" "int64"))
+ ("jet_order_book"
+  (|floor_div_TCC1| 0
+   (|floor_div_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat")))
+  |applyPriceErrorThresholds_TCC4-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL)
+  ((|big_mul| CONST-DECL "uint128" |JetExchangeV10| NIL)
+   (> CONST-DECL "bool" |reals| NIL) (/= CONST-DECL "boolean" |notequal| NIL)
+   (INT64_MIN CONST-DECL "int" |JetExchangeV10| NIL)
+   (INT64_MAX CONST-DECL "int" |JetExchangeV10| NIL)
+   (|int_times_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL))
+  NIL (|applyPriceErrorThresholds| SUBTYPE "0" "int64"))
+ ("jet_order_book"
+  (|floor_div_TCC1| 0
+   (|floor_div_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat")))
+  |applyPriceErrorThresholds_TCC3-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL)
+  NIL NIL (|applyPriceErrorThresholds| SUBTYPE "JetExchangeV10.p`d" "nnint64"))
+ ("jet_order_book"
+  (|floor_div_TCC1| 0
+   (|floor_div_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat")))
+  |applyPriceErrorThresholds_TCC2-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL)
+  NIL NIL (|applyPriceErrorThresholds| SUBTYPE "JetExchangeV10.sS" "nnint64"))
+ ("jet_order_book"
+  (|floor_div_TCC1| 0
+   (|floor_div_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat")))
+  |applyPriceErrorThresholds_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL)
+  NIL NIL (|applyPriceErrorThresholds| SUBTYPE "JetExchangeV10.wR" "nnint64"))
+ ("jet_order_book"
+  (|floor_div_TCC1| 0
+   (|floor_div_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat")))
+  |checkPriceErrorBound_TCC6-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL
+  NIL (|checkPriceErrorBound| SUBTYPE "JetExchangeV10.sheepSend" "nnint64"))
+ ("jet_order_book"
+  (|floor_div_TCC1| 0
+   (|floor_div_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat")))
+  |checkPriceErrorBound_TCC5-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL
+  NIL (|checkPriceErrorBound| SUBTYPE "JetExchangeV10.errD" "nnint64"))
+ ("jet_order_book"
+  (|floor_div_TCC1| 0
+   (|floor_div_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat")))
+  |checkPriceErrorBound_TCC4-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL
+  NIL (|checkPriceErrorBound| SUBTYPE "JetExchangeV10.wheatReceive" "nnint64"))
+ ("jet_order_book"
+  (|floor_div_TCC1| 0
+   (|floor_div_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat")))
+  |checkPriceErrorBound_TCC3-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL
+  NIL (|checkPriceErrorBound| SUBTYPE "JetExchangeV10.errN" "nnint64"))
+ ("jet_order_book"
+  (|floor_div_TCC1| 0
+   (|floor_div_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat")))
+  |checkPriceErrorBound_TCC2-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL
+  NIL (|checkPriceErrorBound| SUBTYPE "JetExchangeV10.price`d" "nnint64"))
+ ("jet_order_book"
+  (|floor_div_TCC1| 0
+   (|floor_div_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat")))
+  |checkPriceErrorBound_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL
+  NIL (|checkPriceErrorBound| SUBTYPE "JetExchangeV10.price`n" "nnint64"))
+ ("jet_order_book"
+  (|floor_div_TCC1| 0
+   (|floor_div_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat")))
+  |exchangeV10WithoutPriceErrorThresholds_TCC11-1| NIL 3970155821
+  ("" (SUBTYPE-TCC) NIL NIL)
+  ((|int_minus_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
+   (NIL APPLICATION-JUDGEMENT "upto(n)" |modulo_arithmetic| NIL)
+   (|int_times_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
+   (> CONST-DECL "bool" |reals| NIL)
+   (|floor_div| CONST-DECL "int" |JetExchangeV10| NIL)
+   (|big_div| CONST-DECL "int" |JetExchangeV10| NIL)
+   (|big_div_numden| CONST-DECL "int" |JetExchangeV10| NIL)
+   (|ge_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+   (|real_ge_is_total_order| NAME-JUDGEMENT "(total_order?[real])" |real_props|
+    NIL)
+   (|le_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+   (|real_le_is_total_order| NAME-JUDGEMENT "(total_order?[real])" |real_props|
+    NIL)
+   (|int_plus_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
+   (|lt_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+   (|real_lt_is_strict_total_order| NAME-JUDGEMENT
+    "(strict_total_order?[real])" |real_props| NIL)
+   (|natp| TYPE-EQ-DECL NIL |JetExchangeV10| NIL)
+   (|int| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL)
+   (|integer_pred| CONST-DECL "[rational -> boolean]" |integers| NIL)
+   (|rational| NONEMPTY-TYPE-FROM-DECL NIL |rationals| NIL)
+   (|rational_pred| CONST-DECL "[real -> boolean]" |rationals| NIL)
+   (>= CONST-DECL "bool" |reals| NIL)
+   (|real| NONEMPTY-TYPE-FROM-DECL NIL |reals| NIL)
+   (|real_pred| CONST-DECL "[number_field -> boolean]" |reals| NIL)
+   (|number_field| NONEMPTY-TYPE-FROM-DECL NIL |number_fields| NIL)
+   (|number_field_pred| CONST-DECL "[number -> boolean]" |number_fields| NIL)
+   (|number| NONEMPTY-TYPE-DECL NIL |numbers| NIL)
+   (NOT CONST-DECL "[bool -> bool]" |booleans| NIL)
+   (|bool| NONEMPTY-TYPE-EQ-DECL NIL |booleans| NIL)
+   (|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL))
+  NIL
+  (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE
+   "JetExchangeV10.big_div(JetExchangeV10.wheatValue, JetExchangeV10.price`d, JetExchangeV10.ROUND_DOWN)"
+   "natp"))
+ ("jet_order_book"
+  (|floor_div_TCC1| 0
+   (|floor_div_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat")))
+  |exchangeV10WithoutPriceErrorThresholds_TCC10-1| NIL 3970155821
+  ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE
+   "JetExchangeV10.big_div_numden(JetExchangeV10.wheatReceive, JetExchangeV10.price`n, JetExchangeV10.price`d, JetExchangeV10.ROUND_DOWN)"
+   "natp"))
+ ("jet_order_book"
+  (|floor_div_TCC1| 0
+   (|floor_div_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat")))
+  |exchangeV10WithoutPriceErrorThresholds_TCC9-1| NIL 3970155821
+  ("" (SUBTYPE-TCC) NIL NIL)
+  ((|int_minus_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
+   (NIL APPLICATION-JUDGEMENT "upto(n)" |modulo_arithmetic| NIL)
+   (|int_times_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
+   (> CONST-DECL "bool" |reals| NIL)
+   (|floor_div| CONST-DECL "int" |JetExchangeV10| NIL)
+   (|big_div| CONST-DECL "int" |JetExchangeV10| NIL)
+   (|big_div_numden| CONST-DECL "int" |JetExchangeV10| NIL)
+   (|ge_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+   (|real_ge_is_total_order| NAME-JUDGEMENT "(total_order?[real])" |real_props|
+    NIL)
+   (|le_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+   (|real_le_is_total_order| NAME-JUDGEMENT "(total_order?[real])" |real_props|
+    NIL)
+   (|lt_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+   (|real_lt_is_strict_total_order| NAME-JUDGEMENT
+    "(strict_total_order?[real])" |real_props| NIL)
+   (|natp| TYPE-EQ-DECL NIL |JetExchangeV10| NIL)
+   (|int| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL)
+   (|integer_pred| CONST-DECL "[rational -> boolean]" |integers| NIL)
+   (|rational| NONEMPTY-TYPE-FROM-DECL NIL |rationals| NIL)
+   (|rational_pred| CONST-DECL "[real -> boolean]" |rationals| NIL)
+   (>= CONST-DECL "bool" |reals| NIL)
+   (|real| NONEMPTY-TYPE-FROM-DECL NIL |reals| NIL)
+   (|real_pred| CONST-DECL "[number_field -> boolean]" |reals| NIL)
+   (|number_field| NONEMPTY-TYPE-FROM-DECL NIL |number_fields| NIL)
+   (|number_field_pred| CONST-DECL "[number -> boolean]" |number_fields| NIL)
+   (|number| NONEMPTY-TYPE-DECL NIL |numbers| NIL)
+   (NOT CONST-DECL "[bool -> bool]" |booleans| NIL)
+   (|bool| NONEMPTY-TYPE-EQ-DECL NIL |booleans| NIL)
+   (|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL))
+  NIL
+  (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE
+   "JetExchangeV10.big_div(JetExchangeV10.sheepValue, JetExchangeV10.price`d, JetExchangeV10.ROUND_DOWN)"
+   "natp"))
+ ("jet_order_book"
+  (|floor_div_TCC1| 0
+   (|floor_div_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat")))
+  |exchangeV10WithoutPriceErrorThresholds_TCC8-1| NIL 3970155821
+  ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE
+   "JetExchangeV10.big_div_numden(JetExchangeV10.wheatReceive, JetExchangeV10.price`n, JetExchangeV10.price`d, JetExchangeV10.ROUND_UP)"
+   "natp"))
+ ("jet_order_book"
+  (|floor_div_TCC1| 0
+   (|floor_div_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat")))
+  |exchangeV10WithoutPriceErrorThresholds_TCC7-1| NIL 3970155821
+  ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE
+   "JetExchangeV10.big_div_numden(JetExchangeV10.sheepSend_tmp, JetExchangeV10.price`d, JetExchangeV10.price`n, JetExchangeV10.ROUND_UP)"
+   "natp"))
+ ("jet_order_book"
+  (|floor_div_TCC1| 0
+   (|floor_div_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat")))
+  |exchangeV10WithoutPriceErrorThresholds_TCC6-1| NIL 3970155821
+  ("" (SUBTYPE-TCC) NIL NIL)
+  ((|int_times_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
+   (> CONST-DECL "bool" |reals| NIL)
+   (|floor_div| CONST-DECL "int" |JetExchangeV10| NIL)
+   (|big_div| CONST-DECL "int" |JetExchangeV10| NIL)
+   (|real_lt_is_strict_total_order| NAME-JUDGEMENT
+    "(strict_total_order?[real])" |real_props| NIL)
+   (|lt_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+   (|real_ge_is_total_order| NAME-JUDGEMENT "(total_order?[real])" |real_props|
+    NIL)
+   (|ge_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+   (|real_le_is_total_order| NAME-JUDGEMENT "(total_order?[real])" |real_props|
+    NIL)
+   (|le_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+   (NIL APPLICATION-JUDGEMENT "upto(n)" |modulo_arithmetic| NIL)
+   (|natp| TYPE-EQ-DECL NIL |JetExchangeV10| NIL)
+   (|int| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL)
+   (|integer_pred| CONST-DECL "[rational -> boolean]" |integers| NIL)
+   (|rational| NONEMPTY-TYPE-FROM-DECL NIL |rationals| NIL)
+   (|rational_pred| CONST-DECL "[real -> boolean]" |rationals| NIL)
+   (>= CONST-DECL "bool" |reals| NIL)
+   (|real| NONEMPTY-TYPE-FROM-DECL NIL |reals| NIL)
+   (|real_pred| CONST-DECL "[number_field -> boolean]" |reals| NIL)
+   (|number_field| NONEMPTY-TYPE-FROM-DECL NIL |number_fields| NIL)
+   (|number_field_pred| CONST-DECL "[number -> boolean]" |number_fields| NIL)
+   (|number| NONEMPTY-TYPE-DECL NIL |numbers| NIL)
+   (NOT CONST-DECL "[bool -> bool]" |booleans| NIL)
+   (|bool| NONEMPTY-TYPE-EQ-DECL NIL |booleans| NIL)
+   (|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL))
+  NIL
+  (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE
+   "JetExchangeV10.sheepSend_tmp" "natp"))
+ ("jet_order_book"
+  (|floor_div_TCC1| 0
+   (|floor_div_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat")))
+  |exchangeV10WithoutPriceErrorThresholds_TCC5-1| NIL 3970155821
+  ("" (SUBTYPE-TCC) NIL NIL)
+  ((|int_times_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
+   (> CONST-DECL "bool" |reals| NIL)
+   (|floor_div| CONST-DECL "int" |JetExchangeV10| NIL)
+   (|big_div| CONST-DECL "int" |JetExchangeV10| NIL)
+   (|ge_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+   (|real_ge_is_total_order| NAME-JUDGEMENT "(total_order?[real])" |real_props|
+    NIL)
+   (|le_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+   (|real_le_is_total_order| NAME-JUDGEMENT "(total_order?[real])" |real_props|
+    NIL)
+   (|lt_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+   (|real_lt_is_strict_total_order| NAME-JUDGEMENT
+    "(strict_total_order?[real])" |real_props| NIL)
+   (NIL APPLICATION-JUDGEMENT "upto(n)" |modulo_arithmetic| NIL)
+   (|natp| TYPE-EQ-DECL NIL |JetExchangeV10| NIL)
+   (|int| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL)
+   (|integer_pred| CONST-DECL "[rational -> boolean]" |integers| NIL)
+   (|rational| NONEMPTY-TYPE-FROM-DECL NIL |rationals| NIL)
+   (|rational_pred| CONST-DECL "[real -> boolean]" |rationals| NIL)
+   (>= CONST-DECL "bool" |reals| NIL)
+   (|real| NONEMPTY-TYPE-FROM-DECL NIL |reals| NIL)
+   (|real_pred| CONST-DECL "[number_field -> boolean]" |reals| NIL)
+   (|number_field| NONEMPTY-TYPE-FROM-DECL NIL |number_fields| NIL)
+   (|number_field_pred| CONST-DECL "[number -> boolean]" |number_fields| NIL)
+   (|number| NONEMPTY-TYPE-DECL NIL |numbers| NIL)
+   (NOT CONST-DECL "[bool -> bool]" |booleans| NIL)
+   (|bool| NONEMPTY-TYPE-EQ-DECL NIL |booleans| NIL)
+   (|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL))
+  NIL
+  (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE
+   "JetExchangeV10.big_div(JetExchangeV10.wheatValue, JetExchangeV10.price`n, JetExchangeV10.ROUND_DOWN)"
+   "natp"))
+ ("jet_order_book"
+  (|floor_div_TCC1| 0
+   (|floor_div_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat")))
+  |exchangeV10WithoutPriceErrorThresholds_TCC4-1| NIL 3970155821
+  ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE
+   "JetExchangeV10.big_div_numden(JetExchangeV10.sheepSend_tmp, JetExchangeV10.price`d, JetExchangeV10.price`n, JetExchangeV10.ROUND_DOWN)"
+   "natp"))
+ ("jet_order_book"
+  (|floor_div_TCC1| 0
+   (|floor_div_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat")))
+  |exchangeV10WithoutPriceErrorThresholds_TCC3-1| NIL 3970155821
+  ("" (SUBTYPE-TCC) NIL NIL)
+  ((|int_times_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
+   (> CONST-DECL "bool" |reals| NIL)
+   (|floor_div| CONST-DECL "int" |JetExchangeV10| NIL)
+   (|big_div| CONST-DECL "int" |JetExchangeV10| NIL)
+   (|real_lt_is_strict_total_order| NAME-JUDGEMENT
+    "(strict_total_order?[real])" |real_props| NIL)
+   (|lt_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+   (|real_ge_is_total_order| NAME-JUDGEMENT "(total_order?[real])" |real_props|
+    NIL)
+   (|ge_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+   (|real_le_is_total_order| NAME-JUDGEMENT "(total_order?[real])" |real_props|
+    NIL)
+   (|le_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+   (NIL APPLICATION-JUDGEMENT "upto(n)" |modulo_arithmetic| NIL)
+   (|natp| TYPE-EQ-DECL NIL |JetExchangeV10| NIL)
+   (|int| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL)
+   (|integer_pred| CONST-DECL "[rational -> boolean]" |integers| NIL)
+   (|rational| NONEMPTY-TYPE-FROM-DECL NIL |rationals| NIL)
+   (|rational_pred| CONST-DECL "[real -> boolean]" |rationals| NIL)
+   (>= CONST-DECL "bool" |reals| NIL)
+   (|real| NONEMPTY-TYPE-FROM-DECL NIL |reals| NIL)
+   (|real_pred| CONST-DECL "[number_field -> boolean]" |reals| NIL)
+   (|number_field| NONEMPTY-TYPE-FROM-DECL NIL |number_fields| NIL)
+   (|number_field_pred| CONST-DECL "[number -> boolean]" |number_fields| NIL)
+   (|number| NONEMPTY-TYPE-DECL NIL |numbers| NIL)
+   (NOT CONST-DECL "[bool -> bool]" |booleans| NIL)
+   (|bool| NONEMPTY-TYPE-EQ-DECL NIL |booleans| NIL)
+   (|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL))
+  NIL
+  (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE
+   "JetExchangeV10.sheepSend_tmp" "natp"))
+ ("jet_order_book"
+  (|floor_div_TCC1| 0
+   (|floor_div_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat")))
+  |exchangeV10WithoutPriceErrorThresholds_TCC2-1| NIL 3970155821
+  ("" (SUBTYPE-TCC) NIL NIL)
+  ((|int_times_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
+   (> CONST-DECL "bool" |reals| NIL)
+   (|floor_div| CONST-DECL "int" |JetExchangeV10| NIL)
+   (|big_div| CONST-DECL "int" |JetExchangeV10| NIL)
+   (|ge_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+   (|real_ge_is_total_order| NAME-JUDGEMENT "(total_order?[real])" |real_props|
+    NIL)
+   (|le_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+   (|real_le_is_total_order| NAME-JUDGEMENT "(total_order?[real])" |real_props|
+    NIL)
+   (|lt_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+   (|real_lt_is_strict_total_order| NAME-JUDGEMENT
+    "(strict_total_order?[real])" |real_props| NIL)
+   (NIL APPLICATION-JUDGEMENT "upto(n)" |modulo_arithmetic| NIL)
+   (|natp| TYPE-EQ-DECL NIL |JetExchangeV10| NIL)
+   (|int| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL)
+   (|integer_pred| CONST-DECL "[rational -> boolean]" |integers| NIL)
+   (|rational| NONEMPTY-TYPE-FROM-DECL NIL |rationals| NIL)
+   (|rational_pred| CONST-DECL "[real -> boolean]" |rationals| NIL)
+   (>= CONST-DECL "bool" |reals| NIL)
+   (|real| NONEMPTY-TYPE-FROM-DECL NIL |reals| NIL)
+   (|real_pred| CONST-DECL "[number_field -> boolean]" |reals| NIL)
+   (|number_field| NONEMPTY-TYPE-FROM-DECL NIL |number_fields| NIL)
+   (|number_field_pred| CONST-DECL "[number -> boolean]" |number_fields| NIL)
+   (|number| NONEMPTY-TYPE-DECL NIL |numbers| NIL)
+   (NOT CONST-DECL "[bool -> bool]" |booleans| NIL)
+   (|bool| NONEMPTY-TYPE-EQ-DECL NIL |booleans| NIL)
+   (|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL))
+  NIL
+  (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE
+   "JetExchangeV10.big_div(JetExchangeV10.sheepValue, JetExchangeV10.price`n, JetExchangeV10.ROUND_DOWN)"
+   "natp"))
+ ("jet_order_book"
+  (|floor_div_TCC1| 0
+   (|floor_div_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat")))
+  |exchangeV10WithoutPriceErrorThresholds_TCC1-1| NIL 3970155821
+  ("" (SUBTYPE-TCC) NIL NIL)
+  ((|int_times_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
+   (> CONST-DECL "bool" |reals| NIL)
+   (|floor_div| CONST-DECL "int" |JetExchangeV10| NIL)
+   (|big_div| CONST-DECL "int" |JetExchangeV10| NIL)
+   (|ge_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+   (|real_ge_is_total_order| NAME-JUDGEMENT "(total_order?[real])" |real_props|
+    NIL)
+   (|le_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+   (|real_le_is_total_order| NAME-JUDGEMENT "(total_order?[real])" |real_props|
+    NIL)
+   (|lt_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+   (|real_lt_is_strict_total_order| NAME-JUDGEMENT
+    "(strict_total_order?[real])" |real_props| NIL)
+   (NIL APPLICATION-JUDGEMENT "upto(n)" |modulo_arithmetic| NIL)
+   (|natp| TYPE-EQ-DECL NIL |JetExchangeV10| NIL)
+   (|int| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL)
+   (|integer_pred| CONST-DECL "[rational -> boolean]" |integers| NIL)
+   (|rational| NONEMPTY-TYPE-FROM-DECL NIL |rationals| NIL)
+   (|rational_pred| CONST-DECL "[real -> boolean]" |rationals| NIL)
+   (>= CONST-DECL "bool" |reals| NIL)
+   (|real| NONEMPTY-TYPE-FROM-DECL NIL |reals| NIL)
+   (|real_pred| CONST-DECL "[number_field -> boolean]" |reals| NIL)
+   (|number_field| NONEMPTY-TYPE-FROM-DECL NIL |number_fields| NIL)
+   (|number_field_pred| CONST-DECL "[number -> boolean]" |number_fields| NIL)
+   (|number| NONEMPTY-TYPE-DECL NIL |numbers| NIL)
+   (NOT CONST-DECL "[bool -> bool]" |booleans| NIL)
+   (|bool| NONEMPTY-TYPE-EQ-DECL NIL |booleans| NIL)
+   (|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL))
+  NIL
+  (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE
+   "JetExchangeV10.big_div(JetExchangeV10.sheepValue, JetExchangeV10.price`n, JetExchangeV10.ROUND_DOWN)"
+   "natp"))
+ ("jet_order_book"
+  (|floor_div_TCC1| 0
+   (|floor_div_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat")))
+  |calculateOfferValue_TCC2-1| NIL 3970155821
+  ("" (SUBTYPE-TCC) (("" (GRIND :THEORIES ("real_props")) NIL NIL)) NIL)
+  ((|gt_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+   (|real_gt_is_strict_total_order| NAME-JUDGEMENT
+    "(strict_total_order?[real])" |real_props| NIL)
+   (|lt_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+   (|real_lt_is_strict_total_order| NAME-JUDGEMENT
+    "(strict_total_order?[real])" |real_props| NIL)
+   (|ge_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+   (|real_ge_is_total_order| NAME-JUDGEMENT "(total_order?[real])" |real_props|
+    NIL)
+   (|le_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+   (|real_le_is_total_order| NAME-JUDGEMENT "(total_order?[real])" |real_props|
+    NIL)
+   (|int_times_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
+   (|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL)
+   (|bool| NONEMPTY-TYPE-EQ-DECL NIL |booleans| NIL)
+   (NOT CONST-DECL "[bool -> bool]" |booleans| NIL)
+   (|number| NONEMPTY-TYPE-DECL NIL |numbers| NIL)
+   (|number_field_pred| CONST-DECL "[number -> boolean]" |number_fields| NIL)
+   (|number_field| NONEMPTY-TYPE-FROM-DECL NIL |number_fields| NIL)
+   (|real_pred| CONST-DECL "[number_field -> boolean]" |reals| NIL)
+   (|real| NONEMPTY-TYPE-FROM-DECL NIL |reals| NIL)
+   (> CONST-DECL "bool" |reals| NIL)
+   (|rational_pred| CONST-DECL "[real -> boolean]" |rationals| NIL)
+   (|rational| NONEMPTY-TYPE-FROM-DECL NIL |rationals| NIL)
+   (|integer_pred| CONST-DECL "[rational -> boolean]" |integers| NIL)
+   (|int| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL)
+   (|pos| TYPE-EQ-DECL NIL |JetExchangeV10| NIL)
+   (>= CONST-DECL "bool" |reals| NIL)
+   (|natp| TYPE-EQ-DECL NIL |JetExchangeV10| NIL)
+   (|pos_times_ge| FORMULA-DECL NIL |real_props| NIL))
+  NIL
+  (|calculateOfferValue| SUBTYPE
+   "number_fields.*(JetExchangeV10.maxReceive, JetExchangeV10.d)" "natp"))
+ ("jet_order_book"
+  (|floor_div_TCC1| 0
+   (|floor_div_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat")))
+  |calculateOfferValue_TCC1-1| NIL 3970155821
+  ("" (SUBTYPE-TCC) (("" (GRIND :THEORIES ("real_props")) NIL NIL)) NIL)
+  ((|gt_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+   (|real_gt_is_strict_total_order| NAME-JUDGEMENT
+    "(strict_total_order?[real])" |real_props| NIL)
+   (|lt_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+   (|real_lt_is_strict_total_order| NAME-JUDGEMENT
+    "(strict_total_order?[real])" |real_props| NIL)
+   (|ge_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+   (|real_ge_is_total_order| NAME-JUDGEMENT "(total_order?[real])" |real_props|
+    NIL)
+   (|le_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+   (|real_le_is_total_order| NAME-JUDGEMENT "(total_order?[real])" |real_props|
+    NIL)
+   (|int_times_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
+   (|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL)
+   (|bool| NONEMPTY-TYPE-EQ-DECL NIL |booleans| NIL)
+   (NOT CONST-DECL "[bool -> bool]" |booleans| NIL)
+   (|number| NONEMPTY-TYPE-DECL NIL |numbers| NIL)
+   (|number_field_pred| CONST-DECL "[number -> boolean]" |number_fields| NIL)
+   (|number_field| NONEMPTY-TYPE-FROM-DECL NIL |number_fields| NIL)
+   (|real_pred| CONST-DECL "[number_field -> boolean]" |reals| NIL)
+   (|real| NONEMPTY-TYPE-FROM-DECL NIL |reals| NIL)
+   (> CONST-DECL "bool" |reals| NIL)
+   (|rational_pred| CONST-DECL "[real -> boolean]" |rationals| NIL)
+   (|rational| NONEMPTY-TYPE-FROM-DECL NIL |rationals| NIL)
+   (|integer_pred| CONST-DECL "[rational -> boolean]" |integers| NIL)
+   (|int| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL)
+   (|pos| TYPE-EQ-DECL NIL |JetExchangeV10| NIL)
+   (>= CONST-DECL "bool" |reals| NIL)
+   (|natp| TYPE-EQ-DECL NIL |JetExchangeV10| NIL)
+   (|pos_times_ge| FORMULA-DECL NIL |real_props| NIL))
+  NIL
+  (|calculateOfferValue| SUBTYPE
+   "number_fields.*(JetExchangeV10.maxSend, JetExchangeV10.n)" "natp"))
+ ("jet_order_book"
+  (|floor_div_TCC1| 0
+   (|floor_div_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat")))
+  |big_mul_TCC1-1| NIL 3970155821
+  ("" (SUBTYPE-TCC)
+   (("" (GRIND :THEORIES ("real_props"))
+     (("" (HIDE -1 -4) (("" (POSTPONE) NIL NIL)) NIL)) NIL))
+   NIL)
+  NIL NIL
+  (|big_mul| SUBTYPE "number_fields.*(JetExchangeV10.a, JetExchangeV10.b)"
+   "uint128"))
+ ("jet_order_book"
+  (|floor_div_TCC1| 0
+   (|floor_div_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat")))
+  |big_div_numden_TCC2-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|big_div_numden| SUBTYPE "JetExchangeV10.d" "posnat"))
+ ("jet_order_book"
+  (|floor_div_TCC1| 0
+   (|floor_div_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat")))
+  |big_div_numden_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|big_div_numden| SUBTYPE "JetExchangeV10.d" "posnat"))
+ ("jet_order_book"
+  (|floor_div_TCC1| 0
+   (|floor_div_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat")))
+  |floor_div_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat"))
+ ("jet_order_book"
+  (|floor_div_TCC1| 0
+   (|floor_div_TCC1-1| NIL 3970155821 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat")))
+  . 0))(("jet_order_book"
+  (|thresholds_normal_no_trade_if_exceeds_TCC1| 0
+   (|thresholds_normal_no_trade_if_exceeds_TCC1-1| NIL 3970155821
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|thresholds_normal_no_trade_if_exceeds| SUBTYPE "JetExchangeV10_1.wr"
+     "int64")))
+  |thresholds_normal_no_trade_if_exceeds_TCC2-1| NIL 3970155821
+  ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|thresholds_normal_no_trade_if_exceeds| SUBTYPE "JetExchangeV10_1.ss"
+   "int64"))
+ ("jet_order_book"
+  (|thresholds_normal_no_trade_if_exceeds_TCC1| 0
+   (|thresholds_normal_no_trade_if_exceeds_TCC1-1| NIL 3970155821
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|thresholds_normal_no_trade_if_exceeds| SUBTYPE "JetExchangeV10_1.wr"
+     "int64")))
+  |thresholds_normal_no_trade_if_exceeds_TCC1-1| NIL 3970155821
+  ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|thresholds_normal_no_trade_if_exceeds| SUBTYPE "JetExchangeV10_1.wr"
+   "int64"))
+ ("jet_order_book"
+  (|thresholds_normal_no_trade_if_exceeds_TCC1| 0
+   (|thresholds_normal_no_trade_if_exceeds_TCC1-1| NIL 3970155821
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|thresholds_normal_no_trade_if_exceeds| SUBTYPE "JetExchangeV10_1.wr"
+     "int64")))
   . 0))
