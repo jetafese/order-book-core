@@ -1,32 +1,60 @@
 (|JetExchangeV10|
  (|floor_div_TCC1| 0
   (|floor_div_TCC1-1| NIL 3970219217 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
-   (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat" (38 45 38 46))))
+   (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat" (16 48 16 49))))
+ (|floor_div_TCC2| 0
+  (|floor_div_TCC2-1| NIL 3970228284 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|floor_div| SUBTYPE
+    "modulo_arithmetic.ndiv(JetExchangeV10.x, JetExchangeV10.y)" "int64"
+    (16 40 16 50))))
  (|ceil_div_TCC1| 0
   (|ceil_div_TCC1-1| NIL 3970219217 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
    (|ceil_div| SUBTYPE
     "modulo_arithmetic.ndiv(((number_fields.+)(JetExchangeV10.x, ((number_fields.-)(JetExchangeV10.y, 1)))), JetExchangeV10.y)"
-    "natp" (39 36 39 58))))
+    "int64" (17 40 17 62))))
  (|big_div_numden_TCC1| 0
-  (|big_div_numden_TCC1-1| NIL 3970219217 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
-   (|big_div_numden| SUBTYPE "JetExchangeV10.d" "posnat" (56 32 56 33))))
- (|big_div_numden_TCC2| 0
   (|big_div_numden_TCC2-1| NIL 3970219217 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
    (|big_div_numden| SUBTYPE
     "modulo_arithmetic.ndiv((number_fields.*(JetExchangeV10.x, JetExchangeV10.n)), JetExchangeV10.d)"
-    "natp" (56 18 56 34))))
- (|big_div_numden_TCC3| 0
-  (|big_div_numden_TCC3-1| NIL 3970219217 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
-   (|big_div_numden| SUBTYPE "JetExchangeV10.d" "posnat" (57 42 57 43))))
- (|big_div_numden_TCC4| 0
+    "int64" (34 18 34 34))))
+ (|big_div_numden_TCC2| 0
   (|big_div_numden_TCC4-1| NIL 3970219217 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
    (|big_div_numden| SUBTYPE
     "modulo_arithmetic.ndiv(((number_fields.+)(number_fields.*(JetExchangeV10.x, JetExchangeV10.n), ((number_fields.-)(JetExchangeV10.d, 1)))), JetExchangeV10.d)"
-    "natp" (57 18 57 44))))
+    "int64" (35 18 35 44))))
  (|big_mul_TCC1| 0
-  (|big_mul_TCC1-1| NIL 3970219217 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|big_mul_TCC1-1| NIL 3970219217
+   ("" (SUBTYPE-TCC) (("" (YICES2 :NONLINEAR? T) NIL NIL)) NIL)
+   ((|le_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+    (|real_le_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
+     |real_props| NIL)
+    (NIL APPLICATION-JUDGEMENT "above(n)" |exp2| NIL)
+    (|ge_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+    (|real_ge_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
+     |real_props| NIL)
+    (|nnint_times_nnint_is_nnint| APPLICATION-JUDGEMENT "nonneg_int" |integers|
+     NIL)
+    (|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL)
+    (|bool| NONEMPTY-TYPE-EQ-DECL NIL |booleans| NIL)
+    (NOT CONST-DECL "[bool -> bool]" |booleans| NIL)
+    (|number| NONEMPTY-TYPE-DECL NIL |numbers| NIL)
+    (|number_field_pred| CONST-DECL "[number -> boolean]" |number_fields| NIL)
+    (|number_field| NONEMPTY-TYPE-FROM-DECL NIL |number_fields| NIL)
+    (|real_pred| CONST-DECL "[number_field -> boolean]" |reals| NIL)
+    (|real| NONEMPTY-TYPE-FROM-DECL NIL |reals| NIL)
+    (<= CONST-DECL "bool" |reals| NIL)
+    (|rational_pred| CONST-DECL "[real -> boolean]" |rationals| NIL)
+    (|rational| NONEMPTY-TYPE-FROM-DECL NIL |rationals| NIL)
+    (|integer_pred| CONST-DECL "[rational -> boolean]" |integers| NIL)
+    (|int| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL) NIL
+    (AND CONST-DECL "[bool, bool -> bool]" |booleans| NIL) NIL NIL
+    (>= CONST-DECL "bool" |reals| NIL)
+    (|nnint64| TYPE-EQ-DECL NIL |JetExchangeV10| NIL) NIL
+    (|int_minus_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
+    (|minus_nzint_is_nzint| APPLICATION-JUDGEMENT "nzint" |integers| NIL))
+   NIL
    (|big_mul| SUBTYPE "number_fields.*(JetExchangeV10.a, JetExchangeV10.b)"
-    "uint128" (61 45 61 50))))
+    "uint128" (39 45 39 50))))
  (|calculateOfferValue_TCC1| 0
   (|calculateOfferValue_TCC1-1| NIL 3970219217
    ("" (SUBTYPE-TCC)
@@ -36,10 +64,8 @@
         NIL))
       NIL))
     NIL)
-   ((|pos_times_ge| FORMULA-DECL NIL |real_props| NIL)
-    (|natp| TYPE-EQ-DECL NIL |JetExchangeV10| NIL)
-    (>= CONST-DECL "bool" |reals| NIL)
-    (|pos| TYPE-EQ-DECL NIL |JetExchangeV10| NIL)
+   ((|pos_times_ge| FORMULA-DECL NIL |real_props| NIL) NIL
+    (>= CONST-DECL "bool" |reals| NIL) NIL
     (|int| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL)
     (|integer_pred| CONST-DECL "[rational -> boolean]" |integers| NIL)
     (|rational| NONEMPTY-TYPE-FROM-DECL NIL |rationals| NIL)
@@ -67,9 +93,7 @@
      "(strict_total_order?[real])" |real_props| NIL)
     (|gt_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|))
    NIL
-   (|calculateOfferValue| SUBTYPE
-    "number_fields.*(JetExchangeV10.maxSend, JetExchangeV10.n)" "natp"
-    (76 42 76 53))))
+   (|calculateOfferValue| SUBTYPE "JetExchangeV10.n" "nnint64" (54 25 54 26))))
  (|calculateOfferValue_TCC2| 0
   (|calculateOfferValue_TCC2-1| NIL 3970219217
    ("" (SUBTYPE-TCC) (("" (GRIND :THEORIES ("real_props")) NIL NIL)) NIL)
@@ -98,117 +122,231 @@
     (|rational_pred| CONST-DECL "[real -> boolean]" |rationals| NIL)
     (|rational| NONEMPTY-TYPE-FROM-DECL NIL |rationals| NIL)
     (|integer_pred| CONST-DECL "[rational -> boolean]" |integers| NIL)
-    (|int| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL)
-    (|pos| TYPE-EQ-DECL NIL |JetExchangeV10| NIL)
-    (>= CONST-DECL "bool" |reals| NIL)
-    (|natp| TYPE-EQ-DECL NIL |JetExchangeV10| NIL)
+    (|int| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL) NIL
+    (>= CONST-DECL "bool" |reals| NIL) NIL
     (|pos_times_ge| FORMULA-DECL NIL |real_props| NIL))
    NIL
+   (|calculateOfferValue| SUBTYPE "JetExchangeV10.d" "nnint64" (54 49 54 50))))
+ (|calculateOfferValue_TCC3| 0
+  (|calculateOfferValue_TCC3-1| NIL 3970228284
+   ("" (SUBTYPE-TCC)
+    (("" (TYPEPRED "min(maxSend!1 * n!1, maxReceive!1 * d!1)")
+      (("" (GRIND)
+        (("1" (LEMMA "big_mul_TCC1")
+          (("1" (INST?) (("1" (GRIND) NIL NIL)) NIL)) NIL)
+         ("2" (LEMMA "big_mul_TCC1")
+          (("2" (INST?)
+            (("2" (LEMMA "big_mul_TCC1")
+              (("2" (INST -1 "maxSend!1 " "n!1") (("2" (GRIND) NIL NIL)) NIL))
+              NIL))
+            NIL))
+          NIL))
+        NIL))
+      NIL))
+    NIL)
+   ((|real_lt_is_strict_total_order| NAME-JUDGEMENT
+     "(strict_total_order?[real])" |real_props| NIL)
+    (|lt_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+    (|real_gt_is_strict_total_order| NAME-JUDGEMENT
+     "(strict_total_order?[real])" |real_props| NIL)
+    (|gt_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+    (|nnint_times_nnint_is_nnint| APPLICATION-JUDGEMENT "nonneg_int" |integers|
+     NIL)
+    (|nat_min| APPLICATION-JUDGEMENT "{k: nat | k <= i AND k <= j}" |real_defs|
+     NIL)
+    (|real_ge_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
+     |real_props| NIL)
+    (|ge_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+    (|int_minus_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
+    (|minus_nzint_is_nzint| APPLICATION-JUDGEMENT "nzint" |integers| NIL)
+    (|real_le_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
+     |real_props| NIL)
+    (|le_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+    (|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL)
+    (|bool| NONEMPTY-TYPE-EQ-DECL NIL |booleans| NIL)
+    (NOT CONST-DECL "[bool -> bool]" |booleans| NIL)
+    (|number| NONEMPTY-TYPE-DECL NIL |numbers| NIL)
+    (|number_field_pred| CONST-DECL "[number -> boolean]" |number_fields| NIL)
+    (|number_field| NONEMPTY-TYPE-FROM-DECL NIL |number_fields| NIL)
+    (|real_pred| CONST-DECL "[number_field -> boolean]" |reals| NIL)
+    (|real| NONEMPTY-TYPE-FROM-DECL NIL |reals| NIL)
+    (<= CONST-DECL "bool" |reals| NIL)
+    (|numfield| NONEMPTY-TYPE-EQ-DECL NIL |number_fields| NIL)
+    (- CONST-DECL "[numfield -> numfield]" |number_fields| NIL)
+    (|rational_pred| CONST-DECL "[real -> boolean]" |rationals| NIL)
+    (|rational| NONEMPTY-TYPE-FROM-DECL NIL |rationals| NIL)
+    (|integer_pred| CONST-DECL "[rational -> boolean]" |integers| NIL)
+    (|int| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL)
+    (>= CONST-DECL "bool" |reals| NIL)
+    (|nat| NONEMPTY-TYPE-EQ-DECL NIL |naturalnumbers| NIL)
+    (|nonneg_int| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL)
+    (|posnat| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL)
+    (|exp2| DEF-DECL "posnat" |exp2| NIL)
+    (AND CONST-DECL "[bool, bool -> bool]" |booleans| NIL)
+    (- CONST-DECL "[numfield, numfield -> numfield]" |number_fields| NIL)
+    (|int32| TYPE-EQ-DECL NIL |integertypes| NIL)
+    (|nnint32| TYPE-EQ-DECL NIL |JetExchangeV10| NIL)
+    (|int64| TYPE-EQ-DECL NIL |integertypes| NIL)
+    (|nnint64| TYPE-EQ-DECL NIL |JetExchangeV10| NIL)
+    (NIL APPLICATION-JUDGEMENT "above(n)" |exp2| NIL)
+    (|big_mul| CONST-DECL "uint128" |JetExchangeV10| NIL)
+    (> CONST-DECL "bool" |reals| NIL)
+    (|even_times_int_is_even| APPLICATION-JUDGEMENT "even_int" |integers| NIL)
+    (|posint_times_posint_is_posint| APPLICATION-JUDGEMENT "posint" |integers|
+     NIL)
+    (|big_mul_TCC1| SUBTYPE-TCC NIL |JetExchangeV10| NIL)
+    (|min| CONST-DECL "{p: real | p <= m AND p <= n}" |real_defs| NIL)
+    (* CONST-DECL "[numfield, numfield -> numfield]" |number_fields| NIL))
+   NIL
    (|calculateOfferValue| SUBTYPE
-    "number_fields.*(JetExchangeV10.maxReceive, JetExchangeV10.d)" "natp"
-    (76 59 76 73))))
+    "real_defs.min(JetExchangeV10.big_mul(JetExchangeV10.maxSend, JetExchangeV10.n), JetExchangeV10.big_mul(JetExchangeV10.maxReceive, JetExchangeV10.d))"
+    "uint128" (54 4 54 52))))
+ (|exchangeV10WithoutPriceErrorThresholds_TCC1| 0
+  (|exchangeV10WithoutPriceErrorThresholds_TCC1-1| NIL 3970228284
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE "JetExchangeV10.price`n"
+    "nnint32" (74 46 74 53))))
+ (|exchangeV10WithoutPriceErrorThresholds_TCC2| 0
+  (|exchangeV10WithoutPriceErrorThresholds_TCC2-1| NIL 3970228284
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE "JetExchangeV10.price`d"
+    "nnint32" (74 55 74 62))))
+ (|exchangeV10WithoutPriceErrorThresholds_TCC3| 0
+  (|exchangeV10WithoutPriceErrorThresholds_TCC3-1| NIL 3970228284
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE
+    "JetExchangeV10.maxWheatSend" "nnint64" (75 45 75 57))))
+ (|exchangeV10WithoutPriceErrorThresholds_TCC4| 0
+  (|exchangeV10WithoutPriceErrorThresholds_TCC4-1| NIL 3970228284
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE
+    "JetExchangeV10.calculateOfferValue(JetExchangeV10.price`n, JetExchangeV10.price`d, JetExchangeV10.maxWheatSend, JetExchangeV10.maxSheepReceive)"
+    "int64" (74 26 75 75))))
+ (|exchangeV10WithoutPriceErrorThresholds_TCC5| 0
+  (|exchangeV10WithoutPriceErrorThresholds_TCC5-1| NIL 3970228284
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE
+    "JetExchangeV10.maxSheepSend" "nnint64" (77 45 77 57))))
+ (|exchangeV10WithoutPriceErrorThresholds_TCC6| 0
+  (|exchangeV10WithoutPriceErrorThresholds_TCC6-1| NIL 3970228284
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE
+    "JetExchangeV10.calculateOfferValue(JetExchangeV10.price`d, JetExchangeV10.price`n, JetExchangeV10.maxSheepSend, JetExchangeV10.maxWheatReceive)"
+    "int64" (76 26 77 75))))
+ (|exchangeV10WithoutPriceErrorThresholds_TCC7| 0
+  (|exchangeV10WithoutPriceErrorThresholds_TCC7-1| NIL 3970228284
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE "JetExchangeV10.price`n"
+    "int64" (83 32 83 39))))
+ (|exchangeV10WithoutPriceErrorThresholds_TCC8| 0
+  (|exchangeV10WithoutPriceErrorThresholds_TCC8-1| NIL 3970228284
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE "JetExchangeV10.price`n"
+    "int64" (85 32 85 39))))
+ (|exchangeV10WithoutPriceErrorThresholds_TCC9| 0
+  (|exchangeV10WithoutPriceErrorThresholds_TCC9-1| NIL 3970228284
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE "JetExchangeV10.price`d"
+    "int64" (88 52 88 59))))
+ (|exchangeV10WithoutPriceErrorThresholds_TCC10| 0
+  (|exchangeV10WithoutPriceErrorThresholds_TCC10-1| NIL 3970228284
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE "JetExchangeV10.price`n"
+    "int64" (89 53 89 60))))
+ (|exchangeV10WithoutPriceErrorThresholds_TCC11| 0
+  (|exchangeV10WithoutPriceErrorThresholds_TCC11-1| NIL 3970228284
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE "JetExchangeV10.price`n"
+    "int64" (94 32 94 39))))
+ (|exchangeV10WithoutPriceErrorThresholds_TCC12| 0
+  (|exchangeV10WithoutPriceErrorThresholds_TCC12-1| NIL 3970228284
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE "JetExchangeV10.price`d"
+    "int64" (97 52 97 59))))
+ (|exchangeV10WithoutPriceErrorThresholds_TCC13| 0
+  (|exchangeV10WithoutPriceErrorThresholds_TCC13-1| NIL 3970228284
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE "JetExchangeV10.price`n"
+    "int64" (98 53 98 60))))
+ (|exchangeV10WithoutPriceErrorThresholds_TCC14| 0
+  (|exchangeV10WithoutPriceErrorThresholds_TCC14-1| NIL 3970228284
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE "JetExchangeV10.price`d"
+    "int64" (107 50 107 57))))
+ (|exchangeV10WithoutPriceErrorThresholds_TCC15| 0
+  (|exchangeV10WithoutPriceErrorThresholds_TCC15-1| NIL 3970228284
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE "JetExchangeV10.price`d"
+    "int64" (113 50 113 57))))
  (|checkPriceErrorBound_TCC1| 0
   (|checkPriceErrorBound_TCC1-1| NIL 3970219217 ("" (SUBTYPE-TCC) NIL NIL) NIL
    NIL
    (|checkPriceErrorBound| SUBTYPE "JetExchangeV10.price`n" "nnint64"
-    (161 28 161 35))))
+    (140 28 140 35))))
  (|checkPriceErrorBound_TCC2| 0
   (|checkPriceErrorBound_TCC2-1| NIL 3970219217 ("" (SUBTYPE-TCC) NIL NIL) NIL
    NIL
    (|checkPriceErrorBound| SUBTYPE "JetExchangeV10.price`d" "nnint64"
-    (162 25 162 32))))
+    (141 25 141 32))))
  (|checkPriceErrorBound_TCC3| 0
   (|checkPriceErrorBound_TCC3-1| NIL 3970219217 ("" (SUBTYPE-TCC) NIL NIL) NIL
    NIL
    (|checkPriceErrorBound| SUBTYPE "JetExchangeV10.errN" "nnint64"
-    (163 19 163 23))))
+    (142 19 142 23))))
  (|checkPriceErrorBound_TCC4| 0
-  (|checkPriceErrorBound_TCC4-1| NIL 3970219217 ("" (SUBTYPE-TCC) NIL NIL) NIL
-   NIL
-   (|checkPriceErrorBound| SUBTYPE "JetExchangeV10.wheatReceive" "nnint64"
-    (163 25 163 37))))
- (|checkPriceErrorBound_TCC5| 0
   (|checkPriceErrorBound_TCC5-1| NIL 3970219217 ("" (SUBTYPE-TCC) NIL NIL) NIL
    NIL
    (|checkPriceErrorBound| SUBTYPE "JetExchangeV10.errD" "nnint64"
-    (164 19 164 23))))
- (|checkPriceErrorBound_TCC6| 0
+    (143 19 143 23))))
+ (|checkPriceErrorBound_TCC5| 0
   (|checkPriceErrorBound_TCC6-1| NIL 3970219217 ("" (SUBTYPE-TCC) NIL NIL) NIL
    NIL
    (|checkPriceErrorBound| SUBTYPE "JetExchangeV10.sheepSend" "nnint64"
-    (164 25 164 34))))
+    (143 25 143 34))))
  (|applyPriceErrorThresholds_TCC1| 0
   (|applyPriceErrorThresholds_TCC1-1| NIL 3970219217 ("" (SUBTYPE-TCC) NIL NIL)
    NIL NIL
    (|applyPriceErrorThresholds| SUBTYPE "JetExchangeV10.wR" "nnint64"
-    (174 21 174 23))))
+    (153 21 153 23))))
  (|applyPriceErrorThresholds_TCC2| 0
   (|applyPriceErrorThresholds_TCC2-1| NIL 3970219217 ("" (SUBTYPE-TCC) NIL NIL)
    NIL NIL
    (|applyPriceErrorThresholds| SUBTYPE "JetExchangeV10.sS" "nnint64"
-    (175 21 175 23))))
+    (154 21 154 23))))
  (|applyPriceErrorThresholds_TCC3| 0
   (|applyPriceErrorThresholds_TCC3-1| NIL 3970219217 ("" (SUBTYPE-TCC) NIL NIL)
    NIL NIL
    (|applyPriceErrorThresholds| SUBTYPE "JetExchangeV10.p`d" "nnint64"
-    (175 25 175 28))))
- (|applyPriceErrorThresholds_TCC4| 0
-  (|applyPriceErrorThresholds_TCC4-1| NIL 3970219217 ("" (SUBTYPE-TCC) NIL NIL)
-   ((|big_mul| CONST-DECL "uint128" |JetExchangeV10| NIL)
-    (> CONST-DECL "bool" |reals| NIL) (/= CONST-DECL "boolean" |notequal| NIL)
-    (INT64_MIN CONST-DECL "int" |JetExchangeV10| NIL)
-    (INT64_MAX CONST-DECL "int" |JetExchangeV10| NIL)
-    (|int_times_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL))
-   NIL (|applyPriceErrorThresholds| SUBTYPE "0" "int64" (186 72 186 73))))
- (|applyPriceErrorThresholds_TCC5| 0
-  (|applyPriceErrorThresholds_TCC5-1| NIL 3970219217 ("" (SUBTYPE-TCC) NIL NIL)
-   ((|big_mul| CONST-DECL "uint128" |JetExchangeV10| NIL)
-    (> CONST-DECL "bool" |reals| NIL) (/= CONST-DECL "boolean" |notequal| NIL)
-    (INT64_MIN CONST-DECL "int" |JetExchangeV10| NIL)
-    (INT64_MAX CONST-DECL "int" |JetExchangeV10| NIL)
-    (|int_times_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL))
-   NIL (|applyPriceErrorThresholds| SUBTYPE "0" "int64" (195 38 195 39))))
- (|applyPriceErrorThresholds_TCC6| 0
-  (|applyPriceErrorThresholds_TCC6-1| NIL 3970219217 ("" (SUBTYPE-TCC) NIL NIL)
-   ((|big_mul| CONST-DECL "uint128" |JetExchangeV10| NIL)
-    (> CONST-DECL "bool" |reals| NIL) (/= CONST-DECL "boolean" |notequal| NIL)
-    (INT64_MIN CONST-DECL "int" |JetExchangeV10| NIL)
-    (INT64_MAX CONST-DECL "int" |JetExchangeV10| NIL)
-    (|int_times_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL))
-   NIL (|applyPriceErrorThresholds| SUBTYPE "0" "int64" (196 52 196 53))))
- (|applyPriceErrorThresholds_TCC7| 0
-  (|applyPriceErrorThresholds_TCC7-1| NIL 3970219217 ("" (SUBTYPE-TCC) NIL NIL)
-   NIL NIL
-   (|applyPriceErrorThresholds| SUBTYPE "JetExchangeV10.adj_pair`ss" "natp"
-    (200 28 200 39))))
- (|applyPriceErrorThresholds_TCC8| 0
-  (|applyPriceErrorThresholds_TCC8-1| NIL 3970219217 ("" (SUBTYPE-TCC) NIL NIL)
-   NIL NIL
-   (|applyPriceErrorThresholds| SUBTYPE "JetExchangeV10.adj_pair`wr" "natp"
-    (199 30 199 41))))
- (|exchangeV10_TCC1| 0
-  (|exchangeV10_TCC1-1| NIL 3970219217 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
-   (|exchangeV10| SUBTYPE "JetExchangeV10.before`numWheatReceived" "int64"
-    (234 9 234 32))))
- (|exchangeV10_TCC2| 0
-  (|exchangeV10_TCC2-1| NIL 3970219217 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
-   (|exchangeV10| SUBTYPE "JetExchangeV10.before`numSheepSend" "int64"
-    (234 34 234 53))))
- (|thresholds_normal_TCC1| 0
-  (|thresholds_normal_TCC1-1| NIL 3970219217 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
-   (|thresholds_normal| SUBTYPE "JetExchangeV10.wr" "int64" (242 43 242 45))))
- (|thresholds_normal_TCC2| 0
-  (|thresholds_normal_TCC2-1| NIL 3970219217 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
-   (|thresholds_normal| SUBTYPE "JetExchangeV10.ss" "int64" (242 47 242 49)))))
+    (154 25 154 28)))))
 (|JetExchangeV10_1|
- (|thresholds_normal_no_trade_if_exceeds_TCC1| 0
-  (|thresholds_normal_no_trade_if_exceeds_TCC1-1| NIL 3970219217
-   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
-   (|thresholds_normal_no_trade_if_exceeds| SUBTYPE "JetExchangeV10_1.wr"
-    "int64" (367 43 367 45))))
- (|thresholds_normal_no_trade_if_exceeds_TCC2| 0
-  (|thresholds_normal_no_trade_if_exceeds_TCC2-1| NIL 3970219217
-   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
-   (|thresholds_normal_no_trade_if_exceeds| SUBTYPE "JetExchangeV10_1.ss"
-    "int64" (367 47 367 49)))))
+ (|lemma_larger_offer_policy_TCC1| 0
+  (|lemma_larger_offer_policy_TCC1-1| NIL 3970228284 ("" (SUBTYPE-TCC) NIL NIL)
+   NIL NIL
+   (|lemma_larger_offer_policy| SUBTYPE "JetExchangeV10_1.p`n" "nnint32"
+    (305 35 305 38))))
+ (|lemma_larger_offer_policy_TCC2| 0
+  (|lemma_larger_offer_policy_TCC2-1| NIL 3970228284 ("" (SUBTYPE-TCC) NIL NIL)
+   NIL NIL
+   (|lemma_larger_offer_policy| SUBTYPE "JetExchangeV10_1.p`d" "nnint32"
+    (305 40 305 43))))
+ (|lemma_larger_offer_policy_TCC3| 0
+  (|lemma_larger_offer_policy_TCC3-1| NIL 3970228284 ("" (SUBTYPE-TCC) NIL NIL)
+   NIL NIL
+   (|lemma_larger_offer_policy| SUBTYPE "JetExchangeV10_1.mws" "nnint64"
+    (305 45 305 48))))
+ (|lemma_larger_offer_policy_TCC4| 0
+  (|lemma_larger_offer_policy_TCC4-1| NIL 3970228284 ("" (SUBTYPE-TCC) NIL NIL)
+   NIL NIL
+   (|lemma_larger_offer_policy| SUBTYPE "JetExchangeV10_1.mss" "nnint64"
+    (306 45 306 48))))
+ (|lemma_normal_exceed_implies_no_trade_and_smaller_removed_TCC1| 0
+  (|lemma_normal_exceed_implies_no_trade_and_smaller_removed_TCC1-1| NIL
+   3970228284 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|lemma_normal_exceed_implies_no_trade_and_smaller_removed| SUBTYPE
+    "JetExchangeV10_1.msr" "nnint64" (359 52 359 55))))
+ (|lemma_normal_exceed_implies_no_trade_and_smaller_removed_TCC2| 0
+  (|lemma_normal_exceed_implies_no_trade_and_smaller_removed_TCC2-1| NIL
+   3970228284 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|lemma_normal_exceed_implies_no_trade_and_smaller_removed| SUBTYPE
+    "JetExchangeV10_1.mwr" "nnint64" (360 52 360 55)))))
 
