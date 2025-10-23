@@ -3,7 +3,16 @@
   (|floor_div_TCC1-1| NIL 3970219217 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
    (|floor_div| SUBTYPE "JetExchangeV10.y" "posnat" (16 48 16 49))))
  (|floor_div_TCC2| 0
-  (|floor_div_TCC2-1| NIL 3970228284 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|floor_div_TCC2-1| NIL 3970228284
+   ("" (GRIND)
+    (("1" (LEMMA "ndiv_lt")
+      (("1" (INST?)
+        (("1" (GRIND) (("1" (POSTPONE) NIL NIL)) NIL) ("2" (POSTPONE) NIL NIL))
+        NIL))
+      NIL)
+     ("2" (POSTPONE) NIL NIL))
+    NIL)
+   NIL NIL
    (|floor_div| SUBTYPE
     "modulo_arithmetic.ndiv(JetExchangeV10.x, JetExchangeV10.y)" "int64"
     (16 40 16 50))))
@@ -46,10 +55,10 @@
     (|rational_pred| CONST-DECL "[real -> boolean]" |rationals| NIL)
     (|rational| NONEMPTY-TYPE-FROM-DECL NIL |rationals| NIL)
     (|integer_pred| CONST-DECL "[rational -> boolean]" |integers| NIL)
-    (|int| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL) NIL
-    (AND CONST-DECL "[bool, bool -> bool]" |booleans| NIL) NIL NIL
+    (|int| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL)
+    (AND CONST-DECL "[bool, bool -> bool]" |booleans| NIL)
     (>= CONST-DECL "bool" |reals| NIL)
-    (|nnint64| TYPE-EQ-DECL NIL |JetExchangeV10| NIL) NIL
+    (|nnint64| TYPE-EQ-DECL NIL |JetExchangeV10| NIL)
     (|int_minus_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
     (|minus_nzint_is_nzint| APPLICATION-JUDGEMENT "nzint" |integers| NIL))
    NIL
@@ -64,8 +73,8 @@
         NIL))
       NIL))
     NIL)
-   ((|pos_times_ge| FORMULA-DECL NIL |real_props| NIL) NIL
-    (>= CONST-DECL "bool" |reals| NIL) NIL
+   ((|pos_times_ge| FORMULA-DECL NIL |real_props| NIL)
+    (>= CONST-DECL "bool" |reals| NIL)
     (|int| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL)
     (|integer_pred| CONST-DECL "[rational -> boolean]" |integers| NIL)
     (|rational| NONEMPTY-TYPE-FROM-DECL NIL |rationals| NIL)
@@ -122,8 +131,8 @@
     (|rational_pred| CONST-DECL "[real -> boolean]" |rationals| NIL)
     (|rational| NONEMPTY-TYPE-FROM-DECL NIL |rationals| NIL)
     (|integer_pred| CONST-DECL "[rational -> boolean]" |integers| NIL)
-    (|int| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL) NIL
-    (>= CONST-DECL "bool" |reals| NIL) NIL
+    (|int| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL)
+    (>= CONST-DECL "bool" |reals| NIL)
     (|pos_times_ge| FORMULA-DECL NIL |real_props| NIL))
    NIL
    (|calculateOfferValue| SUBTYPE "JetExchangeV10.d" "nnint64" (54 49 54 50))))
