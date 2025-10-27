@@ -165,9 +165,11 @@ checkPriceErrorBound(Price price, int64_t wheatReceive, int64_t sheepSend,
     int64_t errN = (int64_t)100 * (int64_t)price.n;
     int64_t errD = (int64_t)100 * (int64_t)price.d;
 
+    // Note: These should be swapped to map to the proof in the comments above
     uint128_t lhs = bigMultiply(errN, wheatReceive);
     uint128_t rhs = bigMultiply(errD, sheepSend);
-
+    
+    // Note: So far, this "assymetric check" is the only think I'm unsure about
     if (canFavorWheat && rhs > lhs)
     {
         return true;
@@ -234,7 +236,14 @@ static uint128_t calculateOfferValue(int32_t priceN, int32_t priceD, int64_t max
 // of sheep after considering all limits.
 //
 // If round == NORMAL --------------------------------------------------------
-// We first consider the case (wheatStays && price.n > price.d). Then
+// The main objective here is to prove that rounding favours orders that remain
+// in the book
+// --------------------------------------------------------
+// We first consider the case (wheatStays && price.n > price.d).
+// Note: In this case, the wheat offer is greater and will likely have
+//  a remainder that will stay in the book. With that context, we observe that
+//  the price favours wheat since one gets more sheep per unit of wheat.
+// Then
 //     wheatReceive = floor(sheepValue / price.n)
 //                  <= sheepValue / price.n
 //                  <= (maxWheatReceive * price.n) / price.n
@@ -266,7 +275,11 @@ static uint128_t calculateOfferValue(int32_t priceN, int32_t priceD, int64_t max
 //         = price.n / price.d
 // so in this case the seller of wheat is favored.
 //
-// We next consider the case (wheatStays && price.n <= price.d). Then
+// We next consider the case (wheatStays && price.n <= price.d).
+// Note: In this case, the wheat offer is still greater and will
+//  likely have a remainder that will stay in the book. However, unlike before,
+//  the price does not favour wheat since one or more wheat per unit of sheep.
+// Then
 //     sheepSend = floor(sheepValue / price.d)
 //               <= sheepValue / price.d
 //               <= maxSheepSend
@@ -297,7 +310,11 @@ static uint128_t calculateOfferValue(int32_t priceN, int32_t priceD, int64_t max
 //         = price.n / price.d
 // so in this case the seller of wheat is favored.
 //
-// We now shift attention to the case (!wheatStays && price.n > price.d). Then
+// We now shift attention to the case (!wheatStays && price.n > price.d).
+// Note: In this case, the wheat offer is lesser. This means there will likely
+//  be a sheep offer that will stay in the book. With that context, we observe
+//  the price favours wheat since one gets more sheep per unit of wheat.
+// Then
 //     wheatReceive = floor(wheatValue / price.n)
 //                  <= wheatValue / price.n
 //                  <= maxWheatSend
@@ -328,7 +345,11 @@ static uint128_t calculateOfferValue(int32_t priceN, int32_t priceD, int64_t max
 //         = price.n / price.d
 // so in this case the seller of sheep is favored.
 //
-// Finally, we come to the case (!wheatStays && price.n <= price.d). Then
+// Finally, we come to the case (!wheatStays && price.n <= price.d)
+// Note: In this case, the wheat offer is lesser. This means there will likely
+//  be a sheep offer that will stay in the book. With that context, we observe
+//  the price favours sheep since one gets equal or more wheat per unit of sheep
+// Then
 //     sheepSend = floor(wheatValue / price.d)
 //               <= wheatValue / price.d
 //               <= maxSheepReceive

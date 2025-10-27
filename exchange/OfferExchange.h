@@ -21,6 +21,7 @@
 //
 //
 //                      Willing to sell more sheep at higher sale price
+//                                         aka: sheep offer
 //                --------------------------------------------------------->
 //
 //            ^  +----------------------------------------------------------+
@@ -54,6 +55,7 @@
 //            v
 //                --------------------------------------------------------->
 //                      Willing to sell more wheat at higher sale price
+//                                         aka: wheat offer
 //
 //
 // So far so good? Ok, now let's talk about the more-detailed semantics of the
@@ -249,10 +251,13 @@ enum class ExchangeResultType
     BOGUS
 };
 
+// Price is recorded from the POV of the 'top' of the orderbook where sheep is
+// sold in exchange for wheat (or equivalently, wheat is bought with sheep).
+// Therefore, the price is sheep/wheat
 struct Price 
 {
-    int32_t n; // numerator
-    int32_t d; // denominator
+    int32_t n; // numerator (sheep)
+    int32_t d; // denominator (wheat)
 };
 
 struct ExchangeResult
