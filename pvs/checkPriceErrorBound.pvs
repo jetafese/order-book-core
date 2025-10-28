@@ -1,9 +1,5 @@
 CheckPriceErrorBound: THEORY
 BEGIN
-
-  % importing interval_arith@top
-  % nasalib: LIBRARY = "/Users/jetafese/Documents/code/pvs-7.1.0/nasalib/interval_arith"
-
   %-----------------------------
   % Integer domains
   %-----------------------------
@@ -14,7 +10,6 @@ BEGIN
   posint64: TYPE = {i: int64 | i > 0 }
   uint128: TYPE = upto(exp2(128)-1) CONTAINING 0
 
-  % uint128_t bigMultiply(int64_t a, int64_t b) with a,b >= 0
   big_mul(a: nnint64, b: nnint64): uint128 = a * b
 
   %-----------------------------
@@ -41,7 +36,7 @@ END CheckPriceErrorBound
 
 
 
-CheckPriceErrorBound_1: THEORY
+CheckPriceErrorBound_Lemmas: THEORY
 BEGIN
 
   IMPORTING CheckPriceErrorBound
@@ -58,7 +53,6 @@ BEGIN
       IN
 	checkPriceErrorBound(p, wR, sS, False) IFF
       	abs(price - effP)/(price) <= 1/100
-      %(100*abs(wR*p`n-sS*p`d) <= p`n * sS)
 
   lemma_arbitrary_error: LEMMA
     FORALL (p: Price, wR: posint64, sS: posint64):
@@ -68,4 +62,4 @@ BEGIN
 	checkPriceErrorBound(p, wR, sS, True) IMPLIES
       	abs(price - effP)/(price) >= 0
 
-END CheckPriceErrorBound_1
+END CheckPriceErrorBound_Lemmas
