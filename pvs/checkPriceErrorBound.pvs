@@ -54,6 +54,10 @@ BEGIN
 	checkPriceErrorBound(p, wR, sS, False) IFF
       	abs(price - effP)/(price) <= 1/100
 
+%---------------------------------------------------------------------------
+  % ≤1% bound when cFW is True and wheat is favored. That is:
+  % abs((price`n/price`d)-(sS/wR))/((price`n/price`d)) >= 0
+  %---------------------------------------------------------------------------
   lemma_arbitrary_error: LEMMA
     FORALL (p: Price, wR: posint64, sS: posint64):
       LET price = (p`n/p`d),

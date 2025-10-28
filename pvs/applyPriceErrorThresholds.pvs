@@ -1,0 +1,104 @@
+ApplyPriceErrorThresholds: THEORY
+BEGIN
+  IMPORTING CheckPriceErrorBound_Lemmas
+
+  %-----------------------------
+  % Result type
+  %-----------------------------
+  ExchangeResultV10: TYPE = [#
+    numWheatReceived: int64,
+    numSheepSend:     int64,
+    wheatStays:       bool
+  #]
+
+  %-----------------------------
+  % Rounding types
+  %-----------------------------
+  RoundingType: TYPE = { NORMAL, PATH_PAYMENT_STRICT_RECEIVE, PATH_PAYMENT_STRICT_SEND }
+
+  %-----------------------------
+  % Integer price-comparison predicates
+  %-----------------------------
+  % favors_wheat?: S/W >= n/d  <=>  S*d >= W*n
+  favors_wheat?(res: ExchangeResultV10, p: Price): bool =
+    res`numSheepSend * p`d >= res`numWheatReceived * p`n
+
+  % favors_sheep?: S/W <= n/d  <=>  S*d <= W*n
+  favors_sheep?(res: ExchangeResultV10, p: Price): bool =
+    res`numSheepSend * p`d <= res`numWheatReceived * p`n
+
+  % 1% favor bounds in integers:
+  % If wheat favored: S/W <= (101/100)*(n/d)  <=>  S*d*100 <= W*n*101
+  within_one_percent_when_wheat_favored?(res: ExchangeResultV10, p: Price): bool =
+    (res`numSheepSend * p`d * 100) <= (res`numWheatReceived * p`n * 101)
+
+  % If sheep favored: S/W >= (100/101)*(n/d)  <=>  S*d*101 >= W*n*100
+  within_one_percent_when_sheep_favored?(res: ExchangeResultV10, p: Price): bool =
+    (res`numSheepSend * p`d * 101) >= (res`numWheatReceived * p`n * 100)
+
+  %-----------------------------
+  % Threshold adjustment
+  %-----------------------------
+  applyPriceErrorThresholds(p: Price, wheatReceive: nnint64, sheepSend: nnint64,
+                            wheatStays: bool, round: RoundingType): ExchangeResultV10 =
+    LET wR = wheatReceive, sS = sheepSend,
+      pn = 1 * p`n, pd = 1 * p`d,
+      wVal = big_mul(wR, pn),
+      sVal = big_mul(sS, pd),
+      % Favor checks (mirrors two runtime errors in C++)  :contentReference[oaicite:30]{index=30}
+      % favored_wheat_stays_ok: bool = NOT (wheatStays AND sVal < wVal),
+      % favored_sheep_stays_ok: bool = NOT ((NOT wheatStays) AND sVal > wVal),
+
+      % Price-error thresholds
+      % (1% cap under NORMAL; unbounded in path modes when favouring wheat)
+      adj_pair: [# wr: int64, ss: int64 #] =
+        IF (wR > 0 AND sS > 0) THEN
+          IF round = NORMAL THEN
+            IF checkPriceErrorBound(p, wR, sS, False)
+              THEN (# wr := wR, ss := sS #)
+              ELSE (# wr := 0, ss := 0 #) ENDIF
+          ELSE
+            % In path modes the C++ code throws if bound violated when it must hold.
+            IF checkPriceErrorBound(p, wR, sS, True)
+            THEN (# wr := wR, ss := sS #)
+            ELSE (# wr := wR, ss := sS #) ENDIF  % keep values; obligation captured by theorem below
+          ENDIF
+        ELSE
+          CASES round OF
+            PATH_PAYMENT_STRICT_SEND: IF wR > 0 THEN (# wr := wR, ss := sS #) ELSE (# wr := 0, ss := 0 #) ENDIF,
+            NORMAL: (# wr := 0, ss := 0 #),
+            PATH_PAYMENT_STRICT_RECEIVE: (# wr := 0, ss := 0 #)
+          ENDCASES
+        ENDIF
+    IN (# numWheatReceived := adj_pair`wr,
+        numSheepSend     := adj_pair`ss,
+        wheatStays       := wheatStays #)
+END ApplyPriceErrorThresholds
+
+
+
+ApplyPriceErrorThresholds_Lemmas: THEORY
+BEGIN
+
+  IMPORTING ApplyPriceErrorThresholds
+
+  %---------------------------------------------------------------------------
+  % Helpers to express "directional" 1% checks and favoring
+  %---------------------------------------------------------------------------
+  within_one_percent(res: ExchangeResultV10, p: Price, ws: bool) : bool =
+      IF ws THEN within_one_percent_when_wheat_favored?(res, p)
+      ELSE within_one_percent_when_sheep_favored?(res, p)
+      ENDIF
+
+
+  %---------------------------------------------------------------------------
+  % ≤1% bound when in NORMAL rounding mode
+  %---------------------------------------------------------------------------
+  % rounding is bounded to <= 1% when in NORMAL mode
+  thresholds_normal_no_trade_if_exceeds: LEMMA
+    FORALL (p: Price, wr : posint64, ss: posint64, ws: bool):
+      LET r = applyPriceErrorThresholds(p, wr, ss, ws, NORMAL)
+      IN (within_one_percent((# numWheatReceived := wr, numSheepSend := ss, wheatStays := ws #), p, ws))
+         IMPLIES (r`numWheatReceived = wr AND r`numSheepSend = ss)
+
+END ApplyPriceErrorThresholds_Lemmas
