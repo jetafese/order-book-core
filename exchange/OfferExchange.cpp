@@ -165,11 +165,9 @@ checkPriceErrorBound(Price price, int64_t wheatReceive, int64_t sheepSend,
     int64_t errN = (int64_t)100 * (int64_t)price.n;
     int64_t errD = (int64_t)100 * (int64_t)price.d;
 
-    // Note: These should be swapped to map to the proof in the comments above
     uint128_t lhs = bigMultiply(errN, wheatReceive);
     uint128_t rhs = bigMultiply(errD, sheepSend);
     
-    // Note: So far, this "assymetric check" is the only think I'm unsure about
     if (canFavorWheat && rhs > lhs)
     {
         return true;

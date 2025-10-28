@@ -7,7 +7,7 @@
 
 build:
 	# single-step compile+link (uses clang++ to pull in the C++ runtime)
-	clang++ -std=c++17 main.cpp OfferExchange.cpp -o exchange_test
+	clang++ -std=c++17 -g main.cpp OfferExchange.cpp -o exchange_test
 
 run:
 	./exchange_test

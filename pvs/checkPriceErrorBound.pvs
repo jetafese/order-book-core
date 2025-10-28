@@ -1,0 +1,71 @@
+CheckPriceErrorBound: THEORY
+BEGIN
+
+  % importing interval_arith@top
+  % nasalib: LIBRARY = "/Users/jetafese/Documents/code/pvs-7.1.0/nasalib/interval_arith"
+
+  %-----------------------------
+  % Integer domains
+  %-----------------------------
+
+  nnint64: TYPE = {i: int64 | i >= 0 }
+  nnint32: TYPE = {i: int32 | i >= 0 }
+  posint32: TYPE = {i: int32 | i > 0 }
+  posint64: TYPE = {i: int64 | i > 0 }
+  uint128: TYPE = upto(exp2(128)-1) CONTAINING 0
+
+  % uint128_t bigMultiply(int64_t a, int64_t b) with a,b >= 0
+  big_mul(a: nnint64, b: nnint64): uint128 = a * b
+
+  %-----------------------------
+  % Price
+  %-----------------------------
+  
+  Price: TYPE = [# n: posint32, d: posint32 #]  % price = n/d, n,d > 0
+
+  %-----------------------------
+  % Threshold adjustment
+  %-----------------------------
+  checkPriceErrorBound(price: Price, wheatReceive: posint64,
+                       sheepSend: posint64, canFavorWheat: bool): bool =
+    LET errN = 100 * price`n,
+    	errD = 100 * price`d,
+    	lhs = big_mul(errN, wheatReceive),
+    	rhs = big_mul(errD, sheepSend),
+        absDiff = IF (lhs > rhs) THEN (lhs - rhs) ELSE (rhs - lhs) ENDIF,
+    	cap = big_mul(price`n, wheatReceive)
+    IN
+	IF canFavorWheat AND rhs > lhs THEN True ELSE (absDiff <= cap) ENDIF
+
+END CheckPriceErrorBound
+
+
+
+CheckPriceErrorBound_1: THEORY
+BEGIN
+
+  IMPORTING CheckPriceErrorBound
+
+  %---------------------------------------------------------------------------
+  % ≤1% bound when cFW is False. That is:
+  % abs((price`n/price`d)-(sS/wR))/((price`n/price`d)) <= 1/100
+  %---------------------------------------------------------------------------
+
+  lemma_within_one_percent_normal: LEMMA
+    FORALL (p: Price, wR: posint64, sS: posint64):
+      LET price = (p`n/p`d),
+      	  effP = (sS/wR)
+      IN
+	checkPriceErrorBound(p, wR, sS, False) IFF
+      	abs(price - effP)/(price) <= 1/100
+      %(100*abs(wR*p`n-sS*p`d) <= p`n * sS)
+
+  lemma_arbitrary_error: LEMMA
+    FORALL (p: Price, wR: posint64, sS: posint64):
+      LET price = (p`n/p`d),
+      	  effP = (sS/wR)
+      IN
+	checkPriceErrorBound(p, wR, sS, True) IMPLIES
+      	abs(price - effP)/(price) >= 0
+
+END CheckPriceErrorBound_1

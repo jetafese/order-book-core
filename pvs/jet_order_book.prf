@@ -326,7 +326,9 @@
   (|applyPriceErrorThresholds_TCC3-1| NIL 3970219217 ("" (SUBTYPE-TCC) NIL NIL)
    NIL NIL
    (|applyPriceErrorThresholds| SUBTYPE "JetExchangeV10.p`d" "nnint64"
-    (154 25 154 28)))))
+    (154 25 154 28))))
+ (|thresholds_normal| 0
+  (|thresholds_normal-1| NIL 3970576637 ("" (POSTPONE) NIL NIL) NIL SHOSTAK)))
 (|JetExchangeV10_1|
  (|lemma_larger_offer_policy_TCC1| 0
   (|lemma_larger_offer_policy_TCC1-1| NIL 3970228284 ("" (SUBTYPE-TCC) NIL NIL)
@@ -348,6 +350,9 @@
    NIL NIL
    (|lemma_larger_offer_policy| SUBTYPE "JetExchangeV10_1.mss" "nnint64"
     (306 45 306 48))))
+ (|lemma_within_one_percent_normal| 0
+  (|lemma_within_one_percent_normal-1| NIL 3970576773 ("" (POSTPONE) NIL NIL)
+   NIL SHOSTAK))
  (|lemma_normal_exceed_implies_no_trade_and_smaller_removed_TCC1| 0
   (|lemma_normal_exceed_implies_no_trade_and_smaller_removed_TCC1-1| NIL
    3970228284 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL

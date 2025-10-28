@@ -254,6 +254,7 @@ enum class ExchangeResultType
 // Price is recorded from the POV of the 'top' of the orderbook where sheep is
 // sold in exchange for wheat (or equivalently, wheat is bought with sheep).
 // Therefore, the price is sheep/wheat
+// The computations also require that price.n and price.d are both positive.
 struct Price 
 {
     int32_t n; // numerator (sheep)
