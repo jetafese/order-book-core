@@ -73,17 +73,17 @@ BEGIN
   thresholds_normal_bounded_error_no_trade: LEMMA
     FORALL (s: wf_state):
       LET r = applyPriceErrorThresholds(s),
-        price = (s`price`n/s`price`d), effP = (s`sS/s`wR)
+        price = (s`price`n/s`price`d)
       IN (s`round = NORMAL) AND (s`wR > 0 AND s`sS > 0) AND
-        NOT (abs(price - effP)/(price) <= 1/100) IMPLIES
+	NOT (abs(price - (s`sS/s`wR))/(price) <= 1/100) IMPLIES
         (r`numWheatReceived = 0 AND r`numSheepSend = 0)
   
   thresholds_normal_bounded_error_successful: LEMMA
     FORALL (s: wf_state):
       LET r = applyPriceErrorThresholds(s),
-        price = (s`price`n/s`price`d), effP = (s`sS/s`wR)
+        price = (s`price`n/s`price`d)
       IN (s`round = NORMAL) AND (s`wR > 0 AND s`sS > 0) AND
-        (abs(price - effP)/(price) <= 1/100) IMPLIES
+        (abs(price - (s`sS/s`wR))/(price) <= 1/100) IMPLIES
         (r`numWheatReceived = s`wR AND r`numSheepSend = s`sS)
 
   %---------------------------------------------------------------------------
@@ -92,8 +92,9 @@ BEGIN
   thresholds_path_error_bounded_favor_sheep: LEMMA
     FORALL (s: wf_state):
       LET r = applyPriceErrorThresholds(s),
-        price = (s`price`n/s`price`d), effP = (s`sS/s`wR)
-      IN (s`wR > 0 AND s`sS > 0) AND (abs(price - effP)/(price) <= 1/100) AND
+        price = (s`price`n/s`price`d)
+      IN (s`wR > 0 AND s`sS > 0) AND
+        (abs(price - (s`sS/s`wR))/(price) <= 1/100) AND
         (s`round = PATH_PAYMENT_STRICT_SEND OR
           s`round = PATH_PAYMENT_STRICT_RECEIVE) IMPLIES
         (r`numWheatReceived = s`wR AND r`numSheepSend = s`sS)
@@ -104,8 +105,9 @@ BEGIN
   thresholds_path_error_unbounded_favor_wheat: LEMMA
     FORALL (s: wf_state):
       LET r = applyPriceErrorThresholds(s),
-        price = (s`price`n/s`price`d), effP = (s`sS/s`wR)
-      IN (s`wR > 0 AND s`sS > 0) AND (abs(price - effP)/(price) > 0) AND
+        price = (s`price`n/s`price`d)
+      IN (s`wR > 0 AND s`sS > 0) AND
+        (abs(price - (s`sS/s`wR))/(price) > 0) AND
         (s`round = PATH_PAYMENT_STRICT_SEND OR
           s`round = PATH_PAYMENT_STRICT_RECEIVE) IMPLIES
         (r`numWheatReceived = s`wR AND r`numSheepSend = s`sS)
