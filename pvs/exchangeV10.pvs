@@ -1,6 +1,7 @@
 ExchangeV10: THEORY
 BEGIN
   IMPORTING ApplyPriceErrorThresholds_Lemmas
+  IMPORTING interval_arith@top
 
   %-----------------------------
   % Rounding modes and helpers
@@ -10,8 +11,8 @@ BEGIN
 
   big_div(x: uint128, y: posint64, r: RoundMode): nnint64 =
     CASES r OF
-      ROUND_DOWN: ndiv(x, y),
-      ROUND_UP:   ndiv((x + (y - 1)), y)
+      ROUND_DOWN: ndiv(x,y),
+      ROUND_UP:   ndiv(x + (y - 1), y)
     ENDCASES
 
   big_div_numden(x: nnint64, n: nnint64, d: posint64, r: RoundMode): nnint64 =
@@ -86,9 +87,9 @@ BEGIN
         ENDIF,
 
       % Spec-side bounds checks mirroring the code's throws
-      minWheatCap: int64 = IF maxWheatReceive <= maxWheatSend 
+      minWheatCap: nnint64 = IF maxWheatReceive <= maxWheatSend 
                           THEN maxWheatReceive ELSE maxWheatSend ENDIF,
-      minSheepCap: int64 = IF maxSheepReceive <= maxSheepSend
+      minSheepCap: nnint64 = IF maxSheepReceive <= maxSheepSend
                           THEN maxSheepReceive ELSE maxSheepSend ENDIF,
       chk1: bool = wheatReceive <= minWheatCap,
       chk2: bool = sheepSend     <= minSheepCap
