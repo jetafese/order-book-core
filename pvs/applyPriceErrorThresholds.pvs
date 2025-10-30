@@ -112,15 +112,28 @@ BEGIN
         (r`numWheatReceived = s`wR AND r`numSheepSend = s`sS)
 
   %---------------------------------------------------------------------------
+  %  ≤1% bound when favouring sheep and not in NORMAL mode
+  %---------------------------------------------------------------------------
+  thresholds_path_error_bounded_favor_sheep: LEMMA
+    FORALL (s: wf_state):
+      LET r = applyPriceErrorThresholds(s),
+        price = (s`price`n/s`price`d), effP = (s`sS/s`wR)
+      IN (s`wR > 0 AND s`sS > 0) AND (abs(price - effP)/(price) <= 1/100) AND
+        (s`round = PATH_PAYMENT_STRICT_SEND OR
+          s`round = PATH_PAYMENT_STRICT_RECEIVE) IMPLIES
+        (r`numWheatReceived = s`wR AND r`numSheepSend = s`sS)
+  
+  %---------------------------------------------------------------------------
   % Unbounded rounding error when not in NORMAL mode
   %---------------------------------------------------------------------------
-  %thresholds_path_error_unbounded_favor_sheep: LEMMA
-  %  FORALL (s: wf_state):
-  %    LET r = applyPriceErrorThresholds(s),
-  %      price = (s`price`n/s`price`d), effP = (s`sS/s`wR)
-  %    IN (s`round = NORMAL) AND (s`wR > 0 AND s`sS > 0) AND
-  %      (abs(price - effP)/(price) >= 0) IMPLIES
-  %      (r`numWheatReceived = s`wR AND r`numSheepSend = s`sS)
+  thresholds_path_error_unbounded_favor_wheat: LEMMA
+    FORALL (s: wf_state):
+      LET r = applyPriceErrorThresholds(s),
+        price = (s`price`n/s`price`d), effP = (s`sS/s`wR)
+      IN (s`wR > 0 AND s`sS > 0) AND (abs(price - effP)/(price) > 0) AND
+        (s`round = PATH_PAYMENT_STRICT_SEND OR
+          s`round = PATH_PAYMENT_STRICT_RECEIVE) IMPLIES
+        (r`numWheatReceived = s`wR AND r`numSheepSend = s`sS)
 
   %---------------------------------------------------------------------------
   % No trade happens when effectivePrice = 0 (NORMAL)
