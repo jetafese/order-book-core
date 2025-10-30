@@ -12,9 +12,25 @@ BEGIN
   #]
 
   %-----------------------------
-  % Rounding types
+  % Rounding types + state
   %-----------------------------
   RoundingType: TYPE = { NORMAL, PATH_PAYMENT_STRICT_RECEIVE, PATH_PAYMENT_STRICT_SEND }
+
+  State: TYPE = [#
+    price:  Price,
+    wheatStays: bool,
+    sS: nnint64,
+    wR: nnint64,
+    round:  RoundingType
+  #]
+
+  wf_state?(s: State) : bool =
+    (PATH_PAYMENT_STRICT_SEND?(s`round) IMPLIES NOT (s`sS = 0)) AND
+    ((s`wR > 0 AND s`sS > 0 AND s`wheatStays) IMPLIES s`price`d * s`sS >= s`price`n * s`wR) AND
+    ((s`wR > 0 AND s`sS > 0 AND NOT s`wheatStays) IMPLIES s`price`n * s`wR >= s`price`d * s`sS)
+
+  
+  wf_state : TYPE = (wf_state?)
 
   %-----------------------------
   % Integer price-comparison predicates
@@ -36,36 +52,30 @@ BEGIN
   within_one_percent_when_sheep_favored?(res: ExchangeResultV10, p: Price): bool =
     (res`numSheepSend * p`d * 101) >= (res`numWheatReceived * p`n * 100)
 
+  %exchangeSS: TYPE = {i: nnint64 | IF round i >= 0 }
+  %exchangeV10(Price price, int64_t maxWheatSend, int64_t maxWheatReceive, int64_t maxSheepSend, int64_t maxSheepReceive, RoundingType round) : ExchangeResultV10 = 
+  %exchangeV10(s: wf_state) : ExchangeResultV10 = 
+
   %-----------------------------
   % Threshold adjustment
   %-----------------------------
-  applyPriceErrorThresholds(p: Price, wheatReceive: nnint64, sheepSend: nnint64,
-                            wheatStays: bool, round: RoundingType): ExchangeResultV10 =
-    LET wR = wheatReceive, sS = sheepSend,
-      pn = 1 * p`n, pd = 1 * p`d,
-      wVal = big_mul(wR, pn),
-      sVal = big_mul(sS, pd),
-      % Favor checks (mirrors two runtime errors in C++)  :contentReference[oaicite:30]{index=30}
-      % favored_wheat_stays_ok: bool = NOT (wheatStays AND sVal < wVal),
-      % favored_sheep_stays_ok: bool = NOT ((NOT wheatStays) AND sVal > wVal),
-
-      % Price-error thresholds
-      % (1% cap under NORMAL; unbounded in path modes when favouring wheat)
+  applyPriceErrorThresholds(s: wf_state): ExchangeResultV10 =
+  %applyPriceErrorThresholds(p: Price, wheatReceive: nnint64, sheepSend: nnint64, wheatStays: bool, round: RoundingType): ExchangeResultV10 =
+    LET wR = s`wR, sS = s`sS, round = s`round, wheatStays = s`wheatStays,
       adj_pair: [# wr: int64, ss: int64 #] =
         IF (wR > 0 AND sS > 0) THEN
           IF round = NORMAL THEN
-            IF checkPriceErrorBound(p, wR, sS, False)
+            IF checkPriceErrorBound(s`price, wR, sS, False)
               THEN (# wr := wR, ss := sS #)
               ELSE (# wr := 0, ss := 0 #) ENDIF
           ELSE
-            % In path modes the C++ code throws if bound violated when it must hold.
-            IF checkPriceErrorBound(p, wR, sS, True)
+            IF checkPriceErrorBound(s`price, wR, sS, True)
             THEN (# wr := wR, ss := sS #)
-            ELSE (# wr := wR, ss := sS #) ENDIF  % keep values; obligation captured by theorem below
+            ELSE (# wr := wR, ss := sS #) ENDIF
           ENDIF
         ELSE
           CASES round OF
-            PATH_PAYMENT_STRICT_SEND: IF wR > 0 THEN (# wr := wR, ss := sS #) ELSE (# wr := 0, ss := 0 #) ENDIF,
+            PATH_PAYMENT_STRICT_SEND: (# wr := 0, ss := sS #),
             NORMAL: (# wr := 0, ss := 0 #),
             PATH_PAYMENT_STRICT_RECEIVE: (# wr := 0, ss := 0 #)
           ENDCASES
@@ -83,22 +93,69 @@ BEGIN
   IMPORTING ApplyPriceErrorThresholds
 
   %---------------------------------------------------------------------------
-  % Helpers to express "directional" 1% checks and favoring
+  % ≤1% bound when in NORMAL mode
   %---------------------------------------------------------------------------
-  within_one_percent(res: ExchangeResultV10, p: Price, ws: bool) : bool =
-      IF ws THEN within_one_percent_when_wheat_favored?(res, p)
-      ELSE within_one_percent_when_sheep_favored?(res, p)
-      ENDIF
+  thresholds_normal_bounded_error_no_trade: LEMMA
+    FORALL (s: wf_state):
+      LET r = applyPriceErrorThresholds(s),
+        price = (s`price`n/s`price`d), effP = (s`sS/s`wR)
+      IN (s`round = NORMAL) AND (s`wR > 0 AND s`sS > 0) AND
+        NOT (abs(price - effP)/(price) <= 1/100) IMPLIES
+        (r`numWheatReceived = 0 AND r`numSheepSend = 0)
+  
+  thresholds_normal_bounded_error_successful: LEMMA
+    FORALL (s: wf_state):
+      LET r = applyPriceErrorThresholds(s),
+        price = (s`price`n/s`price`d), effP = (s`sS/s`wR)
+      IN (s`round = NORMAL) AND (s`wR > 0 AND s`sS > 0) AND
+        (abs(price - effP)/(price) <= 1/100) IMPLIES
+        (r`numWheatReceived = s`wR AND r`numSheepSend = s`sS)
 
+  %---------------------------------------------------------------------------
+  % Unbounded rounding error when not in NORMAL mode
+  %---------------------------------------------------------------------------
+  %thresholds_path_error_unbounded_favor_sheep: LEMMA
+  %  FORALL (s: wf_state):
+  %    LET r = applyPriceErrorThresholds(s),
+  %      price = (s`price`n/s`price`d), effP = (s`sS/s`wR)
+  %    IN (s`round = NORMAL) AND (s`wR > 0 AND s`sS > 0) AND
+  %      (abs(price - effP)/(price) >= 0) IMPLIES
+  %      (r`numWheatReceived = s`wR AND r`numSheepSend = s`sS)
 
   %---------------------------------------------------------------------------
-  % ≤1% bound when in NORMAL rounding mode
+  % No trade happens when effectivePrice = 0 (NORMAL)
   %---------------------------------------------------------------------------
-  % rounding is bounded to <= 1% when in NORMAL mode
-  thresholds_normal_no_trade_if_exceeds: LEMMA
-    FORALL (p: Price, wr : posint64, ss: posint64, ws: bool):
-      LET r = applyPriceErrorThresholds(p, wr, ss, ws, NORMAL)
-      IN (within_one_percent((# numWheatReceived := wr, numSheepSend := ss, wheatStays := ws #), p, ws))
-         IMPLIES (r`numWheatReceived = wr AND r`numSheepSend = ss)
+  thresholds_normal_no_trade_if_wR_or_sS_equal_zero: LEMMA
+    FORALL (s: wf_state):
+      LET r = applyPriceErrorThresholds(s)
+      IN (s`round = NORMAL) AND (s`wR = 0 OR s`sS = 0) IMPLIES
+        (r`numWheatReceived = 0 AND r`numSheepSend = 0)
+
+  %---------------------------------------------------------------------------
+  % No trade happens when effectivePrice = 0 (PATH_PAYMENT_STRICT_RECEIVE)
+  %---------------------------------------------------------------------------
+  thresholds_path_receive_no_trade_if_wR_or_sS_equal_zero: LEMMA
+    FORALL (s: wf_state):
+      LET r = applyPriceErrorThresholds(s)
+      IN (s`round = PATH_PAYMENT_STRICT_RECEIVE) AND (s`wR = 0 OR s`sS = 0)
+        IMPLIES (r`numWheatReceived = 0 AND r`numSheepSend = 0)
+  
+  %---------------------------------------------------------------------------
+  % Sell sheep for no wheat allowed (PATH_PAYMENT_STRICT_SEND mode)
+  %---------------------------------------------------------------------------
+  thresholds_path_send_sS_not_zero_if_wR_or_sS_equal_zero: LEMMA
+    FORALL (s: wf_state):
+      LET r = applyPriceErrorThresholds(s)
+      IN (s`round = PATH_PAYMENT_STRICT_SEND) AND (s`wR = 0 OR s`sS = 0)
+        IMPLIES NOT (s`sS = 0)
+ 
+  %---------------------------------------------------------------------------
+  % Sell sheep for no wheat recorded (PATH_PAYMENT_STRICT_SEND mode)
+  %---------------------------------------------------------------------------
+  record_path_send_sS_not_zero_if_wR_or_sS_equal_zero: LEMMA
+    FORALL (s: wf_state):
+      LET r = applyPriceErrorThresholds(s)
+      IN (s`round = PATH_PAYMENT_STRICT_SEND) AND (s`wR = 0)
+        IMPLIES (r`numWheatReceived = 0 AND r`numSheepSend = s`sS)
 
 END ApplyPriceErrorThresholds_Lemmas

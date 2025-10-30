@@ -1,34 +1,281 @@
-(|ApplyPriceErrorThresholds|
- (|applyPriceErrorThresholds_TCC1| 0
-  (|applyPriceErrorThresholds_TCC1-1| NIL 3970670260 ("" (SUBTYPE-TCC) NIL NIL)
-   NIL NIL
-   (|applyPriceErrorThresholds| SUBTYPE "ApplyPriceErrorThresholds.pn"
-    "nnint64" (46 25 46 27))))
- (|applyPriceErrorThresholds_TCC2| 0
-  (|applyPriceErrorThresholds_TCC2-1| NIL 3970670260 ("" (SUBTYPE-TCC) NIL NIL)
-   NIL NIL
-   (|applyPriceErrorThresholds| SUBTYPE "ApplyPriceErrorThresholds.pd"
-    "nnint64" (47 25 47 27)))))
+(|ApplyPriceErrorThresholds|)
 (|ApplyPriceErrorThresholds_Lemmas|
- (|thresholds_normal_no_trade_if_exceeds_TCC1| 0
-  (|thresholds_normal_no_trade_if_exceeds_TCC1-1| NIL 3970670260
+ (|thresholds_normal_bounded_error_no_trade_TCC1| 0
+  (|thresholds_normal_bounded_error_no_trade_TCC1-1| NIL 3970765187
    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
-   (|thresholds_normal_no_trade_if_exceeds| SUBTYPE
-    "ApplyPriceErrorThresholds_Lemmas.wr" "nnint64" (100 43 100 45))))
- (|thresholds_normal_no_trade_if_exceeds_TCC2| 0
-  (|thresholds_normal_no_trade_if_exceeds_TCC2-1| NIL 3970670260
+   (|thresholds_normal_bounded_error_no_trade| SUBTYPE
+    "ApplyPriceErrorThresholds_Lemmas.s`price`d" "nznum" (111 27 111 36))))
+ (|thresholds_normal_bounded_error_no_trade_TCC2| 0
+  (|thresholds_normal_bounded_error_no_trade_TCC2-1| NIL 3970765187
    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
-   (|thresholds_normal_no_trade_if_exceeds| SUBTYPE
-    "ApplyPriceErrorThresholds_Lemmas.ss" "nnint64" (100 47 100 49))))
- (|thresholds_normal_no_trade_if_exceeds| 0
-  (|thresholds_normal_no_trade_if_exceeds-1| NIL 3970670283
+   (|thresholds_normal_bounded_error_no_trade| SUBTYPE
+    "ApplyPriceErrorThresholds_Lemmas.s`wR" "nznum" (111 52 111 56))))
+ (|thresholds_normal_bounded_error_no_trade_TCC3| 0
+  (|thresholds_normal_bounded_error_no_trade_TCC3-1| NIL 3970765187
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|thresholds_normal_bounded_error_no_trade| SUBTYPE
+    "(ApplyPriceErrorThresholds_Lemmas.price)" "nznum" (113 32 113 37))))
+ (|thresholds_normal_bounded_error_no_trade| 0
+  (|thresholds_normal_bounded_error_no_trade-1| NIL 3970765187
    ("" (SKEEP :PREDS? T)
-    (("" (HIDE -1 -4)
-      (("" (GRIND :THEORIES ("real_props"))
-        (("1" (POSTPONE) NIL NIL) ("2" (POSTPONE) NIL NIL)
-         ("3" (POSTPONE) NIL NIL) ("4" (POSTPONE) NIL NIL))
+    (("" (GROUND)
+      (("" (GROUND)
+        (("1" (LEMMA "lemma_within_one_percent_normal")
+          (("1" (INST -1 "s`price" "s`wR" "s`sS")
+            (("1" (GROUND) (("1" (GRIND :THEORIES ("real_props")) NIL NIL))
+              NIL))
+            NIL))
+          NIL)
+         ("2" (LEMMA "lemma_within_one_percent_normal")
+          (("2" (INST -1 "s`price" "s`wR" "s`sS")
+            (("2" (GROUND) (("2" (GRIND :THEORIES ("real_props")) NIL NIL))
+              NIL))
+            NIL))
+          NIL))
         NIL))
       NIL))
     NIL)
-   NIL SHOSTAK)))
+   ((|minus_nzint_is_nzint| APPLICATION-JUDGEMENT "nzint" |integers| NIL)
+    (|rat_div_nzrat_is_rat| APPLICATION-JUDGEMENT "rat" |rationals| NIL)
+    (|rat_minus_rat_is_rat| APPLICATION-JUDGEMENT "rat" |rationals| NIL)
+    (|rat_abs_is_nonneg| APPLICATION-JUDGEMENT "{r: nonneg_rat | r >= q}"
+     |real_defs| NIL)
+    (|real_gt_is_strict_total_order| NAME-JUDGEMENT
+     "(strict_total_order?[real])" |real_props| NIL)
+    (|real_le_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
+     |real_props| NIL)
+    (NIL APPLICATION-JUDGEMENT "above(n)" |exp2| NIL)
+    (|lemma_within_one_percent_normal| FORMULA-DECL NIL
+     |CheckPriceErrorBound_Lemmas| NIL)
+    (|big_mul| CONST-DECL "uint128" |CheckPriceErrorBound| NIL)
+    (|both_sides_times_pos_gt2| FORMULA-DECL NIL |real_props| NIL)
+    (|checkPriceErrorBound| CONST-DECL "bool" |CheckPriceErrorBound| NIL)
+    (|applyPriceErrorThresholds| CONST-DECL "ExchangeResultV10"
+     |ApplyPriceErrorThresholds| NIL)
+    (|real_lt_is_strict_total_order| NAME-JUDGEMENT
+     "(strict_total_order?[real])" |real_props| NIL)
+    (|real_ge_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
+     |real_props| NIL)
+    (|even_minus_even_is_even| APPLICATION-JUDGEMENT "even_int" |integers| NIL)
+    (|int_times_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
+    (|even_times_int_is_even| APPLICATION-JUDGEMENT "even_int" |integers| NIL)
+    (|times_u32_i32| APPLICATION-JUDGEMENT "int64" |integertypes| NIL)
+    (|posint32| TYPE-EQ-DECL NIL |CheckPriceErrorBound| NIL)
+    (|Price| TYPE-EQ-DECL NIL |CheckPriceErrorBound| NIL)
+    (|RoundingType| TYPE-DECL NIL |ApplyPriceErrorThresholds| NIL)
+    (|nnint64| TYPE-EQ-DECL NIL |CheckPriceErrorBound| NIL)
+    (|bool| NONEMPTY-TYPE-EQ-DECL NIL |booleans| NIL)
+    (|State| TYPE-EQ-DECL NIL |ApplyPriceErrorThresholds| NIL)
+    (|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL)
+    (|wf_state?| CONST-DECL "bool" |ApplyPriceErrorThresholds| NIL)
+    (|wf_state| TYPE-EQ-DECL NIL |ApplyPriceErrorThresholds| NIL)
+    (|number| NONEMPTY-TYPE-DECL NIL |numbers| NIL)
+    (|number_field_pred| CONST-DECL "[number -> boolean]" |number_fields| NIL)
+    (|number_field| NONEMPTY-TYPE-FROM-DECL NIL |number_fields| NIL)
+    (|real_pred| CONST-DECL "[number_field -> boolean]" |reals| NIL)
+    (|real| NONEMPTY-TYPE-FROM-DECL NIL |reals| NIL)
+    (|rational_pred| CONST-DECL "[real -> boolean]" |rationals| NIL)
+    (|rational| NONEMPTY-TYPE-FROM-DECL NIL |rationals| NIL)
+    (|integer_pred| CONST-DECL "[rational -> boolean]" |integers| NIL)
+    (|int| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL)
+    (AND CONST-DECL "[bool, bool -> bool]" |booleans| NIL)
+    (<= CONST-DECL "bool" |reals| NIL)
+    (|numfield| NONEMPTY-TYPE-EQ-DECL NIL |number_fields| NIL)
+    (- CONST-DECL "[numfield -> numfield]" |number_fields| NIL)
+    (>= CONST-DECL "bool" |reals| NIL)
+    (|nat| NONEMPTY-TYPE-EQ-DECL NIL |naturalnumbers| NIL)
+    (|nonneg_int| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL)
+    (> CONST-DECL "bool" |reals| NIL)
+    (|posnat| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL)
+    (|exp2| DEF-DECL "posnat" |exp2| NIL)
+    (- CONST-DECL "[numfield, numfield -> numfield]" |number_fields| NIL)
+    (|int64| TYPE-EQ-DECL NIL |integertypes| NIL)
+    (|posint64| TYPE-EQ-DECL NIL |CheckPriceErrorBound| NIL))
+   SHOSTAK))
+ (|thresholds_normal_bounded_error_successful| 0
+  (|thresholds_normal_bounded_error_successful-1| NIL 3970765633
+   ("" (SKEEP :PREDS? T)
+    (("" (GROUND)
+      (("" (LEMMA "lemma_within_one_percent_normal")
+        (("" (INST -1 "s`price" "s`wR" "s`sS")
+          (("1" (GROUND)
+            (("1" (GRIND :THEORIES ("real_props")) NIL NIL)
+             ("2" (GRIND :THEORIES ("real_props")) NIL NIL))
+            NIL)
+           ("2" (GRIND :THEORIES ("real_props")) NIL NIL)
+           ("3" (GRIND :THEORIES ("real_props")) NIL NIL))
+          NIL))
+        NIL))
+      NIL))
+    NIL)
+   ((|minus_nzint_is_nzint| APPLICATION-JUDGEMENT "nzint" |integers| NIL)
+    (|rat_div_nzrat_is_rat| APPLICATION-JUDGEMENT "rat" |rationals| NIL)
+    (|rat_minus_rat_is_rat| APPLICATION-JUDGEMENT "rat" |rationals| NIL)
+    (|rat_abs_is_nonneg| APPLICATION-JUDGEMENT "{r: nonneg_rat | r >= q}"
+     |real_defs| NIL)
+    (|real_gt_is_strict_total_order| NAME-JUDGEMENT
+     "(strict_total_order?[real])" |real_props| NIL)
+    (|real_le_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
+     |real_props| NIL)
+    (NIL APPLICATION-JUDGEMENT "above(n)" |exp2| NIL)
+    (|posint32| TYPE-EQ-DECL NIL |CheckPriceErrorBound| NIL)
+    (|rational_pred| CONST-DECL "[real -> boolean]" |rationals| NIL)
+    (|rational| NONEMPTY-TYPE-FROM-DECL NIL |rationals| NIL)
+    (|integer_pred| CONST-DECL "[rational -> boolean]" |integers| NIL)
+    (|int| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL)
+    (AND CONST-DECL "[bool, bool -> bool]" |booleans| NIL)
+    (<= CONST-DECL "bool" |reals| NIL)
+    (|numfield| NONEMPTY-TYPE-EQ-DECL NIL |number_fields| NIL)
+    (- CONST-DECL "[numfield -> numfield]" |number_fields| NIL)
+    (>= CONST-DECL "bool" |reals| NIL)
+    (|nat| NONEMPTY-TYPE-EQ-DECL NIL |naturalnumbers| NIL)
+    (|nonneg_int| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL)
+    (|posnat| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL)
+    (|exp2| DEF-DECL "posnat" |exp2| NIL)
+    (- CONST-DECL "[numfield, numfield -> numfield]" |number_fields| NIL)
+    (|int64| TYPE-EQ-DECL NIL |integertypes| NIL)
+    (|posint64| TYPE-EQ-DECL NIL |CheckPriceErrorBound| NIL)
+    (|s| SKOLEM-CONST-DECL "wf_state" |ApplyPriceErrorThresholds_Lemmas| NIL)
+    (|wf_state| TYPE-EQ-DECL NIL |ApplyPriceErrorThresholds| NIL)
+    (|wf_state?| CONST-DECL "bool" |ApplyPriceErrorThresholds| NIL)
+    (|State| TYPE-EQ-DECL NIL |ApplyPriceErrorThresholds| NIL)
+    (|nnint64| TYPE-EQ-DECL NIL |CheckPriceErrorBound| NIL)
+    (|RoundingType| TYPE-DECL NIL |ApplyPriceErrorThresholds| NIL)
+    (|Price| TYPE-EQ-DECL NIL |CheckPriceErrorBound| NIL)
+    (> CONST-DECL "bool" |reals| NIL)
+    (|bool| NONEMPTY-TYPE-EQ-DECL NIL |booleans| NIL)
+    (|real| NONEMPTY-TYPE-FROM-DECL NIL |reals| NIL)
+    (|real_pred| CONST-DECL "[number_field -> boolean]" |reals| NIL)
+    (|number_field| NONEMPTY-TYPE-FROM-DECL NIL |number_fields| NIL)
+    (|number_field_pred| CONST-DECL "[number -> boolean]" |number_fields| NIL)
+    (|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL)
+    (|number| NONEMPTY-TYPE-DECL NIL |numbers| NIL)
+    (|rat_times_rat_is_rat| APPLICATION-JUDGEMENT "rat" |rationals| NIL)
+    (|nnint_times_nnint_is_nnint| APPLICATION-JUDGEMENT "nonneg_int" |integers|
+     NIL)
+    (|minus_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
+    (|int_abs_is_nonneg| APPLICATION-JUDGEMENT "{j: nonneg_int | j >= i}"
+     |real_defs| NIL)
+    (|int_minus_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
+    (|real_lt_is_strict_total_order| NAME-JUDGEMENT
+     "(strict_total_order?[real])" |real_props| NIL)
+    (|real_ge_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
+     |real_props| NIL)
+    (|even_minus_even_is_even| APPLICATION-JUDGEMENT "even_int" |integers| NIL)
+    (|int_times_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
+    (|even_times_int_is_even| APPLICATION-JUDGEMENT "even_int" |integers| NIL)
+    (|times_u32_i32| APPLICATION-JUDGEMENT "int64" |integertypes| NIL)
+    (|div_mult_pos_le2| FORMULA-DECL NIL |real_props| NIL)
+    (|div_mult_pos_le1| FORMULA-DECL NIL |real_props| NIL)
+    (|pos_times_gt| FORMULA-DECL NIL |real_props| NIL)
+    (|neg_times_gt| FORMULA-DECL NIL |real_props| NIL)
+    (|pos_times_ge| FORMULA-DECL NIL |real_props| NIL)
+    (|neg_times_ge| FORMULA-DECL NIL |real_props| NIL)
+    (|neg_times_lt| FORMULA-DECL NIL |real_props| NIL)
+    (|pos_times_lt| FORMULA-DECL NIL |real_props| NIL)
+    (|neg_times_le| FORMULA-DECL NIL |real_props| NIL)
+    (|pos_times_le| FORMULA-DECL NIL |real_props| NIL)
+    (|div_div2| FORMULA-DECL NIL |real_props| NIL)
+    (|div_div1| FORMULA-DECL NIL |real_props| NIL)
+    (|times_div1| FORMULA-DECL NIL |real_props| NIL)
+    (|abs_div| FORMULA-DECL NIL |real_props| NIL)
+    (|abs_mult| FORMULA-DECL NIL |real_props| NIL)
+    (|abs| CONST-DECL "{n: nonneg_real | n >= m AND n >= -m}" |real_defs| NIL)
+    (|nonzero_times3| FORMULA-DECL NIL |real_props| NIL)
+    (|minus_div1| FORMULA-DECL NIL |real_props| NIL)
+    (|applyPriceErrorThresholds| CONST-DECL "ExchangeResultV10"
+     |ApplyPriceErrorThresholds| NIL)
+    (|checkPriceErrorBound| CONST-DECL "bool" |CheckPriceErrorBound| NIL)
+    (|both_sides_times_pos_gt2| FORMULA-DECL NIL |real_props| NIL)
+    (|big_mul| CONST-DECL "uint128" |CheckPriceErrorBound| NIL)
+    (|lemma_within_one_percent_normal| FORMULA-DECL NIL
+     |CheckPriceErrorBound_Lemmas| NIL))
+   SHOSTAK))
+ (|thresholds_normal_no_trade_if_wR_or_sS_equal_zero| 0
+  (|thresholds_normal_no_trade_if_wR_or_sS_equal_zero-1| NIL 3970760889
+   ("" (SKEEP :PREDS? T)
+    (("" (GROUND) (("" (GRIND :THEORIES ("real_props")) NIL NIL)) NIL)) NIL)
+   ((NIL APPLICATION-JUDGEMENT "above(n)" |exp2| NIL)
+    (|wf_state?| CONST-DECL "bool" |ApplyPriceErrorThresholds| NIL)
+    (|applyPriceErrorThresholds| CONST-DECL "ExchangeResultV10"
+     |ApplyPriceErrorThresholds| NIL)
+    (|int_times_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
+    (|minus_nzint_is_nzint| APPLICATION-JUDGEMENT "nzint" |integers| NIL)
+    (|real_ge_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
+     |real_props| NIL)
+    (|real_gt_is_strict_total_order| NAME-JUDGEMENT
+     "(strict_total_order?[real])" |real_props| NIL))
+   SHOSTAK))
+ (|thresholds_path_receive_no_trade_if_wR_or_sS_equal_zero| 0
+  (|thresholds_path_receive_no_trade_if_wR_or_sS_equal_zero-1| NIL 3970764785
+   ("" (SKEEP :PREDS? T)
+    (("" (GROUND) (("" (GRIND :THEORIES ("real_props")) NIL NIL)) NIL)) NIL)
+   ((NIL APPLICATION-JUDGEMENT "above(n)" |exp2| NIL)
+    (|wf_state?| CONST-DECL "bool" |ApplyPriceErrorThresholds| NIL)
+    (|applyPriceErrorThresholds| CONST-DECL "ExchangeResultV10"
+     |ApplyPriceErrorThresholds| NIL)
+    (|int_times_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
+    (|minus_nzint_is_nzint| APPLICATION-JUDGEMENT "nzint" |integers| NIL)
+    (|real_ge_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
+     |real_props| NIL)
+    (|real_gt_is_strict_total_order| NAME-JUDGEMENT
+     "(strict_total_order?[real])" |real_props| NIL))
+   SHOSTAK))
+ (|thresholds_path_send_sS_not_zero_if_wR_or_sS_equal_zero| 0
+  (|thresholds_path_send_sS_not_zero_if_wR_or_sS_equal_zero-1| NIL 3970761510
+   ("" (GRIND :THEORIES ("real_props")) NIL NIL)
+   ((|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL)
+    (|bool| NONEMPTY-TYPE-EQ-DECL NIL |booleans| NIL)
+    (NOT CONST-DECL "[bool -> bool]" |booleans| NIL)
+    (|Price| TYPE-EQ-DECL NIL |CheckPriceErrorBound| NIL)
+    (|RoundingType| TYPE-DECL NIL |ApplyPriceErrorThresholds| NIL)
+    (|nnint64| TYPE-EQ-DECL NIL |CheckPriceErrorBound| NIL)
+    (|State| TYPE-EQ-DECL NIL |ApplyPriceErrorThresholds| NIL)
+    (|wf_state?| CONST-DECL "bool" |ApplyPriceErrorThresholds| NIL)
+    (|wf_state| TYPE-EQ-DECL NIL |ApplyPriceErrorThresholds| NIL)
+    (NIL APPLICATION-JUDGEMENT "above(n)" |exp2| NIL)
+    (|real_ge_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
+     |real_props| NIL)
+    (|real_gt_is_strict_total_order| NAME-JUDGEMENT
+     "(strict_total_order?[real])" |real_props| NIL)
+    (|big_mul| CONST-DECL "uint128" |CheckPriceErrorBound| NIL)
+    (|both_sides_times_pos_gt2| FORMULA-DECL NIL |real_props| NIL)
+    (|checkPriceErrorBound| CONST-DECL "bool" |CheckPriceErrorBound| NIL)
+    (|applyPriceErrorThresholds| CONST-DECL "ExchangeResultV10"
+     |ApplyPriceErrorThresholds| NIL)
+    (|minus_nzint_is_nzint| APPLICATION-JUDGEMENT "nzint" |integers| NIL)
+    (|times_u32_i32| APPLICATION-JUDGEMENT "int64" |integertypes| NIL)
+    (|even_times_int_is_even| APPLICATION-JUDGEMENT "even_int" |integers| NIL)
+    (|int_times_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
+    (|even_minus_even_is_even| APPLICATION-JUDGEMENT "even_int" |integers|
+     NIL))
+   SHOSTAK))
+ (|record_path_send_sS_not_zero_if_wR_or_sS_equal_zero| 0
+  (|record_path_send_sS_not_zero_if_wR_or_sS_equal_zero-1| NIL 3970761965
+   ("" (GRIND :THEORIES ("real_props")) NIL NIL)
+   ((|even_minus_even_is_even| APPLICATION-JUDGEMENT "even_int" |integers| NIL)
+    (|int_times_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
+    (|even_times_int_is_even| APPLICATION-JUDGEMENT "even_int" |integers| NIL)
+    (|times_u32_i32| APPLICATION-JUDGEMENT "int64" |integertypes| NIL)
+    (|minus_nzint_is_nzint| APPLICATION-JUDGEMENT "nzint" |integers| NIL)
+    (|applyPriceErrorThresholds| CONST-DECL "ExchangeResultV10"
+     |ApplyPriceErrorThresholds| NIL)
+    (|checkPriceErrorBound| CONST-DECL "bool" |CheckPriceErrorBound| NIL)
+    (|both_sides_times_pos_gt2| FORMULA-DECL NIL |real_props| NIL)
+    (|big_mul| CONST-DECL "uint128" |CheckPriceErrorBound| NIL)
+    (|real_gt_is_strict_total_order| NAME-JUDGEMENT
+     "(strict_total_order?[real])" |real_props| NIL)
+    (|real_ge_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
+     |real_props| NIL)
+    (NIL APPLICATION-JUDGEMENT "above(n)" |exp2| NIL)
+    (|wf_state| TYPE-EQ-DECL NIL |ApplyPriceErrorThresholds| NIL)
+    (|wf_state?| CONST-DECL "bool" |ApplyPriceErrorThresholds| NIL)
+    (|State| TYPE-EQ-DECL NIL |ApplyPriceErrorThresholds| NIL)
+    (|nnint64| TYPE-EQ-DECL NIL |CheckPriceErrorBound| NIL)
+    (|RoundingType| TYPE-DECL NIL |ApplyPriceErrorThresholds| NIL)
+    (|Price| TYPE-EQ-DECL NIL |CheckPriceErrorBound| NIL)
+    (NOT CONST-DECL "[bool -> bool]" |booleans| NIL)
+    (|bool| NONEMPTY-TYPE-EQ-DECL NIL |booleans| NIL)
+    (|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL))
+   SHOSTAK)))
 

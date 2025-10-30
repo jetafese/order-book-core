@@ -2903,4 +2903,264 @@
     (NIL APPLICATION-JUDGEMENT "above(n)" |exp2| NIL))
    NIL
    (|lemma_within_one_percent_normal| SUBTYPE "CheckPriceErrorBound_1.p`d"
-    "nznum"))))
+    "nznum"))))(("applyPriceErrorThresholds"
+  (|thresholds_normal_no_trade_if_exceeds_TCC1| 0
+   (|thresholds_normal_no_trade_if_exceeds_TCC1-1| NIL 3970670260
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|thresholds_normal_no_trade_if_exceeds| SUBTYPE
+     "ApplyPriceErrorThresholds_Lemmas.wr" "nnint64")))
+  |thresholds_normal_no_trade_if_exceeds_TCC2-1| NIL 3970670260
+  ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|thresholds_normal_no_trade_if_exceeds| SUBTYPE
+   "ApplyPriceErrorThresholds_Lemmas.ss" "nnint64"))
+ ("applyPriceErrorThresholds"
+  (|thresholds_normal_no_trade_if_exceeds_TCC1| 0
+   (|thresholds_normal_no_trade_if_exceeds_TCC1-1| NIL 3970670260
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|thresholds_normal_no_trade_if_exceeds| SUBTYPE
+     "ApplyPriceErrorThresholds_Lemmas.wr" "nnint64")))
+  |thresholds_normal_no_trade_if_exceeds_TCC1-1| NIL 3970670260
+  ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|thresholds_normal_no_trade_if_exceeds| SUBTYPE
+   "ApplyPriceErrorThresholds_Lemmas.wr" "nnint64"))
+ ("applyPriceErrorThresholds"
+  (|thresholds_normal_no_trade_if_exceeds_TCC1| 0
+   (|thresholds_normal_no_trade_if_exceeds_TCC1-1| NIL 3970670260
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|thresholds_normal_no_trade_if_exceeds| SUBTYPE
+     "ApplyPriceErrorThresholds_Lemmas.wr" "nnint64")))
+  . 0))(("applyPriceErrorThresholds"
+  (|thresholds_normal_no_trade_if_exceeds_TCC1| 0
+   (|thresholds_normal_no_trade_if_exceeds_TCC1-1| NIL 3970670260
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|thresholds_normal_no_trade_if_exceeds| SUBTYPE
+     "ApplyPriceErrorThresholds_Lemmas.wr" "nnint64")))
+  |thresholds_normal_no_trade_if_exceeds_TCC2-1| NIL 3970670260
+  ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|thresholds_normal_no_trade_if_exceeds| SUBTYPE
+   "ApplyPriceErrorThresholds_Lemmas.ss" "nnint64"))
+ ("applyPriceErrorThresholds"
+  (|thresholds_normal_no_trade_if_exceeds_TCC1| 0
+   (|thresholds_normal_no_trade_if_exceeds_TCC1-1| NIL 3970670260
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|thresholds_normal_no_trade_if_exceeds| SUBTYPE
+     "ApplyPriceErrorThresholds_Lemmas.wr" "nnint64")))
+  |thresholds_normal_no_trade_if_exceeds_TCC1-1| NIL 3970670260
+  ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|thresholds_normal_no_trade_if_exceeds| SUBTYPE
+   "ApplyPriceErrorThresholds_Lemmas.wr" "nnint64"))
+ ("applyPriceErrorThresholds"
+  (|thresholds_normal_no_trade_if_exceeds_TCC1| 0
+   (|thresholds_normal_no_trade_if_exceeds_TCC1-1| NIL 3970670260
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|thresholds_normal_no_trade_if_exceeds| SUBTYPE
+     "ApplyPriceErrorThresholds_Lemmas.wr" "nnint64")))
+  . 0))(("applyPriceErrorThresholds"
+  (|applyPriceErrorThresholds_TCC1| 0
+   (|applyPriceErrorThresholds_TCC1-1| NIL 3970670260
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|applyPriceErrorThresholds| SUBTYPE "ApplyPriceErrorThresholds.pn"
+     "nnint64")))
+  |applyPriceErrorThresholds_TCC2-1| NIL 3970670260 ("" (SUBTYPE-TCC) NIL NIL)
+  NIL NIL
+  (|applyPriceErrorThresholds| SUBTYPE "ApplyPriceErrorThresholds.pd"
+   "nnint64"))
+ ("applyPriceErrorThresholds"
+  (|applyPriceErrorThresholds_TCC1| 0
+   (|applyPriceErrorThresholds_TCC1-1| NIL 3970670260
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|applyPriceErrorThresholds| SUBTYPE "ApplyPriceErrorThresholds.pn"
+     "nnint64")))
+  |applyPriceErrorThresholds_TCC1-1| NIL 3970670260 ("" (SUBTYPE-TCC) NIL NIL)
+  NIL NIL
+  (|applyPriceErrorThresholds| SUBTYPE "ApplyPriceErrorThresholds.pn"
+   "nnint64"))
+ ("applyPriceErrorThresholds"
+  (|applyPriceErrorThresholds_TCC1| 0
+   (|applyPriceErrorThresholds_TCC1-1| NIL 3970670260
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|applyPriceErrorThresholds| SUBTYPE "ApplyPriceErrorThresholds.pn"
+     "nnint64")))
+  . 0))(("applyPriceErrorThresholds"
+  (|thresholds_normal_no_trade_if_exceeds_TCC1| 0
+   (|thresholds_normal_no_trade_if_exceeds_TCC1-1| NIL 3970670260
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|thresholds_normal_no_trade_if_exceeds| SUBTYPE
+     "ApplyPriceErrorThresholds_Lemmas.wr" "nnint64")))
+  |thresholds_normal_no_trade_if_exceeds_TCC2-1| NIL 3970670260
+  ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|thresholds_normal_no_trade_if_exceeds| SUBTYPE
+   "ApplyPriceErrorThresholds_Lemmas.ss" "nnint64"))
+ ("applyPriceErrorThresholds"
+  (|thresholds_normal_no_trade_if_exceeds_TCC1| 0
+   (|thresholds_normal_no_trade_if_exceeds_TCC1-1| NIL 3970670260
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|thresholds_normal_no_trade_if_exceeds| SUBTYPE
+     "ApplyPriceErrorThresholds_Lemmas.wr" "nnint64")))
+  |thresholds_normal_no_trade_if_exceeds_TCC1-1| NIL 3970670260
+  ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|thresholds_normal_no_trade_if_exceeds| SUBTYPE
+   "ApplyPriceErrorThresholds_Lemmas.wr" "nnint64"))
+ ("applyPriceErrorThresholds"
+  (|thresholds_normal_no_trade_if_exceeds_TCC1| 0
+   (|thresholds_normal_no_trade_if_exceeds_TCC1-1| NIL 3970670260
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|thresholds_normal_no_trade_if_exceeds| SUBTYPE
+     "ApplyPriceErrorThresholds_Lemmas.wr" "nnint64")))
+  . 0))(("applyPriceErrorThresholds"
+  (|applyPriceErrorThresholds_TCC1| 0
+   (|applyPriceErrorThresholds_TCC1-1| NIL 3970670260
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|applyPriceErrorThresholds| SUBTYPE "ApplyPriceErrorThresholds.pn"
+     "nnint64")))
+  |applyPriceErrorThresholds_TCC2-1| NIL 3970670260 ("" (SUBTYPE-TCC) NIL NIL)
+  NIL NIL
+  (|applyPriceErrorThresholds| SUBTYPE "ApplyPriceErrorThresholds.pd"
+   "nnint64"))
+ ("applyPriceErrorThresholds"
+  (|applyPriceErrorThresholds_TCC1| 0
+   (|applyPriceErrorThresholds_TCC1-1| NIL 3970670260
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|applyPriceErrorThresholds| SUBTYPE "ApplyPriceErrorThresholds.pn"
+     "nnint64")))
+  |applyPriceErrorThresholds_TCC1-1| NIL 3970670260 ("" (SUBTYPE-TCC) NIL NIL)
+  NIL NIL
+  (|applyPriceErrorThresholds| SUBTYPE "ApplyPriceErrorThresholds.pn"
+   "nnint64"))
+ ("applyPriceErrorThresholds"
+  (|applyPriceErrorThresholds_TCC1| 0
+   (|applyPriceErrorThresholds_TCC1-1| NIL 3970670260
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|applyPriceErrorThresholds| SUBTYPE "ApplyPriceErrorThresholds.pn"
+     "nnint64")))
+  . 0))(("applyPriceErrorThresholds"
+  (|thresholds_normal_no_trade_if_exceeds_TCC1| 0
+   (|thresholds_normal_no_trade_if_exceeds_TCC1-1| NIL 3970670260
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|thresholds_normal_no_trade_if_exceeds| SUBTYPE
+     "ApplyPriceErrorThresholds_Lemmas.wr" "nnint64")))
+  |thresholds_normal_no_trade_if_exceeds_TCC2-1| NIL 3970670260
+  ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|thresholds_normal_no_trade_if_exceeds| SUBTYPE
+   "ApplyPriceErrorThresholds_Lemmas.ss" "nnint64"))
+ ("applyPriceErrorThresholds"
+  (|thresholds_normal_no_trade_if_exceeds_TCC1| 0
+   (|thresholds_normal_no_trade_if_exceeds_TCC1-1| NIL 3970670260
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|thresholds_normal_no_trade_if_exceeds| SUBTYPE
+     "ApplyPriceErrorThresholds_Lemmas.wr" "nnint64")))
+  |thresholds_normal_no_trade_if_exceeds_TCC1-1| NIL 3970670260
+  ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|thresholds_normal_no_trade_if_exceeds| SUBTYPE
+   "ApplyPriceErrorThresholds_Lemmas.wr" "nnint64"))
+ ("applyPriceErrorThresholds"
+  (|thresholds_normal_no_trade_if_exceeds_TCC1| 0
+   (|thresholds_normal_no_trade_if_exceeds_TCC1-1| NIL 3970670260
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|thresholds_normal_no_trade_if_exceeds| SUBTYPE
+     "ApplyPriceErrorThresholds_Lemmas.wr" "nnint64")))
+  . 0))(("applyPriceErrorThresholds"
+  (|applyPriceErrorThresholds_TCC1| 0
+   (|applyPriceErrorThresholds_TCC1-1| NIL 3970670260
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|applyPriceErrorThresholds| SUBTYPE "ApplyPriceErrorThresholds.pn"
+     "nnint64")))
+  |applyPriceErrorThresholds_TCC2-1| NIL 3970670260 ("" (SUBTYPE-TCC) NIL NIL)
+  NIL NIL
+  (|applyPriceErrorThresholds| SUBTYPE "ApplyPriceErrorThresholds.pd"
+   "nnint64"))
+ ("applyPriceErrorThresholds"
+  (|applyPriceErrorThresholds_TCC1| 0
+   (|applyPriceErrorThresholds_TCC1-1| NIL 3970670260
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|applyPriceErrorThresholds| SUBTYPE "ApplyPriceErrorThresholds.pn"
+     "nnint64")))
+  |applyPriceErrorThresholds_TCC1-1| NIL 3970670260 ("" (SUBTYPE-TCC) NIL NIL)
+  NIL NIL
+  (|applyPriceErrorThresholds| SUBTYPE "ApplyPriceErrorThresholds.pn"
+   "nnint64"))
+ ("applyPriceErrorThresholds"
+  (|applyPriceErrorThresholds_TCC1| 0
+   (|applyPriceErrorThresholds_TCC1-1| NIL 3970670260
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|applyPriceErrorThresholds| SUBTYPE "ApplyPriceErrorThresholds.pn"
+     "nnint64")))
+  . 0))(("applyPriceErrorThresholds"
+  (|thresholds_normal_no_trade_if_exceeds_TCC1| 0
+   (|thresholds_normal_no_trade_if_exceeds_TCC1-1| NIL 3970670260
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|thresholds_normal_no_trade_if_exceeds| SUBTYPE
+     "ApplyPriceErrorThresholds_Lemmas.wr" "nnint64")))
+  |thresholds_normal_no_trade_if_exceeds_TCC2-1| NIL 3970670260
+  ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|thresholds_normal_no_trade_if_exceeds| SUBTYPE
+   "ApplyPriceErrorThresholds_Lemmas.ss" "nnint64"))
+ ("applyPriceErrorThresholds"
+  (|thresholds_normal_no_trade_if_exceeds_TCC1| 0
+   (|thresholds_normal_no_trade_if_exceeds_TCC1-1| NIL 3970670260
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|thresholds_normal_no_trade_if_exceeds| SUBTYPE
+     "ApplyPriceErrorThresholds_Lemmas.wr" "nnint64")))
+  |thresholds_normal_no_trade_if_exceeds_TCC1-1| NIL 3970670260
+  ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|thresholds_normal_no_trade_if_exceeds| SUBTYPE
+   "ApplyPriceErrorThresholds_Lemmas.wr" "nnint64"))
+ ("applyPriceErrorThresholds"
+  (|thresholds_normal_no_trade_if_exceeds_TCC1| 0
+   (|thresholds_normal_no_trade_if_exceeds_TCC1-1| NIL 3970670260
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|thresholds_normal_no_trade_if_exceeds| SUBTYPE
+     "ApplyPriceErrorThresholds_Lemmas.wr" "nnint64")))
+  . 0))(("applyPriceErrorThresholds"
+  (|thresholds_normal_no_trade_if_exceeds| 0
+   (|thresholds_normal_no_trade_if_exceeds-1| NIL 3970670283
+    ("" (SKEEP :PREDS? T)
+     (("" (GROUND) (("" (GRIND :THEORIES ("real_props")) NIL NIL)) NIL)) NIL)
+    ((|real_le_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
+      |real_props| NIL)
+     (NIL APPLICATION-JUDGEMENT "above(n)" |exp2| NIL)
+     (|wf_state?| CONST-DECL "bool" |ApplyPriceErrorThresholds| NIL)
+     (|applyPriceErrorThresholds| CONST-DECL "ExchangeResultV10"
+      |ApplyPriceErrorThresholds| NIL)
+     (|int_times_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
+     (|minus_nzint_is_nzint| APPLICATION-JUDGEMENT "nzint" |integers| NIL)
+     (|real_ge_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
+      |real_props| NIL)
+     (|real_gt_is_strict_total_order| NAME-JUDGEMENT
+      "(strict_total_order?[real])" |real_props| NIL))
+    SHOSTAK))
+  |thresholds_normal_no_trade_if_exceeds-1| NIL 3970670283
+  ("" (SKEEP :PREDS? T)
+   (("" (GROUND) (("" (GRIND :THEORIES ("real_props")) NIL NIL)) NIL)) NIL)
+  ((|real_le_is_total_order| NAME-JUDGEMENT "(total_order?[real])" |real_props|
+    NIL)
+   (NIL APPLICATION-JUDGEMENT "above(n)" |exp2| NIL)
+   (|wf_state?| CONST-DECL "bool" |ApplyPriceErrorThresholds| NIL)
+   (|applyPriceErrorThresholds| CONST-DECL "ExchangeResultV10"
+    |ApplyPriceErrorThresholds| NIL)
+   (|int_times_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
+   (|minus_nzint_is_nzint| APPLICATION-JUDGEMENT "nzint" |integers| NIL)
+   (|real_ge_is_total_order| NAME-JUDGEMENT "(total_order?[real])" |real_props|
+    NIL)
+   (|real_gt_is_strict_total_order| NAME-JUDGEMENT
+    "(strict_total_order?[real])" |real_props| NIL))
+  SHOSTAK)
+ ("applyPriceErrorThresholds"
+  (|thresholds_normal_no_trade_if_exceeds| 0
+   (|thresholds_normal_no_trade_if_exceeds-1| NIL 3970670283
+    ("" (SKEEP :PREDS? T)
+     (("" (GROUND) (("" (GRIND :THEORIES ("real_props")) NIL NIL)) NIL)) NIL)
+    ((|real_le_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
+      |real_props| NIL)
+     (NIL APPLICATION-JUDGEMENT "above(n)" |exp2| NIL)
+     (|wf_state?| CONST-DECL "bool" |ApplyPriceErrorThresholds| NIL)
+     (|applyPriceErrorThresholds| CONST-DECL "ExchangeResultV10"
+      |ApplyPriceErrorThresholds| NIL)
+     (|int_times_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
+     (|minus_nzint_is_nzint| APPLICATION-JUDGEMENT "nzint" |integers| NIL)
+     (|real_ge_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
+      |real_props| NIL)
+     (|real_gt_is_strict_total_order| NAME-JUDGEMENT
+      "(strict_total_order?[real])" |real_props| NIL))
+    SHOSTAK))
+  . 0))
