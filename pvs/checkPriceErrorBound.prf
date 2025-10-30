@@ -86,21 +86,25 @@
    (|checkPriceErrorBound| SUBTYPE "CheckPriceErrorBound.price`n" "nnint64"
     (31 19 31 26)))))
 (|CheckPriceErrorBound_Lemmas|
+ (|uint128_gte_zero| 0
+  (|uint128_gte_zero-1| NIL 3970822455
+   ("" (GRIND :THEORIES ("real_props")) NIL NIL)
+   ((NIL APPLICATION-JUDGEMENT "above(n)" |exp2| NIL)) SHOSTAK))
  (|lemma_within_one_percent_normal_TCC1| 0
   (|lemma_within_one_percent_normal_TCC1-1| NIL 3970667121
    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
    (|lemma_within_one_percent_normal| SUBTYPE "CheckPriceErrorBound_Lemmas.p`d"
-    "nznum" (51 23 51 26))))
+    "nznum" (57 23 57 26))))
  (|lemma_within_one_percent_normal_TCC2| 0
   (|lemma_within_one_percent_normal_TCC2-1| NIL 3970667121
    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
    (|lemma_within_one_percent_normal| SUBTYPE "CheckPriceErrorBound_Lemmas.wR"
-    "nznum" (52 20 52 22))))
+    "nznum" (58 20 58 22))))
  (|lemma_within_one_percent_normal_TCC3| 0
   (|lemma_within_one_percent_normal_TCC3-1| NIL 3970667121
    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
    (|lemma_within_one_percent_normal| SUBTYPE
-    "(CheckPriceErrorBound_Lemmas.price)" "nznum" (55 26 55 31))))
+    "(CheckPriceErrorBound_Lemmas.price)" "nznum" (61 26 61 31))))
  (|lemma_within_one_percent_normal| 0
   (|lemma_within_one_percent_normal-1| NIL 3970743143
    ("" (SKEEP :PREDS? T)

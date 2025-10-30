@@ -42,6 +42,12 @@ BEGIN
   IMPORTING CheckPriceErrorBound
 
   %---------------------------------------------------------------------------
+  % Helpers
+  %---------------------------------------------------------------------------
+  uint128_gte_zero: LEMMA
+    FORALL (i: uint128): i >= 0
+
+  %---------------------------------------------------------------------------
   % ≤1% bound when cFW is False. That is:
   % abs((price`n/price`d)-(sS/wR))/((price`n/price`d)) <= 1/100
   %---------------------------------------------------------------------------
@@ -65,7 +71,7 @@ BEGIN
           rhs = 100 * p`d * sS,
           lhs = 100 * p`n * wR
       IN
-	checkPriceErrorBound(p, wR, sS, True) AND (rhs <= lhs) IMPLIES
+	checkPriceErrorBound(p, wR, sS, True) AND (rhs < lhs) IMPLIES
       	abs(price - effP)/(price) <= 1/100
       
   %---------------------------------------------------------------------------

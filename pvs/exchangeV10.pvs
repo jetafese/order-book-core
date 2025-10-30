@@ -2,23 +2,19 @@ ExchangeV10: THEORY
 BEGIN
   IMPORTING ApplyPriceErrorThresholds_Lemmas
 
-  % Integer floor/ceil divisions (no reals)
-  floor_div(x:int64, y: int64): int64 = ndiv(x, y)
-  ceil_div(x: int64, y: int64): int64 = ndiv((x + (y - 1)), y)
-
   %-----------------------------
   % Rounding modes and helpers
   %-----------------------------
   RoundMode: TYPE = { ROUND_DOWN, ROUND_UP }
   
 
-  big_div(x: int64, y: int64, r: RoundMode): int64 =
+  big_div(x: uint128, y: posint64, r: RoundMode): nnint64 =
     CASES r OF
-      ROUND_DOWN: floor_div(x, y),
-      ROUND_UP:   ceil_div(x, y)
+      ROUND_DOWN: ndiv(x, y),
+      ROUND_UP:   ndiv((x + (y - 1)), y)
     ENDCASES
 
-  big_div_numden(x: int64, n: int64, d: int64, r: RoundMode): int64 =
+  big_div_numden(x: nnint64, n: nnint64, d: posint64, r: RoundMode): nnint64 =
     % Computes round( x * n / d ) using integer rounding
     CASES r OF
       ROUND_DOWN: ndiv((x * n), d),
@@ -42,17 +38,17 @@ BEGIN
                                          maxSheepSend, maxSheepReceive: int64,
                                          round: RoundingType): wf_state =
     LET
-      wheatValue: int64 = calculateOfferValue(price`n, price`d,
+      wheatValue: uint128 = calculateOfferValue(price`n, price`d,
                                              maxWheatSend, maxSheepReceive),
-      sheepValue: int64 = calculateOfferValue(price`d, price`n,
+      sheepValue: uint128 = calculateOfferValue(price`d, price`n,
                                              maxSheepSend, maxWheatReceive),
-      wheatStays: bool = wheatValue > sheepValue,
+      wheatStays: bool = (wheatValue > sheepValue),
 
-      wheatReceive: int64 =
+      wheatReceive: nnint64 =
         IF wheatStays THEN
           IF round = PATH_PAYMENT_STRICT_SEND THEN
             big_div(sheepValue, price`n, ROUND_DOWN)
-          ELSIF price`n > price`d OR round = PATH_PAYMENT_STRICT_RECEIVE THEN
+          ELSIF (price`n > price`d OR round = PATH_PAYMENT_STRICT_RECEIVE) THEN
             big_div(sheepValue, price`n, ROUND_DOWN)
           ELSE
             % sheep is more valuable, wheatStays: compute sheepSend first
@@ -70,7 +66,7 @@ BEGIN
           ENDIF
         ENDIF,
 
-      sheepSend: int64 =
+      sheepSend: nnint64 =
         IF wheatStays THEN
           IF round = PATH_PAYMENT_STRICT_SEND THEN
             IF maxSheepSend <= maxSheepReceive
