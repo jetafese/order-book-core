@@ -6,8 +6,8 @@ BEGIN
   % Result type
   %-----------------------------
   ExchangeResultV10: TYPE = [#
-    numWheatReceived: int64,
-    numSheepSend:     int64,
+    numWheatReceived: nnint64,
+    numSheepSend:     nnint64,
     wheatStays:       bool
   #]
 
@@ -37,7 +37,7 @@ BEGIN
   %-----------------------------
   applyPriceErrorThresholds(s: wf_state): ExchangeResultV10 =
     LET wR = s`wR, sS = s`sS, round = s`round, wheatStays = s`wheatStays,
-      adj_pair: [# wr: int64, ss: int64 #] =
+      adj_pair: [# wr: nnint64, ss: nnint64 #] =
         IF (wR > 0 AND sS > 0) THEN
           IF round = NORMAL THEN
             IF checkPriceErrorBound(s`price, wR, sS, False)

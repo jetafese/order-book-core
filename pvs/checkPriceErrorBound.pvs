@@ -4,10 +4,10 @@ BEGIN
   % Integer domains
   %-----------------------------
 
-  nnint64: TYPE = {i: int64 | i >= 0 }
-  nnint32: TYPE = {i: int32 | i >= 0 }
-  posint32: TYPE = {i: int32 | i > 0 }
-  posint64: TYPE = {i: int64 | i > 0 }
+  nnint64: TYPE = {i: uint64 | i >= 0 }
+  nnint32: TYPE = {i: uint32 | i >= 0 }
+  posint32: TYPE = {i: uint32 | i > 0 }
+  posint64: TYPE = {i: uint64 | i > 0 }
   uint128: TYPE = upto(exp2(128)-1) CONTAINING 0
 
   big_mul(a: nnint64, b: nnint64): uint128 = a * b
