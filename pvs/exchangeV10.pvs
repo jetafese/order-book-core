@@ -1,0 +1,126 @@
+ExchangeV10: THEORY
+BEGIN
+  IMPORTING ApplyPriceErrorThresholds_Lemmas
+
+  % Integer floor/ceil divisions (no reals)
+  floor_div(x:int64, y: int64): int64 = ndiv(x, y)
+  ceil_div(x: int64, y: int64): int64 = ndiv((x + (y - 1)), y)
+
+  %-----------------------------
+  % Rounding modes and helpers
+  %-----------------------------
+  RoundMode: TYPE = { ROUND_DOWN, ROUND_UP }
+  
+
+  big_div(x: int64, y: int64, r: RoundMode): int64 =
+    CASES r OF
+      ROUND_DOWN: floor_div(x, y),
+      ROUND_UP:   ceil_div(x, y)
+    ENDCASES
+
+  big_div_numden(x: int64, n: int64, d: int64, r: RoundMode): int64 =
+    % Computes round( x * n / d ) using integer rounding
+    CASES r OF
+      ROUND_DOWN: ndiv((x * n), d),
+      ROUND_UP:   ndiv((x * n + (d - 1)), d)
+    ENDCASES
+  
+  %-----------------------------
+  % Offer value calculation
+  %-----------------------------
+  % calculateOfferValue(n, d, maxSend, maxReceive) =
+  %   min(maxSend * n, maxReceive * d)
+  calculateOfferValue(n: nnint32, d: nnint32,
+    maxSend: nnint64, maxReceive: nnint64): uint128 =
+    min(big_mul(maxSend, n), big_mul(maxReceive, d))
+
+  %-----------------------------
+  % Core function (no thresholds)
+  %-----------------------------
+  exchangeV10WithoutPriceErrorThresholds(price: Price,
+                                         maxWheatSend, maxWheatReceive,
+                                         maxSheepSend, maxSheepReceive: int64,
+                                         round: RoundingType): wf_state =
+    LET
+      wheatValue: int64 = calculateOfferValue(price`n, price`d,
+                                             maxWheatSend, maxSheepReceive),
+      sheepValue: int64 = calculateOfferValue(price`d, price`n,
+                                             maxSheepSend, maxWheatReceive),
+      wheatStays: bool = wheatValue > sheepValue,
+
+      wheatReceive: int64 =
+        IF wheatStays THEN
+          IF round = PATH_PAYMENT_STRICT_SEND THEN
+            big_div(sheepValue, price`n, ROUND_DOWN)
+          ELSIF price`n > price`d OR round = PATH_PAYMENT_STRICT_RECEIVE THEN
+            big_div(sheepValue, price`n, ROUND_DOWN)
+          ELSE
+            % sheep is more valuable, wheatStays: compute sheepSend first
+            LET sheepSend_tmp = big_div(sheepValue, price`d, ROUND_DOWN) IN
+              big_div_numden(sheepSend_tmp, price`d, price`n, ROUND_DOWN)
+          ENDIF
+        ELSE
+          IF price`n > price`d THEN
+	    % KN: wheat is more valuable
+            big_div(wheatValue, price`n, ROUND_DOWN)
+          ELSE
+            % sheep is more valuable, !wheatStays: compute sheepSend first
+            LET sheepSend_tmp = big_div(wheatValue, price`d, ROUND_DOWN) IN
+              big_div_numden(sheepSend_tmp, price`d, price`n, ROUND_UP)
+          ENDIF
+        ENDIF,
+
+      sheepSend: int64 =
+        IF wheatStays THEN
+          IF round = PATH_PAYMENT_STRICT_SEND THEN
+            IF maxSheepSend <= maxSheepReceive
+            THEN maxSheepSend
+            ELSE maxSheepReceive ENDIF
+          ELSIF price`n > price`d OR round = PATH_PAYMENT_STRICT_RECEIVE THEN
+            big_div_numden(wheatReceive, price`n, price`d, ROUND_UP)
+          ELSE
+            big_div(sheepValue, price`d, ROUND_DOWN)
+          ENDIF
+        ELSE
+          IF price`n > price`d THEN
+            big_div_numden(wheatReceive, price`n, price`d, ROUND_DOWN)
+          ELSE
+            big_div(wheatValue, price`d, ROUND_DOWN)
+          ENDIF
+        ENDIF,
+
+      % Spec-side bounds checks mirroring the code's throws
+      minWheatCap: int64 = IF maxWheatReceive <= maxWheatSend 
+                          THEN maxWheatReceive ELSE maxWheatSend ENDIF,
+      minSheepCap: int64 = IF maxSheepReceive <= maxSheepSend
+                          THEN maxSheepReceive ELSE maxSheepSend ENDIF,
+      chk1: bool = wheatReceive <= minWheatCap,
+      chk2: bool = sheepSend     <= minSheepCap
+    IN
+      IF NOT chk1 OR NOT chk2 THEN
+        % In C++ this would throw. Here we return a neutralized result.
+        (# price:= price, wheatStays := wheatStays,
+          sS := 0, wR := 0, round := round #)
+      ELSE
+        (# price:= price, wheatStays := wheatStays,
+          sS := sheepSend, wR := wheatReceive, round := round #)
+      ENDIF
+
+  %-----------------------------
+  % Public wrapper exchangeV10
+  %-----------------------------
+  exchangeV10(price: Price, maxWheatSend, maxWheatReceive,
+              maxSheepSend, maxSheepReceive: int64,
+              round: RoundingType): ExchangeResultV10 =
+    LET before = exchangeV10WithoutPriceErrorThresholds(price, maxWheatSend,
+                   maxWheatReceive, maxSheepSend, maxSheepReceive, round)
+    IN applyPriceErrorThresholds(before)
+
+END ExchangeV10
+
+ExchangeV10_Lemmas: THEORY
+BEGIN
+
+  IMPORTING ExchangeV10
+
+END ExchangeV10_Lemmas

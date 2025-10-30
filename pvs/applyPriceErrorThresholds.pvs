@@ -33,34 +33,9 @@ BEGIN
   wf_state : TYPE = (wf_state?)
 
   %-----------------------------
-  % Integer price-comparison predicates
-  %-----------------------------
-  % favors_wheat?: S/W >= n/d  <=>  S*d >= W*n
-  favors_wheat?(res: ExchangeResultV10, p: Price): bool =
-    res`numSheepSend * p`d >= res`numWheatReceived * p`n
-
-  % favors_sheep?: S/W <= n/d  <=>  S*d <= W*n
-  favors_sheep?(res: ExchangeResultV10, p: Price): bool =
-    res`numSheepSend * p`d <= res`numWheatReceived * p`n
-
-  % 1% favor bounds in integers:
-  % If wheat favored: S/W <= (101/100)*(n/d)  <=>  S*d*100 <= W*n*101
-  within_one_percent_when_wheat_favored?(res: ExchangeResultV10, p: Price): bool =
-    (res`numSheepSend * p`d * 100) <= (res`numWheatReceived * p`n * 101)
-
-  % If sheep favored: S/W >= (100/101)*(n/d)  <=>  S*d*101 >= W*n*100
-  within_one_percent_when_sheep_favored?(res: ExchangeResultV10, p: Price): bool =
-    (res`numSheepSend * p`d * 101) >= (res`numWheatReceived * p`n * 100)
-
-  %exchangeSS: TYPE = {i: nnint64 | IF round i >= 0 }
-  %exchangeV10(Price price, int64_t maxWheatSend, int64_t maxWheatReceive, int64_t maxSheepSend, int64_t maxSheepReceive, RoundingType round) : ExchangeResultV10 = 
-  %exchangeV10(s: wf_state) : ExchangeResultV10 = 
-
-  %-----------------------------
   % Threshold adjustment
   %-----------------------------
   applyPriceErrorThresholds(s: wf_state): ExchangeResultV10 =
-  %applyPriceErrorThresholds(p: Price, wheatReceive: nnint64, sheepSend: nnint64, wheatStays: bool, round: RoundingType): ExchangeResultV10 =
     LET wR = s`wR, sS = s`sS, round = s`round, wheatStays = s`wheatStays,
       adj_pair: [# wr: int64, ss: int64 #] =
         IF (wR > 0 AND sS > 0) THEN
