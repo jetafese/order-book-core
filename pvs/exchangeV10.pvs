@@ -33,10 +33,9 @@ BEGIN
   %-----------------------------
   % Core function (no thresholds)
   %-----------------------------
-  exchangeV10WithoutPriceErrorThresholds(price: Price,
-                                         maxWheatSend, maxWheatReceive,
-                                         maxSheepSend, maxSheepReceive: int64,
-                                         round: RoundingType): wf_state =
+  exchangeV10WithoutPriceErrorThresholds(price: Price, maxWheatSend: nnint64,
+        maxWheatReceive: posint64, maxSheepSend: posint64,
+        maxSheepReceive: nnint64, round: RoundingType): wf_state =
     LET
       wheatValue: uint128 = calculateOfferValue(price`n, price`d,
                                              maxWheatSend, maxSheepReceive),
@@ -49,6 +48,7 @@ BEGIN
           IF round = PATH_PAYMENT_STRICT_SEND THEN
             big_div(sheepValue, price`n, ROUND_DOWN)
           ELSIF (price`n > price`d OR round = PATH_PAYMENT_STRICT_RECEIVE) THEN
+            % wheat is more valuable
             big_div(sheepValue, price`n, ROUND_DOWN)
           ELSE
             % sheep is more valuable, wheatStays: compute sheepSend first
@@ -105,9 +105,10 @@ BEGIN
   %-----------------------------
   % Public wrapper exchangeV10
   %-----------------------------
-  exchangeV10(price: Price, maxWheatSend, maxWheatReceive,
-              maxSheepSend, maxSheepReceive: int64,
-              round: RoundingType): ExchangeResultV10 =
+  % types justified by crossOfferV10
+  exchangeV10(price: Price, maxWheatSend: nnint64, maxWheatReceive: posint64,
+        maxSheepSend: posint64, maxSheepReceive: nnint64,
+        round: RoundingType): ExchangeResultV10 =
     LET before = exchangeV10WithoutPriceErrorThresholds(price, maxWheatSend,
                    maxWheatReceive, maxSheepSend, maxSheepReceive, round)
     IN applyPriceErrorThresholds(before)
@@ -118,5 +119,15 @@ ExchangeV10_Lemmas: THEORY
 BEGIN
 
   IMPORTING ExchangeV10
+
+  %---------------------------------------------------------------------------
+  % exchangeV10WithoutPriceErrorThresholds is wellformed
+  %---------------------------------------------------------------------------
+  well_formed_exchangeV10WithoutPriceErrorThresholds: LEMMA
+    FORALL (price: Price, maxWheatSend: nnint64, maxWheatReceive: posint64,
+        maxSheepSend: posint64, maxSheepReceive: nnint64,round: RoundingType):
+      LET state = exchangeV10WithoutPriceErrorThresholds(price, maxWheatSend,
+                   maxWheatReceive, maxSheepSend, maxSheepReceive, round)
+      IN wf_state?(state)
 
 END ExchangeV10_Lemmas

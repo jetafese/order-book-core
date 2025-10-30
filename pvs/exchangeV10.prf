@@ -44,103 +44,111 @@
   (|exchangeV10WithoutPriceErrorThresholds_TCC1-1| NIL 3970822228
    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
    (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE "ExchangeV10.price`n"
-    "nnint32" (41 48 41 55))))
+    "nnint32" (40 48 40 55))))
  (|exchangeV10WithoutPriceErrorThresholds_TCC2| 0
   (|exchangeV10WithoutPriceErrorThresholds_TCC2-1| NIL 3970822228
    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
    (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE "ExchangeV10.price`d"
-    "nnint32" (41 57 41 64))))
+    "nnint32" (40 57 40 64))))
  (|exchangeV10WithoutPriceErrorThresholds_TCC3| 0
-  (|exchangeV10WithoutPriceErrorThresholds_TCC3-1| NIL 3970822228
-   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
-   (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE "ExchangeV10.maxWheatSend"
-    "nnint64" (42 45 42 57))))
- (|exchangeV10WithoutPriceErrorThresholds_TCC4| 0
   (|exchangeV10WithoutPriceErrorThresholds_TCC4-1| NIL 3970822228
    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
    (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE "ExchangeV10.maxSheepSend"
-    "nnint64" (44 45 44 57))))
+    "nnint64" (43 45 43 57))))
+ (|exchangeV10WithoutPriceErrorThresholds_TCC4| 0
+  (|exchangeV10WithoutPriceErrorThresholds_TCC3-1| NIL 3970822228
+   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+   (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE
+    "ExchangeV10.maxWheatReceive" "nnint64" (43 59 43 74))))
  (|exchangeV10WithoutPriceErrorThresholds_TCC5| 0
   (|exchangeV10WithoutPriceErrorThresholds_TCC5-1| NIL 3970822228
    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
    (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE "ExchangeV10.price`n"
-    "posint64" (50 32 50 39))))
+    "posint64" (49 32 49 39))))
  (|exchangeV10WithoutPriceErrorThresholds_TCC6| 0
   (|exchangeV10WithoutPriceErrorThresholds_TCC6-1| NIL 3970822228
    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
    (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE "ExchangeV10.price`n"
-    "posint64" (52 32 52 39))))
+    "posint64" (51 32 51 39))))
  (|exchangeV10WithoutPriceErrorThresholds_TCC7| 0
   (|exchangeV10WithoutPriceErrorThresholds_TCC7-1| NIL 3970822228
    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
    (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE "ExchangeV10.price`d"
-    "posint64" (55 52 55 59))))
+    "posint64" (54 52 54 59))))
  (|exchangeV10WithoutPriceErrorThresholds_TCC8| 0
   (|exchangeV10WithoutPriceErrorThresholds_TCC8-1| NIL 3970822228
    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
    (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE "ExchangeV10.price`d"
-    "nnint64" (56 44 56 51))))
+    "nnint64" (55 44 55 51))))
  (|exchangeV10WithoutPriceErrorThresholds_TCC9| 0
   (|exchangeV10WithoutPriceErrorThresholds_TCC9-1| NIL 3970822228
    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
    (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE "ExchangeV10.price`n"
-    "posint64" (56 53 56 60))))
+    "posint64" (55 53 55 60))))
  (|exchangeV10WithoutPriceErrorThresholds_TCC10| 0
   (|exchangeV10WithoutPriceErrorThresholds_TCC10-1| NIL 3970822228
    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
    (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE "ExchangeV10.price`n"
-    "posint64" (61 32 61 39))))
+    "posint64" (60 32 60 39))))
  (|exchangeV10WithoutPriceErrorThresholds_TCC11| 0
   (|exchangeV10WithoutPriceErrorThresholds_TCC11-1| NIL 3970822228
    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
    (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE "ExchangeV10.price`d"
-    "posint64" (64 52 64 59))))
+    "posint64" (63 52 63 59))))
  (|exchangeV10WithoutPriceErrorThresholds_TCC12| 0
   (|exchangeV10WithoutPriceErrorThresholds_TCC12-1| NIL 3970822228
    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
    (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE "ExchangeV10.price`d"
-    "nnint64" (65 44 65 51))))
+    "nnint64" (64 44 64 51))))
  (|exchangeV10WithoutPriceErrorThresholds_TCC13| 0
   (|exchangeV10WithoutPriceErrorThresholds_TCC13-1| NIL 3970822228
    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
    (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE "ExchangeV10.price`n"
-    "posint64" (65 53 65 60))))
+    "posint64" (64 53 64 60))))
  (|exchangeV10WithoutPriceErrorThresholds_TCC14| 0
-  (|exchangeV10WithoutPriceErrorThresholds_TCC14-1| NIL 3970822228
-   ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
-   (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE
-    "ExchangeV10.maxSheepReceive" "nnint64" (74 17 74 32))))
- (|exchangeV10WithoutPriceErrorThresholds_TCC15| 0
   (|exchangeV10WithoutPriceErrorThresholds_TCC15-1| NIL 3970822228
    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
    (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE "ExchangeV10.price`n"
-    "nnint64" (76 41 76 48))))
- (|exchangeV10WithoutPriceErrorThresholds_TCC16| 0
+    "nnint64" (75 41 75 48))))
+ (|exchangeV10WithoutPriceErrorThresholds_TCC15| 0
   (|exchangeV10WithoutPriceErrorThresholds_TCC16-1| NIL 3970822228
    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
    (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE "ExchangeV10.price`d"
-    "posint64" (76 50 76 57))))
- (|exchangeV10WithoutPriceErrorThresholds_TCC17| 0
+    "posint64" (75 50 75 57))))
+ (|exchangeV10WithoutPriceErrorThresholds_TCC16| 0
   (|exchangeV10WithoutPriceErrorThresholds_TCC17-1| NIL 3970822228
    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
    (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE "ExchangeV10.price`n"
-    "nnint64" (82 41 82 48))))
- (|exchangeV10WithoutPriceErrorThresholds_TCC18| 0
+    "nnint64" (81 41 81 48))))
+ (|exchangeV10WithoutPriceErrorThresholds_TCC17| 0
   (|exchangeV10WithoutPriceErrorThresholds_TCC18-1| NIL 3970822228
    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
    (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE "ExchangeV10.price`d"
-    "posint64" (82 50 82 57))))
- (|exchangeV10WithoutPriceErrorThresholds_TCC19| 0
+    "posint64" (81 50 81 57))))
+ (|exchangeV10WithoutPriceErrorThresholds_TCC18| 0
   (|exchangeV10WithoutPriceErrorThresholds_TCC19-1| NIL 3970822228
    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
    (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE
     "(# price := ExchangeV10.price, wheatStays := ExchangeV10.wheatStays, sS := 0, wR := 0, round := ExchangeV10.round #)"
-    "wf_state" (98 8 99 45))))
- (|exchangeV10WithoutPriceErrorThresholds_TCC20| 0
+    "wf_state" (97 8 98 45))))
+ (|exchangeV10WithoutPriceErrorThresholds_TCC19| 0
   (|exchangeV10WithoutPriceErrorThresholds_TCC20-1| NIL 3970822228
    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
    (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE
     "(# price := ExchangeV10.price, wheatStays := ExchangeV10.wheatStays, sS := ExchangeV10.sheepSend, wR := ExchangeV10.wheatReceive, round := ExchangeV10.round #)"
-    "wf_state" (101 8 102 64)))))
-(|ExchangeV10_Lemmas|)
+    "wf_state" (100 8 101 64)))))
+(|ExchangeV10_Lemmas|
+ (|well_formed_exchangeV10WithoutPriceErrorThresholds| 0
+  (|well_formed_exchangeV10WithoutPriceErrorThresholds-1| NIL 3970825872
+   ("" (SKEEP :PREDS? T) (("" (HIDE -1 -4 -7 -10) (("" (GROUND) NIL NIL)) NIL))
+    NIL)
+   ((|real_gt_is_strict_total_order| NAME-JUDGEMENT
+     "(strict_total_order?[real])" |real_props| NIL)
+    (|real_ge_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
+     |real_props| NIL)
+    (|int_minus_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
+    (|real_le_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
+     |real_props| NIL)
+    (NIL APPLICATION-JUDGEMENT "above(n)" |exp2| NIL))
+   SHOSTAK)))
 
