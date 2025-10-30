@@ -1,3 +1,5 @@
 *.prf~
 *.pvs~
-
+pvsbin/
+orphaned-proofs.*
+.pvscontext
