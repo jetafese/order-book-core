@@ -1,4 +1,4 @@
-ExchangeV10: THEORY
+ExchangeV10_OG: THEORY
 BEGIN
 
   %-----------------------------
@@ -224,14 +224,14 @@ BEGIN
       (favors_wheat?(r, p) AND favors_sheep?(r, p)) IMPLIES
         r`numSheepSend * p`d = r`numWheatReceived * p`n
 
-END ExchangeV10
+END ExchangeV10_OG
 
 
 
 ExchangeV10_1: THEORY
 BEGIN
 
-  IMPORTING ExchangeV10
+  IMPORTING ExchangeV10_OG
 
   %-----------------------------
   % Helpers to express "directional" 1% checks and favoring

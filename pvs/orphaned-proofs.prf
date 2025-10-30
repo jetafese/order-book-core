@@ -3473,4 +3473,132 @@
      (|wf_state?| CONST-DECL "bool" |ApplyPriceErrorThresholds| NIL)
      (|wf_state| TYPE-EQ-DECL NIL |ApplyPriceErrorThresholds| NIL))
     SHOSTAK))
+  . 0))(("applyPriceErrorThresholds"
+  (|thresholds_path_error_bounded_favor_sheep_TCC1| 0
+   (|thresholds_path_error_bounded_favor_sheep_TCC1-1| NIL 3970779206
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|thresholds_path_error_bounded_favor_sheep| SUBTYPE
+     "(ApplyPriceErrorThresholds_Lemmas.price)" "nznum")))
+  |thresholds_path_error_bounded_favor_sheep_TCC1-1| NIL 3970779206
+  ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|thresholds_path_error_bounded_favor_sheep| SUBTYPE
+   "(ApplyPriceErrorThresholds_Lemmas.price)" "nznum"))
+ ("applyPriceErrorThresholds"
+  (|thresholds_path_error_bounded_favor_sheep_TCC1| 0
+   (|thresholds_path_error_bounded_favor_sheep_TCC1-1| NIL 3970779206
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|thresholds_path_error_bounded_favor_sheep| SUBTYPE
+     "(ApplyPriceErrorThresholds_Lemmas.price)" "nznum")))
+  . 0))(("applyPriceErrorThresholds"
+  (|thresholds_path_error_bounded_favor_sheep_TCC1| 0
+   (|thresholds_path_error_bounded_favor_sheep_TCC1-1| NIL 3970779206
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|thresholds_path_error_bounded_favor_sheep| SUBTYPE
+     "(ApplyPriceErrorThresholds_Lemmas.price)" "nznum")))
+  |thresholds_path_error_bounded_favor_sheep_TCC1-1| NIL 3970779206
+  ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|thresholds_path_error_bounded_favor_sheep| SUBTYPE
+   "(ApplyPriceErrorThresholds_Lemmas.price)" "nznum"))
+ ("applyPriceErrorThresholds"
+  (|thresholds_path_error_bounded_favor_sheep_TCC1| 0
+   (|thresholds_path_error_bounded_favor_sheep_TCC1-1| NIL 3970779206
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|thresholds_path_error_bounded_favor_sheep| SUBTYPE
+     "(ApplyPriceErrorThresholds_Lemmas.price)" "nznum")))
+  . 0))(("applyPriceErrorThresholds"
+  (|thresholds_path_error_bounded_favor_sheep_TCC1| 0
+   (|thresholds_path_error_bounded_favor_sheep_TCC1-1| NIL 3970779206
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|thresholds_path_error_bounded_favor_sheep| SUBTYPE
+     "(ApplyPriceErrorThresholds_Lemmas.price)" "nznum")))
+  |thresholds_path_error_bounded_favor_sheep_TCC1-1| NIL 3970779206
+  ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|thresholds_path_error_bounded_favor_sheep| SUBTYPE
+   "(ApplyPriceErrorThresholds_Lemmas.price)" "nznum"))
+ ("applyPriceErrorThresholds"
+  (|thresholds_path_error_bounded_favor_sheep_TCC1| 0
+   (|thresholds_path_error_bounded_favor_sheep_TCC1-1| NIL 3970779206
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|thresholds_path_error_bounded_favor_sheep| SUBTYPE
+     "(ApplyPriceErrorThresholds_Lemmas.price)" "nznum")))
+  . 0))(("applyPriceErrorThresholds"
+  (|thresholds_path_error_bounded_favor_sheep_TCC1| 0
+   (|thresholds_path_error_bounded_favor_sheep_TCC1-1| NIL 3970779206
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|thresholds_path_error_bounded_favor_sheep| SUBTYPE
+     "(ApplyPriceErrorThresholds_Lemmas.price)" "nznum")))
+  |thresholds_path_error_bounded_favor_sheep_TCC1-1| NIL 3970779206
+  ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|thresholds_path_error_bounded_favor_sheep| SUBTYPE
+   "(ApplyPriceErrorThresholds_Lemmas.price)" "nznum"))
+ ("applyPriceErrorThresholds"
+  (|thresholds_path_error_bounded_favor_sheep_TCC1| 0
+   (|thresholds_path_error_bounded_favor_sheep_TCC1-1| NIL 3970779206
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|thresholds_path_error_bounded_favor_sheep| SUBTYPE
+     "(ApplyPriceErrorThresholds_Lemmas.price)" "nznum")))
+  . 0))(("applyPriceErrorThresholds"
+  (|thresholds_path_error_bounded_favor_sheep_TCC1| 0
+   (|thresholds_path_error_bounded_favor_sheep_TCC1-1| NIL 3970779206
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|thresholds_path_error_bounded_favor_sheep| SUBTYPE
+     "(ApplyPriceErrorThresholds_Lemmas.price)" "nznum")))
+  |thresholds_path_error_bounded_favor_sheep_TCC1-1| NIL 3970779206
+  ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|thresholds_path_error_bounded_favor_sheep| SUBTYPE
+   "(ApplyPriceErrorThresholds_Lemmas.price)" "nznum"))
+ ("applyPriceErrorThresholds"
+  (|thresholds_path_error_bounded_favor_sheep_TCC1| 0
+   (|thresholds_path_error_bounded_favor_sheep_TCC1-1| NIL 3970779206
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|thresholds_path_error_bounded_favor_sheep| SUBTYPE
+     "(ApplyPriceErrorThresholds_Lemmas.price)" "nznum")))
+  . 0))(("applyPriceErrorThresholds"
+  (|thresholds_path_error_bounded_favor_sheep_TCC1| 0
+   (|thresholds_path_error_bounded_favor_sheep_TCC1-1| NIL 3970779206
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|thresholds_path_error_bounded_favor_sheep| SUBTYPE
+     "(ApplyPriceErrorThresholds_Lemmas.price)" "nznum")))
+  |thresholds_path_error_bounded_favor_sheep_TCC1-1| NIL 3970779206
+  ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|thresholds_path_error_bounded_favor_sheep| SUBTYPE
+   "(ApplyPriceErrorThresholds_Lemmas.price)" "nznum"))
+ ("applyPriceErrorThresholds"
+  (|thresholds_path_error_bounded_favor_sheep_TCC1| 0
+   (|thresholds_path_error_bounded_favor_sheep_TCC1-1| NIL 3970779206
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|thresholds_path_error_bounded_favor_sheep| SUBTYPE
+     "(ApplyPriceErrorThresholds_Lemmas.price)" "nznum")))
+  . 0))(("applyPriceErrorThresholds"
+  (|thresholds_path_error_bounded_favor_sheep_TCC1| 0
+   (|thresholds_path_error_bounded_favor_sheep_TCC1-1| NIL 3970779206
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|thresholds_path_error_bounded_favor_sheep| SUBTYPE
+     "(ApplyPriceErrorThresholds_Lemmas.price)" "nznum")))
+  |thresholds_path_error_bounded_favor_sheep_TCC1-1| NIL 3970779206
+  ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|thresholds_path_error_bounded_favor_sheep| SUBTYPE
+   "(ApplyPriceErrorThresholds_Lemmas.price)" "nznum"))
+ ("applyPriceErrorThresholds"
+  (|thresholds_path_error_bounded_favor_sheep_TCC1| 0
+   (|thresholds_path_error_bounded_favor_sheep_TCC1-1| NIL 3970779206
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|thresholds_path_error_bounded_favor_sheep| SUBTYPE
+     "(ApplyPriceErrorThresholds_Lemmas.price)" "nznum")))
+  . 0))(("applyPriceErrorThresholds"
+  (|thresholds_path_error_bounded_favor_sheep_TCC1| 0
+   (|thresholds_path_error_bounded_favor_sheep_TCC1-1| NIL 3970779206
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|thresholds_path_error_bounded_favor_sheep| SUBTYPE
+     "(ApplyPriceErrorThresholds_Lemmas.price)" "nznum")))
+  |thresholds_path_error_bounded_favor_sheep_TCC1-1| NIL 3970779206
+  ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|thresholds_path_error_bounded_favor_sheep| SUBTYPE
+   "(ApplyPriceErrorThresholds_Lemmas.price)" "nznum"))
+ ("applyPriceErrorThresholds"
+  (|thresholds_path_error_bounded_favor_sheep_TCC1| 0
+   (|thresholds_path_error_bounded_favor_sheep_TCC1-1| NIL 3970779206
+    ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|thresholds_path_error_bounded_favor_sheep| SUBTYPE
+     "(ApplyPriceErrorThresholds_Lemmas.price)" "nznum")))
   . 0))
