@@ -25,7 +25,7 @@ BEGIN
   #]
 
   wf_state?(s: State) : bool =
-    (PATH_PAYMENT_STRICT_SEND?(s`round) IMPLIES NOT (s`sS = 0)) AND
+    (s`wR = 0 AND PATH_PAYMENT_STRICT_SEND?(s`round) IMPLIES NOT (s`sS = 0)) AND
     ((s`wR > 0 AND s`sS > 0 AND s`wheatStays) IMPLIES s`price`d * s`sS >= s`price`n * s`wR) AND
     ((s`wR > 0 AND s`sS > 0 AND NOT s`wheatStays) IMPLIES s`price`n * s`wR >= s`price`d * s`sS)
 
@@ -136,8 +136,8 @@ BEGIN
   thresholds_path_send_sS_not_zero_if_wR_or_sS_equal_zero: LEMMA
     FORALL (s: wf_state):
       LET r = applyPriceErrorThresholds(s)
-      IN (s`round = PATH_PAYMENT_STRICT_SEND) AND (s`wR = 0 OR s`sS = 0)
-        IMPLIES NOT (s`sS = 0)
+      IN (s`round = PATH_PAYMENT_STRICT_SEND) AND (s`wR = 0)
+        IMPLIES NOT (r`numSheepSend = 0)
  
   %---------------------------------------------------------------------------
   % Sell sheep for no wheat recorded (PATH_PAYMENT_STRICT_SEND mode)

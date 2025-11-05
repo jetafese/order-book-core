@@ -92,24 +92,9 @@ BEGIN
           ELSE
             big_div(wheatValue, price`d, ROUND_DOWN)
           ENDIF
-        ENDIF,
-
-      % Spec-side bounds checks mirroring the code's throws
-      minWheatCap: nnint64 = IF maxWheatReceive <= maxWheatSend 
-                          THEN maxWheatReceive ELSE maxWheatSend ENDIF,
-      minSheepCap: nnint64 = IF maxSheepReceive <= maxSheepSend
-                          THEN maxSheepReceive ELSE maxSheepSend ENDIF,
-      chk1: bool = wheatReceive <= minWheatCap,
-      chk2: bool = sheepSend     <= minSheepCap
+        ENDIF
     IN
-      IF NOT chk1 OR NOT chk2 THEN
-        % In C++ this would throw. Here we return a neutralized result.
-        (# price:= price, wheatStays := wheatStays,
-          sS := 0, wR := 0, round := round #)
-      ELSE
-        (# price:= price, wheatStays := wheatStays,
-          sS := sheepSend, wR := wheatReceive, round := round #)
-      ENDIF
+      (# price:= price, wheatStays := wheatStays, sS := sheepSend, wR := wheatReceive, round := round #)
 
   %-----------------------------
   % Public wrapper exchangeV10
