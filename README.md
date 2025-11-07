@@ -4,15 +4,18 @@ https://github.com/stellar/stellar-core/blob/master/src/transactions/OfferExchan
 
 # Current Proof Status
 ```
-  Proof summary for theory ExchangeV10
-    big_div_TCC1..........................unfinished          [SHOSTAK](0.00 s)
-    big_div_TCC2..........................unfinished          [SHOSTAK](0.00 s)
-    big_div_numden_TCC1...................unfinished          [SHOSTAK](0.00 s)
-    big_div_numden_TCC2...................unfinished          [SHOSTAK](0.00 s)
+Proof summary for theory ExchangeV10
+    big_div_TCC1..........................proved - complete   [SHOSTAK](0.00 s)
+    big_div_TCC2..........................proved - incomplete [SHOSTAK](0.00 s)
+    big_div_TCC3..........................proved - complete   [SHOSTAK](0.00 s)
+    big_div_TCC4..........................proved - incomplete [SHOSTAK](0.00 s)
+    big_div_numden_TCC1...................proved - complete   [SHOSTAK](0.00 s)
+    big_div_numden_TCC2...................proved - incomplete [SHOSTAK](0.00 s)
+    big_div_numden_TCC3...................proved - complete   [SHOSTAK](0.00 s)
+    big_div_numden_TCC4...................proved - incomplete [SHOSTAK](0.00 s)
     calculateOfferValue_TCC1..............proved - incomplete [SHOSTAK](0.00 s)
     exchangeV10WithoutPriceErrorThresholds_TCC1...unfinished          [SHOSTAK](0.00 s)
-    exchangeV10WithoutPriceErrorThresholds_TCC2...unfinished          [SHOSTAK](0.00 s)
-    Theory ExchangeV10 totals: 7 formulas, 7 attempted, 1 succeeded (0.01 s)
+    Theory ExchangeV10 totals: 10 formulas, 10 attempted, 9 succeeded (0.01 s)
 
  Proof summary for theory ApplyPriceErrorThresholds_Lemmas
     thresholds_normal_bounded_error_no_trade_TCC1...proved - complete   [SHOSTAK](0.00 s)
@@ -53,5 +56,5 @@ https://github.com/stellar/stellar-core/blob/master/src/transactions/OfferExchan
  Proof summary for theory top
     Theory top totals: 0 formulas, 0 attempted, 0 succeeded (0.00 s)
 
-Grand Totals: 31 proofs, 31 attempted, 25 succeeded (0.02 s)
+Grand Totals: 34 proofs, 34 attempted, 33 succeeded (0.02 s)
 ```
