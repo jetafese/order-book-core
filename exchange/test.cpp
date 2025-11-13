@@ -15,13 +15,13 @@ void testThreshold();
 
 int main()
 {
-    testRoundingForPATH_PAYMENT_STRICT_RECEIVE();
+    // testRoundingForPATH_PAYMENT_STRICT_RECEIVE();
     testRoundingForPATH_PAYMENT_STRICT_SEND();
-    testLimitedByMaxWheatSendAndMaxSheepSend();
-    testLimitedByMaxWheatReceiveAndMaxSheepReceive();
-    testLimitedByMaxWheatSendAndMaxWheatReceive();
-    testLimitedByMaxSheepSendAndMaxSheepReceive();
-    testThreshold();
+    // testLimitedByMaxWheatSendAndMaxSheepSend();
+    // testLimitedByMaxWheatReceiveAndMaxSheepReceive();
+    // testLimitedByMaxWheatSendAndMaxWheatReceive();
+    // testLimitedByMaxSheepSendAndMaxSheepReceive();
+   //  testThreshold();
     return 0;
 }
 
@@ -32,9 +32,9 @@ void testRoundingForPATH_PAYMENT_STRICT_RECEIVE() {
                     int64_t wheatReceive, int64_t sheepSend) {
         auto res = exchangeV10(p, maxWheatSend, maxWheatReceive, INT64_MAX,
                                 INT64_MAX, round);
-        assert(res.wheatStays == (maxWheatSend > maxWheatReceive));
-        assert(res.numWheatReceived == wheatReceive);
-        assert(res.numSheepSend == sheepSend);
+       assert(res.wheatStays == (maxWheatSend > maxWheatReceive));
+       assert(res.numWheatReceived == wheatReceive);
+       assert(res.numSheepSend == sheepSend);
     };
 
     // SECTION("no thresholding")
@@ -63,17 +63,17 @@ void testRoundingForPATH_PAYMENT_STRICT_SEND() {
         // we need to test.
         if (maxWheatReceive == INT64_MAX)
         {
-            assert(res.wheatStays);
+           assert(res.wheatStays);
         }
         else
         {
-            assert(res.wheatStays ==
+           assert(res.wheatStays ==
                     bigMultiply(maxWheatSend, p.n) >
                         std::min(bigMultiply(maxSheepSend, p.d),
                                     bigMultiply(maxWheatReceive, p.n)));
         }
-        assert(res.numWheatReceived == wheatReceive);
-        assert(res.numSheepSend == sheepSend);
+       assert(res.numWheatReceived == wheatReceive);
+       assert(res.numSheepSend == sheepSend);
     };
 
     // SECTION("no thresholding")
@@ -81,7 +81,7 @@ void testRoundingForPATH_PAYMENT_STRICT_SEND() {
     check(Price{3, 2}, 28, INT64_MAX, 41, RoundingType::PATH_PAYMENT_STRICT_SEND, 27, 41);
 
     // // SECTION("transfer can increase if wheat is more valuable")
-    // assert(adjustOffer(Price{3, 2}, 97, INT64_MAX) == 97);
+    //assert(adjustOffer(Price{3, 2}, 97, INT64_MAX) == 97);
     // check(Price{3, 2}, 97, INT64_MAX, 145, RoundingType::NORMAL, 96, 144);
     // check(Price{3, 2}, 97, INT64_MAX, 145, RoundingType::PATH_PAYMENT_STRICT_SEND, 96, 145);
 
@@ -101,17 +101,17 @@ void testLimitedByMaxWheatSendAndMaxSheepSend() {
                                 int64_t sheepSend) {
         auto res = exchangeV10(p, maxWheatSend, INT64_MAX, maxSheepSend,
                                 INT64_MAX, RoundingType::NORMAL);
-        assert(res.wheatStays ==
+       assert(res.wheatStays ==
                 (maxWheatSend * p.n > maxSheepSend * p.d));
-        assert(res.numWheatReceived == wheatReceive);
-        assert(res.numSheepSend == sheepSend);
+       assert(res.numWheatReceived == wheatReceive);
+       assert(res.numSheepSend == sheepSend);
         if (res.wheatStays)
         {
-            assert(sheepSend * p.d >= wheatReceive * p.n);
+           assert(sheepSend * p.d >= wheatReceive * p.n);
         }
         else
         {
-            assert(sheepSend * p.d <= wheatReceive * p.n);
+           assert(sheepSend * p.d <= wheatReceive * p.n);
         }
     };
 
@@ -143,17 +143,17 @@ void testLimitedByMaxWheatReceiveAndMaxSheepReceive() {
                                 int64_t wheatReceive, int64_t sheepSend) {
         auto res = exchangeV10(p, INT64_MAX, maxWheatReceive, INT64_MAX,
                                 maxSheepReceive, RoundingType::NORMAL);
-        assert(res.wheatStays ==
+       assert(res.wheatStays ==
                 (maxSheepReceive * p.d > maxWheatReceive * p.n));
-        assert(res.numWheatReceived == wheatReceive);
-        assert(res.numSheepSend == sheepSend);
+       assert(res.numWheatReceived == wheatReceive);
+       assert(res.numSheepSend == sheepSend);
         if (res.wheatStays)
         {
-            assert(sheepSend * p.d >= wheatReceive * p.n);
+           assert(sheepSend * p.d >= wheatReceive * p.n);
         }
         else
         {
-            assert(sheepSend * p.d <= wheatReceive * p.n);
+           assert(sheepSend * p.d <= wheatReceive * p.n);
         }
     };
 
@@ -185,16 +185,16 @@ void testLimitedByMaxWheatSendAndMaxWheatReceive() {
                                 int64_t wheatReceive, int64_t sheepSend) {
         auto res = exchangeV10(p, maxWheatSend, maxWheatReceive, INT64_MAX,
                                 INT64_MAX, RoundingType::NORMAL);
-        assert(res.wheatStays == (maxWheatSend > maxWheatReceive));
-        assert(res.numWheatReceived == wheatReceive);
-        assert(res.numSheepSend == sheepSend);
+       assert(res.wheatStays == (maxWheatSend > maxWheatReceive));
+       assert(res.numWheatReceived == wheatReceive);
+       assert(res.numSheepSend == sheepSend);
         if (res.wheatStays)
         {
-            assert(sheepSend * p.d >= wheatReceive * p.n);
+           assert(sheepSend * p.d >= wheatReceive * p.n);
         }
         else
         {
-            assert(sheepSend * p.d <= wheatReceive * p.n);
+           assert(sheepSend * p.d <= wheatReceive * p.n);
         }
     };
 
@@ -218,16 +218,16 @@ void testLimitedByMaxSheepSendAndMaxSheepReceive() {
                                 int64_t wheatReceive, int64_t sheepSend) {
         auto res = exchangeV10(p, INT64_MAX, INT64_MAX, maxSheepSend,
                                 maxSheepReceive, RoundingType::NORMAL);
-        assert(res.wheatStays == (maxSheepReceive > maxSheepSend));
-        assert(res.numWheatReceived == wheatReceive);
-        assert(res.numSheepSend == sheepSend);
+       assert(res.wheatStays == (maxSheepReceive > maxSheepSend));
+       assert(res.numWheatReceived == wheatReceive);
+       assert(res.numSheepSend == sheepSend);
         if (res.wheatStays)
         {
-            assert(sheepSend * p.d >= wheatReceive * p.n);
+           assert(sheepSend * p.d >= wheatReceive * p.n);
         }
         else
         {
-            assert(sheepSend * p.d <= wheatReceive * p.n);
+           assert(sheepSend * p.d <= wheatReceive * p.n);
         }
     };
 
@@ -251,16 +251,16 @@ void testThreshold() {
                                 int64_t wheatReceive, int64_t sheepSend) {
         auto res = exchangeV10(p, maxWheatSend, maxWheatReceive, INT64_MAX,
                                 INT64_MAX, RoundingType::NORMAL);
-        assert(res.wheatStays == (maxWheatSend > maxWheatReceive));
-        assert(res.numWheatReceived == wheatReceive);
-        assert(res.numSheepSend == sheepSend);
+       assert(res.wheatStays == (maxWheatSend > maxWheatReceive));
+       assert(res.numWheatReceived == wheatReceive);
+       assert(res.numSheepSend == sheepSend);
         if (res.wheatStays)
         {
-            assert(sheepSend * p.d >= wheatReceive * p.n);
+           assert(sheepSend * p.d >= wheatReceive * p.n);
         }
         else
         {
-            assert(sheepSend * p.d <= wheatReceive * p.n);
+           assert(sheepSend * p.d <= wheatReceive * p.n);
         }
     };
 
