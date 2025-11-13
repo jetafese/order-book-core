@@ -13,7 +13,6 @@ BEGIN
   %-----------------------------
   RoundMode: TYPE = { ROUND_DOWN, ROUND_UP }
   
-
   big_div(x: uint128, y: posint64, r: RoundMode): nnint64 =
     CASES r OF
       ROUND_DOWN: IF x/y <= max64 THEN ndiv(x,y) ELSE 0 ENDIF,
@@ -31,6 +30,23 @@ BEGIN
     ENDCASES
   
   %-----------------------------
+  % exchange invariants
+  %-----------------------------
+  Inv: TYPE = [#
+    price: Price,
+    maxWheatSend: nnint64,
+    maxWheatReceive: posint64,
+    maxSheepSend: posint64,
+    maxSheepReceive: nnint64,
+    round: RoundingType
+  #]
+
+  inv_state?(i: Inv) : bool =
+    (i`round = PATH_PAYMENT_STRICT_SEND IMPLIES (i`maxSheepSend > 0 AND i`maxSheepReceive > 0))
+
+  inv_state : TYPE = (inv_state?)
+
+  %-----------------------------
   % Offer value calculation
   %-----------------------------
   % calculateOfferValue(n, d, maxSend, maxReceive) =
@@ -42,10 +58,14 @@ BEGIN
   %-----------------------------
   % Core function (no thresholds)
   %-----------------------------
-  exchangeV10WithoutPriceErrorThresholds(price: Price, maxWheatSend: nnint64,
-        maxWheatReceive: posint64, maxSheepSend: posint64,
-        maxSheepReceive: nnint64, round: RoundingType): wf_state =
+  exchangeV10WithoutPriceErrorThresholds(i: inv_state): wf_state =
     LET
+      price = i`price,
+      maxWheatSend = i`maxWheatSend,
+      maxWheatReceive = i`maxWheatReceive,
+      maxSheepSend = i`maxSheepSend,
+      maxSheepReceive = i`maxSheepReceive,
+      round = i`round,
       wheatValue: uint128 = calculateOfferValue(price`n, price`d,
                                              maxWheatSend, maxSheepReceive),
       sheepValue: uint128 = calculateOfferValue(price`d, price`n,
@@ -100,11 +120,8 @@ BEGIN
   % Public wrapper exchangeV10
   %-----------------------------
   % types justified by crossOfferV10
-  exchangeV10(price: Price, maxWheatSend: nnint64, maxWheatReceive: posint64,
-        maxSheepSend: posint64, maxSheepReceive: nnint64,
-        round: RoundingType): ExchangeResultV10 =
-    LET before = exchangeV10WithoutPriceErrorThresholds(price, maxWheatSend,
-                   maxWheatReceive, maxSheepSend, maxSheepReceive, round)
+  exchangeV10(i: inv_state): ExchangeResultV10 =
+    LET before = exchangeV10WithoutPriceErrorThresholds(i)
     IN applyPriceErrorThresholds(before)
 
 END ExchangeV10
@@ -115,13 +132,21 @@ BEGIN
   IMPORTING ExchangeV10
 
   %---------------------------------------------------------------------------
-  % exchangeV10WithoutPriceErrorThresholds is wellformed
+  % wheatStays determined correctly
   %---------------------------------------------------------------------------
-  well_formed_exchangeV10WithoutPriceErrorThresholds: LEMMA
-    FORALL (price: Price, maxWheatSend: nnint64, maxWheatReceive: posint64,
-        maxSheepSend: posint64, maxSheepReceive: nnint64,round: RoundingType):
-      LET state = exchangeV10WithoutPriceErrorThresholds(price, maxWheatSend,
-                   maxWheatReceive, maxSheepSend, maxSheepReceive, round)
-      IN wf_state?(state)
+  wheatStays_exchangeV10WithoutPriceErrorThresholds: LEMMA
+    FORALL (i: inv_state):
+      LET state = exchangeV10WithoutPriceErrorThresholds(i),
+          wheatOfferInTermsOfSheep = min(i`maxWheatSend * i`price`n, i`maxSheepReceive * i`price`d),
+          sheepOfferInTermsOfSheep = min(i`maxWheatReceive * i`price`n, i`maxSheepSend * i`price`d)
+      IN state`wheatStays IFF wheatOfferInTermsOfSheep > sheepOfferInTermsOfSheep
+
+  %---------------------------------------------------------------------------
+  % when wheatStays and round=SEND, wf_state (1) holds
+  %---------------------------------------------------------------------------
+  wheatStays_pathSend_nn: LEMMA
+    FORALL (i: inv_state):
+      LET s = exchangeV10WithoutPriceErrorThresholds(i)
+      IN ((s`wheatStays AND s`round = PATH_PAYMENT_STRICT_SEND) IMPLIES s`sS > 0 AND s`wR >= 0)
 
 END ExchangeV10_Lemmas
