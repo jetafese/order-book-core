@@ -92,6 +92,7 @@ void testRoundingForPATH_PAYMENT_STRICT_SEND() {
     // SECTION("can send nonzero while receiving zero")
     check(Price{2, 1}, 1, INT64_MAX, 1, RoundingType::NORMAL, 0, 0);
     check(Price{2, 1}, 1, INT64_MAX, 1, RoundingType::PATH_PAYMENT_STRICT_SEND, 0, 1);
+    check(Price{2, 4}, 1, INT64_MAX, 1, RoundingType::PATH_PAYMENT_STRICT_SEND, 0, 1);
 }
 
 // SECTION("Limited by maxWheatSend and maxSheepSend")
