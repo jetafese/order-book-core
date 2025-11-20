@@ -2,7 +2,7 @@
  (|big_div_TCC1| 0
   (|big_div_TCC1-1| NIL 3971174726 ("" (SUBTYPE-TCC) NIL NIL)
    ((NIL APPLICATION-JUDGEMENT "above(n)" |exp2| NIL)) NIL
-   (|big_div| SUBTYPE "ExchangeV10.y" "nznum" (19 23 19 24))))
+   (|big_div| SUBTYPE "ExchangeV10.y" "nznum" (18 23 18 24))))
  (|big_div_TCC2| 0
   (|big_div_TCC1-1| NIL 3970822228
    ("" (SKEEP :PREDS? T)
@@ -73,7 +73,7 @@
     (NIL APPLICATION-JUDGEMENT "above(n)" |exp2| NIL))
    NIL
    (|big_div| SUBTYPE "modulo_arithmetic.ndiv(ExchangeV10.x, ExchangeV10.y)"
-    "nnint64" (19 39 19 48))))
+    "nnint64" (18 39 18 48))))
  (|big_div_TCC3| 0
   (|big_div_TCC3-1| NIL 3971174726 ("" (SUBTYPE-TCC) NIL NIL)
    ((|max128| CONST-DECL "uint128" |ExchangeV10| NIL)
@@ -81,7 +81,7 @@
     (|nnint_plus_posint_is_posint| APPLICATION-JUDGEMENT "posint" |integers|
      NIL)
     (NIL APPLICATION-JUDGEMENT "above(n)" |exp2| NIL))
-   NIL (|big_div| SUBTYPE "ExchangeV10.y" "nznum" (20 79 20 80))))
+   NIL (|big_div| SUBTYPE "ExchangeV10.y" "nznum" (19 79 19 80))))
  (|big_div_TCC4| 0
   (|big_div_TCC2-1| NIL 3970822228
    ("" (SKEEP :PREDS? T)
@@ -174,11 +174,11 @@
    NIL
    (|big_div| SUBTYPE
     "modulo_arithmetic.ndiv((number_fields.-)((number_fields.+)(ExchangeV10.x, ExchangeV10.y), 1), ExchangeV10.y)"
-    "nnint64" (21 23 21 41))))
+    "nnint64" (20 23 20 41))))
  (|big_div_numden_TCC1| 0
   (|big_div_numden_TCC1-1| NIL 3971177485 ("" (SUBTYPE-TCC) NIL NIL)
    ((NIL APPLICATION-JUDGEMENT "above(n)" |exp2| NIL)) NIL
-   (|big_div_numden| SUBTYPE "ExchangeV10.d" "nznum" (29 26 29 27))))
+   (|big_div_numden| SUBTYPE "ExchangeV10.d" "nznum" (28 26 28 27))))
  (|big_div_numden_TCC2| 0
   (|big_div_numden_TCC1-1| NIL 3970822228
    ("" (SKEEP :PREDS? T)
@@ -250,11 +250,11 @@
    NIL
    (|big_div_numden| SUBTYPE
     "modulo_arithmetic.ndiv((number_fields.*(ExchangeV10.x, ExchangeV10.n)), ExchangeV10.d)"
-    "nnint64" (29 44 29 60))))
+    "nnint64" (28 44 28 60))))
  (|big_div_numden_TCC3| 0
   (|big_div_numden_TCC3-1| NIL 3971177485 ("" (SUBTYPE-TCC) NIL NIL)
    ((NIL APPLICATION-JUDGEMENT "above(n)" |exp2| NIL)) NIL
-   (|big_div_numden| SUBTYPE "ExchangeV10.d" "nznum" (30 34 30 35))))
+   (|big_div_numden| SUBTYPE "ExchangeV10.d" "nznum" (29 34 29 35))))
  (|big_div_numden_TCC4| 0
   (|big_div_numden_TCC2-1| NIL 3970822228
    ("" (SKEEP :PREDS? T)
@@ -339,7 +339,7 @@
    NIL
    (|big_div_numden| SUBTYPE
     "modulo_arithmetic.ndiv(((number_fields.+)(number_fields.*(ExchangeV10.x, ExchangeV10.n), ((number_fields.-)(ExchangeV10.d, 1)))), ExchangeV10.d)"
-    "nnint64" (30 51 30 77))))
+    "nnint64" (29 51 29 77))))
  (|calculateOfferValue_TCC1| 0
   (|calculateOfferValue_TCC3-1| NIL 3970822228
    ("" (SKEEP :PREDS? T)
@@ -382,7 +382,7 @@
    NIL
    (|calculateOfferValue| SUBTYPE
     "real_defs.min(CheckPriceErrorBound.big_mul(ExchangeV10.maxSend, ExchangeV10.n), CheckPriceErrorBound.big_mul(ExchangeV10.maxReceive, ExchangeV10.d))"
-    "uint128" (40 4 40 52))))
+    "uint128" (56 4 56 52))))
  (|exchangeV10WithoutPriceErrorThresholds_TCC1| 0
   (|exchangeV10WithoutPriceErrorThresholds_TCC20-1| NIL 3970822228
    ("" (SKEEP)
@@ -421,7 +421,7 @@
    NIL NIL
    (|exchangeV10WithoutPriceErrorThresholds| SUBTYPE
     "(# price := ExchangeV10.price, wheatStays := ExchangeV10.wheatStays, sS := ExchangeV10.sheepSend, wR := ExchangeV10.wheatReceive, round := ExchangeV10.round #)"
-    "wf_state" (97 6 97 104)))))
+    "wf_state" (117 6 117 104)))))
 (|ExchangeV10_Lemmas|
  (|wheatStays_exchangeV10WithoutPriceErrorThresholds| 0
   (|wheatStays_exchangeV10WithoutPriceErrorThresholds-1| NIL 3972041154
@@ -523,5 +523,163 @@
     (NOT CONST-DECL "[bool -> bool]" |booleans| NIL)
     (|bool| NONEMPTY-TYPE-EQ-DECL NIL |booleans| NIL)
     (|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL))
-   SHOSTAK)))
+   SHOSTAK))
+ (|wheatStays_pathSend_nnSS| 0
+  (|wheatStays_pathSend_nnSS-1| NIL 3972056486
+   ("" (GRIND :THEORIES "interval_props") NIL NIL)
+   ((|int_times_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
+    (|minus_nzint_is_nzint| APPLICATION-JUDGEMENT "nzint" |integers| NIL)
+    (|big_mul| CONST-DECL "uint128" |CheckPriceErrorBound| NIL)
+    (> CONST-DECL "bool" |reals| NIL)
+    (|min| CONST-DECL "{p: real | p <= m AND p <= n}" |real_defs| NIL)
+    (|calculateOfferValue| CONST-DECL "uint128" |ExchangeV10| NIL)
+    (|max64| CONST-DECL "uint64" |integertypes| NIL)
+    (|big_div| CONST-DECL "nnint64" |ExchangeV10| NIL)
+    (|big_div_numden| CONST-DECL "nnint64" |ExchangeV10| NIL)
+    (|exchangeV10WithoutPriceErrorThresholds| CONST-DECL "wf_state"
+     |ExchangeV10| NIL)
+    (NIL APPLICATION-JUDGEMENT "upto(n)" |modulo_arithmetic| NIL)
+    (|nnint_times_nnint_is_nnint| APPLICATION-JUDGEMENT "nonneg_int" |integers|
+     NIL)
+    (|gt_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+    (|real_gt_is_strict_total_order| NAME-JUDGEMENT
+     "(strict_total_order?[real])" |real_props| NIL)
+    (|lt_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+    (|real_lt_is_strict_total_order| NAME-JUDGEMENT
+     "(strict_total_order?[real])" |real_props| NIL)
+    (NIL APPLICATION-JUDGEMENT "above(n)" |exp2| NIL)
+    (|ge_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+    (|real_ge_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
+     |real_props| NIL)
+    (|posint_times_posint_is_posint| APPLICATION-JUDGEMENT "posint" |integers|
+     NIL)
+    (|inv_state| TYPE-EQ-DECL NIL |ExchangeV10| NIL)
+    (|inv_state?| CONST-DECL "bool" |ExchangeV10| NIL)
+    (|Inv| TYPE-EQ-DECL NIL |ExchangeV10| NIL)
+    (|RoundingType| TYPE-DECL NIL |ApplyPriceErrorThresholds| NIL)
+    (|Price| TYPE-EQ-DECL NIL |CheckPriceErrorBound| NIL)
+    (|posint64| TYPE-EQ-DECL NIL |CheckPriceErrorBound| NIL)
+    (|nnint64| TYPE-EQ-DECL NIL |CheckPriceErrorBound| NIL)
+    (NOT CONST-DECL "[bool -> bool]" |booleans| NIL)
+    (|bool| NONEMPTY-TYPE-EQ-DECL NIL |booleans| NIL)
+    (|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL))
+   SHOSTAK))
+ (|wheatStays_pathSend_nnSR| 0
+  (|wheatStays_pathSend_nnSR-1| NIL 3972056455
+   ("" (GRIND :THEORIES "interval_props") NIL NIL)
+   ((|int_times_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
+    (|minus_nzint_is_nzint| APPLICATION-JUDGEMENT "nzint" |integers| NIL)
+    (|big_mul| CONST-DECL "uint128" |CheckPriceErrorBound| NIL)
+    (> CONST-DECL "bool" |reals| NIL)
+    (|min| CONST-DECL "{p: real | p <= m AND p <= n}" |real_defs| NIL)
+    (|calculateOfferValue| CONST-DECL "uint128" |ExchangeV10| NIL)
+    (|max64| CONST-DECL "uint64" |integertypes| NIL)
+    (|big_div| CONST-DECL "nnint64" |ExchangeV10| NIL)
+    (|big_div_numden| CONST-DECL "nnint64" |ExchangeV10| NIL)
+    (|exchangeV10WithoutPriceErrorThresholds| CONST-DECL "wf_state"
+     |ExchangeV10| NIL)
+    (NIL APPLICATION-JUDGEMENT "upto(n)" |modulo_arithmetic| NIL)
+    (|nnint_times_nnint_is_nnint| APPLICATION-JUDGEMENT "nonneg_int" |integers|
+     NIL)
+    (|gt_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+    (|real_gt_is_strict_total_order| NAME-JUDGEMENT
+     "(strict_total_order?[real])" |real_props| NIL)
+    (|lt_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+    (|real_lt_is_strict_total_order| NAME-JUDGEMENT
+     "(strict_total_order?[real])" |real_props| NIL)
+    (NIL APPLICATION-JUDGEMENT "above(n)" |exp2| NIL)
+    (|le_realorder| NAME-JUDGEMENT "RealOrder" |real_orders| |reals|)
+    (|real_le_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
+     |real_props| NIL)
+    (|posint_times_posint_is_posint| APPLICATION-JUDGEMENT "posint" |integers|
+     NIL)
+    (|inv_state| TYPE-EQ-DECL NIL |ExchangeV10| NIL)
+    (|inv_state?| CONST-DECL "bool" |ExchangeV10| NIL)
+    (|Inv| TYPE-EQ-DECL NIL |ExchangeV10| NIL)
+    (|RoundingType| TYPE-DECL NIL |ApplyPriceErrorThresholds| NIL)
+    (|Price| TYPE-EQ-DECL NIL |CheckPriceErrorBound| NIL)
+    (|posint64| TYPE-EQ-DECL NIL |CheckPriceErrorBound| NIL)
+    (|nnint64| TYPE-EQ-DECL NIL |CheckPriceErrorBound| NIL)
+    (NOT CONST-DECL "[bool -> bool]" |booleans| NIL)
+    (|bool| NONEMPTY-TYPE-EQ-DECL NIL |booleans| NIL)
+    (|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL))
+   SHOSTAK))
+ (|wheatStays_nztrade_moreSheep_than_wheat_pathSend| 0
+  (|wheatStays_nztrade_moreSheep_than_wheat_pathSend-1| NIL 3972054136
+   ("" (SKEEP)
+    (("" (GROUND)
+      (("" (GROUND)
+        (("" (LEMMA "wheatStays_pathSend_nn")
+          (("" (INST? -1)
+            (("" (HIDE -1)
+              (("" (EXPAND "exchangeV10WithoutPriceErrorThresholds" 1)
+                (("" (GROUND)
+                  (("" (EXPAND "exchangeV10WithoutPriceErrorThresholds")
+                    (("" (ASSERT)
+                      (("" (GROUND)
+                        (("" (EXPAND "calculateOfferValue")
+                          (("" (GROUND)
+                            (("" (EXPAND "big_mul")
+                              (("" (GROUND)
+                                (("" (EXPAND "big_div")
+                                  (("" (ASSERT)
+                                    (("" (GRIND :THEORIES "real_props")
+                                      (("1" (ALL-TYPEPREDS)
+                                        (("1" (ASSERT) NIL NIL)) NIL)
+                                       ("2" (ALL-TYPEPREDS)
+                                        (("2" (ASSERT) NIL NIL)) NIL)
+                                       ("3" (ALL-TYPEPREDS)
+                                        (("3" (ASSERT) NIL NIL)) NIL)
+                                       ("4" (GRIND :THEORIES "real_props")
+                                        (("4"
+                                          (GRIND :THEORIES "interval_props")
+                                          (("4" (LEMMA "ndiv_lt")
+                                            (("4" (INST? -1)
+                                              (("4" (ASSERT)
+                                                (("4" (REWRITE -1)
+                                                  (("4" (TYPEPRED "i`price`n")
+                                                    (("4" (ASSERT)
+                                                      (("4" (HIDE -1)
+                                                        (("4"
+                                                          (TYPEPRED
+                                                           "i`price`d")
+                                                          (("4" (HIDE -1)
+                                                            (("4" (POSTPONE)
+                                                              NIL NIL))
+                                                            NIL))
+                                                          NIL))
+                                                        NIL))
+                                                      NIL))
+                                                    NIL))
+                                                  NIL))
+                                                NIL))
+                                              NIL))
+                                            NIL))
+                                          NIL))
+                                        NIL)
+                                       ("5" (ALL-TYPEPREDS)
+                                        (("5" (ASSERT) NIL NIL)) NIL)
+                                       ("6" (ALL-TYPEPREDS)
+                                        (("6" (ASSERT) NIL NIL)) NIL)
+                                       ("7" (ALL-TYPEPREDS)
+                                        (("7" (ASSERT) NIL NIL)) NIL))
+                                      NIL))
+                                    NIL))
+                                  NIL))
+                                NIL))
+                              NIL))
+                            NIL))
+                          NIL))
+                        NIL))
+                      NIL))
+                    NIL))
+                  NIL))
+                NIL))
+              NIL))
+            NIL))
+          NIL))
+        NIL))
+      NIL))
+    NIL)
+   NIL SHOSTAK)))
 
