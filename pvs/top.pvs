@@ -4,8 +4,8 @@ BEGIN
   % Formalization of the core functionality of Stellar's order book
   % TODO: block comment describing formalization
 
-  IMPORTING CheckPriceErrorBound % TODO: describe this
-  IMPORTING ApplyPriceErrorThresholds % TODO: describe this
-  IMPORTING ExchangeV10 % TODO: describe this
+  IMPORTING CheckPriceErrorBound_Lemmas
+  IMPORTING ApplyPriceErrorThresholds_Lemmas
+  IMPORTING ExchangeV10_Lemmas
 
 END top

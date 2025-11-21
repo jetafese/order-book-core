@@ -4,7 +4,14 @@ https://github.com/stellar/stellar-core/blob/master/src/transactions/OfferExchan
 
 # Current Proof Status
 ```
-Proof summary for theory ExchangeV10
+ Proof summary for theory ExchangeV10_Lemmas
+    wheatStays_exchangeV10WithoutPriceErrorThresholds...proved - incomplete [SHOSTAK](0.00 s)
+    wheatStays_pathSend_nn................proved - incomplete [SHOSTAK](0.00 s)
+    wheatStays_nztrade_moreSheep_than_wheat...proved - incomplete [SHOSTAK](0.01 s)
+    not_wheatStays_nztrade_lessSheep_than_wheat...proved - incomplete [SHOSTAK](0.00 s)
+    Theory ExchangeV10_Lemmas totals: 4 formulas, 4 attempted, 4 succeeded (0.02 s)
+
+ Proof summary for theory ExchangeV10
     big_div_TCC1..........................proved - complete   [SHOSTAK](0.00 s)
     big_div_TCC2..........................proved - incomplete [SHOSTAK](0.00 s)
     big_div_TCC3..........................proved - complete   [SHOSTAK](0.00 s)
@@ -56,5 +63,5 @@ Proof summary for theory ExchangeV10
  Proof summary for theory top
     Theory top totals: 0 formulas, 0 attempted, 0 succeeded (0.00 s)
 
-Grand Totals: 34 proofs, 34 attempted, 33 succeeded (0.02 s)
+Grand Totals: 38 proofs, 38 attempted, 37 succeeded (0.03 s)
 ```

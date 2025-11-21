@@ -150,28 +150,19 @@ BEGIN
       IN ((s`wheatStays AND s`round = PATH_PAYMENT_STRICT_SEND) IMPLIES s`sS > 0 AND s`wR >= 0)
 
   %---------------------------------------------------------------------------
-  % when wheatStays and round=SEND
+  % when wheatStays and nonzero trade, wf_state (2) holds for any rounding
   %---------------------------------------------------------------------------
-  wheatStays_pathSend_nnSS: LEMMA
+  wheatStays_nztrade_moreSheep_than_wheat: LEMMA
     FORALL (i: inv_state):
       LET s = exchangeV10WithoutPriceErrorThresholds(i)
-      IN ((s`wheatStays AND s`round = PATH_PAYMENT_STRICT_SEND AND i`maxSheepReceive >= i`maxSheepSend) IMPLIES s`sS = i`maxSheepSend)
-  
-  %---------------------------------------------------------------------------
-  % when wheatStays and round=SEND
-  %---------------------------------------------------------------------------
-  wheatStays_pathSend_nnSR: LEMMA
-    FORALL (i: inv_state):
-      LET s = exchangeV10WithoutPriceErrorThresholds(i)
-      IN ((s`wheatStays AND s`round = PATH_PAYMENT_STRICT_SEND AND i`maxSheepReceive <= i`maxSheepSend) IMPLIES s`sS = i`maxSheepReceive)
+      IN ((s`wR > 0 AND s`sS > 0 AND s`wheatStays) IMPLIES s`price`d * s`sS >= s`price`n * s`wR)
 
   %---------------------------------------------------------------------------
-  % when wheatStays, round=SEND and non zero trade, wf_state (2) holds
+  % when not wheatStays and nonzero trade, wf_state (3) holds for any rounding
   %---------------------------------------------------------------------------
-  wheatStays_nztrade_moreSheep_than_wheat_pathSend: LEMMA
+  not_wheatStays_nztrade_lessSheep_than_wheat: LEMMA
     FORALL (i: inv_state):
       LET s = exchangeV10WithoutPriceErrorThresholds(i)
-%      IN ((s`wheatStays) IMPLIES s`price`d * s`sS >= s`price`n * s`wR)
-      IN ((s`wR > 0 AND s`sS > 0 AND s`wheatStays AND s`round = PATH_PAYMENT_STRICT_SEND) IMPLIES s`price`d * s`sS >= s`price`n * s`wR)
+      IN ((s`wR > 0 AND s`sS > 0 AND NOT s`wheatStays) IMPLIES s`price`n * s`wR >= s`price`d * s`sS)
 
 END ExchangeV10_Lemmas
