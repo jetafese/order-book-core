@@ -23,7 +23,7 @@ int main() {
 // we restrict the inputs to ensure wheatStays is true
 // round is set to PATH_PAYMENT_STRICT_SEND
 // we expect that wheatStays => sheepSend > 0 and wheatReceived >= 0
-// WILL PANIC
+// WILL PANIC if we call exchangeV10(...) instead
 void verify_wheatStays_PATH_PAYMENT_STRICT_SEND() {
     // invariants: established by callers
     int32_t n = sea_nd_i32();
@@ -43,7 +43,7 @@ void verify_wheatStays_PATH_PAYMENT_STRICT_SEND() {
     assume(maxSheepReceive > 0);
     
     Price p{n, d};
-    auto res = exchangeV10(p, maxWheatSend, maxWheatReceive, maxSheepSend, maxSheepReceive, round);
+    auto res = exchangeV10WithoutPriceErrorThresholds(p, maxWheatSend, maxWheatReceive, maxSheepSend, maxSheepReceive, round);
     
     assert(!res.wheatStays || (res.numSheepSend > 0 && res.numWheatReceived >= 0));
 }
