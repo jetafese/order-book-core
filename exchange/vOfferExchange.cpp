@@ -11,7 +11,6 @@ struct ExchangedQuantities
 void assert(bool cond) {
     if (!cond) {
         __VERIFIER_error();
-        std::abort();
     }
 }
 
@@ -23,8 +22,8 @@ namespace stellar {
 
 void printAssertFailureAndAbort(const char* s1, const char* file, int line)
 {
-    std::fprintf(stderr, "%s at %s:%d\n", s1, file, line);
-    std::fflush(stderr);
+    // std::fprintf(stderr, "%s at %s:%d\n", s1, file, line);
+    // std::fflush(stderr);
     // printCurrentBacktrace();
     // dbgAbort();
     assert(false);
@@ -32,8 +31,8 @@ void printAssertFailureAndAbort(const char* s1, const char* file, int line)
 
 void printAssertFailureAndThrow(const char* s1, const char* file, int line)
 {
-    std::fprintf(stderr, "%s at %s:%d\n", s1, file, line);
-    std::fflush(stderr);
+    // std::fprintf(stderr, "%s at %s:%d\n", s1, file, line);
+    // std::fflush(stderr);
     // printCurrentBacktrace();
     assert(false);
 }
