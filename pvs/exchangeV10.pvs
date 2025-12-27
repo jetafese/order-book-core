@@ -1,7 +1,7 @@
 ExchangeV10: THEORY
 BEGIN
   IMPORTING ApplyPriceErrorThresholds_Lemmas
-  IMPORTING interval_arith@top
+  % IMPORTING interval_arith@top
 
   %-----------------------------
   % Integer domains
@@ -125,6 +125,41 @@ BEGIN
     IN applyPriceErrorThresholds(before)
 
 END ExchangeV10
+
+ExchangeV10_Tests: THEORY
+BEGIN
+
+  IMPORTING ExchangeV10
+
+  INT64_MAX: MACRO int64 = exp2(63)-1
+
+  test(p: Price,
+       maxWheatSend, maxWheatReceive, maxSheepSend: int64,
+       round: RoundingType,
+       wheatReceive, sheepSend: int64): bool =
+    LET res = exchangeV10((#
+      price := p,
+      maxWheatSend := maxWheatSend,
+      maxWheatReceive := maxWheatReceive,
+      maxSheepSend := maxSheepSend,
+      maxSheepReceive := INT64_MAX,
+      round := round
+    #)) IN
+      (IF (maxWheatReceive = INT64_MAX)
+       THEN res`wheatStays
+       ELSE res`wheatStays =
+            (big_mul(maxWheatSend, p`n) >
+	     min(big_mul(maxSheepSend, p`d),
+	         big_mul(maxWheatReceive, p`n)))
+       ENDIF) AND
+      (res`numWheatReceived = wheatReceive) AND
+      (res`numSheepSend = sheepSend)
+
+
+  test1: _TEST_
+    test((# n := 3, d := 2 #), 28, INT64_MAX, 1, PATH_PAYMENT_STRICT_SEND, 95, INT64_MAX)
+
+END ExchangeV10_Tests
 
 ExchangeV10_Lemmas: THEORY
 BEGIN
