@@ -1,6 +1,6 @@
 # order-book-core
 
-https://github.com/stellar/stellar-core/blob/master/src/transactions/OfferExchange.cpp#L227-L699
+Evaluating the *exchangeV10* algorithm found in the stellar-core repository at [OfferExchange.cpp](https://github.com/stellar/stellar-core/blob/1d2f58f5a1f47c96978ef507502943174258135c/src/transactions/OfferExchange.cpp#L227-L699)
 
 # Current Proof Status
 ```
