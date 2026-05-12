@@ -15,7 +15,7 @@ ARG LIBPOLY_REF=master
 ARG CUDD_REPO=https://github.com/ivmai/cudd.git
 ARG CUDD_REF=cudd-3.0.0
 ARG YICES_REPO=https://github.com/SRI-CSL/yices2.git
-ARG YICES_REF=Yices-2.6.4
+ARG YICES_REF=yices-2.7.0
 ARG PVS_REPO=https://github.com/SRI-CSL/PVS.git
 ARG PVS_REF=master
 ARG PVSLIB_REPO=https://github.com/nasa/pvslib.git
@@ -158,9 +158,13 @@ RUN git clone "${PVSLIB_REPO}" "${PVS_HOME}/nasalib" && \
     git checkout "${PVSLIB_REF}" && \
     printf '(setq *yices2-executable* "%s/bin/yices")\n' "${YICES_HOME}" > /root/.pvs.lisp
 
+COPY docker/patches/seahorn-yices-2.7-status.patch /tmp/seahorn-yices-2.7-status.patch
+
 RUN git clone "${SEAHORN_REPO}" "${SEAHORN_SRC}" && \
     cd "${SEAHORN_SRC}" && \
     git checkout "${SEAHORN_REF}" && \
+    git apply --check /tmp/seahorn-yices-2.7-status.patch && \
+    git apply /tmp/seahorn-yices-2.7-status.patch && \
     mkdir -p build && \
     cd build && \
     z3_lib="/usr/lib/$(gcc -dumpmachine)/libz3.so" && \

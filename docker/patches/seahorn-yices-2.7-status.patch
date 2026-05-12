@@ -1,0 +1,53 @@
+diff --git a/lib/seahorn/Smt/Yices2SolverImpl.cc b/lib/seahorn/Smt/Yices2SolverImpl.cc
+index 3456df8..bd4227c 100644
+--- a/lib/seahorn/Smt/Yices2SolverImpl.cc
++++ b/lib/seahorn/Smt/Yices2SolverImpl.cc
+@@ -15,6 +15,14 @@ using namespace expr;
+ namespace seahorn {
+ namespace solver {
+ 
++#if (__YICES_VERSION < 2) || (__YICES_VERSION == 2 && __YICES_VERSION_MAJOR < 7)
++#define YICES_STATUS_UNSAT STATUS_UNSAT
++#define YICES_STATUS_SAT STATUS_SAT
++#define YICES_STATUS_UNKNOWN STATUS_UNKNOWN
++#define YICES_STATUS_INTERRUPTED STATUS_INTERRUPTED
++#define YICES_STATUS_ERROR STATUS_ERROR
++#endif
++
+ static void report_fatal_error(std::string const &s) {
+   llvm::report_fatal_error(llvm::StringRef(s)); 
+ }
+@@ -93,11 +101,11 @@ SolverResult yices_solver_impl::check(){
+   //could have a param_t field for this call.
+   smt_status_t stat = yices_check_context(d_ctx, nullptr);
+   switch(stat){
+-  case STATUS_UNSAT: return SolverResult::UNSAT;
+-  case STATUS_SAT: return SolverResult::SAT;
+-  case STATUS_UNKNOWN: return SolverResult::UNKNOWN;
+-  case STATUS_INTERRUPTED: return SolverResult::UNKNOWN;
+-  case STATUS_ERROR: return SolverResult::ERROR;
++  case YICES_STATUS_UNSAT: return SolverResult::UNSAT;
++  case YICES_STATUS_SAT: return SolverResult::SAT;
++  case YICES_STATUS_UNKNOWN: return SolverResult::UNKNOWN;
++  case YICES_STATUS_INTERRUPTED: return SolverResult::UNKNOWN;
++  case YICES_STATUS_ERROR: return SolverResult::ERROR;
+   default: return SolverResult::UNKNOWN;
+   }
+ }
+@@ -122,11 +130,11 @@ SolverResult yices_solver_impl::check_with_assumptions(const expr_const_it_range
+   smt_status_t stat = yices_check_context_with_assumptions(d_ctx, nullptr,
+ 							   y_lits.size(), &y_lits[0]);
+   switch(stat){
+-  case STATUS_UNSAT: return SolverResult::UNSAT;
+-  case STATUS_SAT: return SolverResult::SAT;
+-  case STATUS_UNKNOWN: return SolverResult::UNKNOWN;
+-  case STATUS_INTERRUPTED: return SolverResult::UNKNOWN;
+-  case STATUS_ERROR: return SolverResult::ERROR;
++  case YICES_STATUS_UNSAT: return SolverResult::UNSAT;
++  case YICES_STATUS_SAT: return SolverResult::SAT;
++  case YICES_STATUS_UNKNOWN: return SolverResult::UNKNOWN;
++  case YICES_STATUS_INTERRUPTED: return SolverResult::UNKNOWN;
++  case YICES_STATUS_ERROR: return SolverResult::ERROR;
+   default: return SolverResult::UNKNOWN;
+   }
+ }
